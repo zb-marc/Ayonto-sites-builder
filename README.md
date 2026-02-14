@@ -1,4 +1,4 @@
-# Voltrana Sites Builder
+# Ayonto Sites Builder
 
 **Version:** 0.1.37 Build 057  
 **Status:** ✅ Production Ready - Security Grade A-
@@ -36,7 +36,7 @@ Professional WordPress plugin for battery management with Elementor integration.
 - ✅ **5 Tabs** - General, Schema.org, Design, Colors, Frontend
 - ✅ **Konfigurierbare Firmenangaben** (Name, URL, Logo, Marke)
 - ✅ **4 Farben mit Color Picker** für Design-Anpassung
-- ✅ **White-Label ready** - alle "Voltrana" Werte konfigurierbar
+- ✅ **White-Label ready** - alle "Ayonto" Werte konfigurierbar
 - ✅ **CSS-Variablen** für Farben im Frontend
 - ✅ **Settings speichern** korrekt (Merge-Logik ohne Datenverluste)
 
@@ -46,7 +46,7 @@ Professional WordPress plugin for battery management with Elementor integration.
 - ✅ **Elementor Dynamic Tag** "Zusätzlicher Inhalt"
 - ✅ **Shortcode [vt_additional_content]** für formatierte Inhalte
 - ✅ **Tabellen-Support** mit vt-battery-table Styling
-- ✅ **Custom List Icons** mit Voltrana-Logo
+- ✅ **Custom List Icons** mit Ayonto-Logo
 - ✅ **HTML-Sanitization** (wp_kses) für sichere Ausgabe
 
 **RankMath Integration (Build 042-043):**
@@ -102,9 +102,9 @@ Professional WordPress plugin for battery management with Elementor integration.
 - Tested up to: WordPress 6.4
 
 **Steps:**
-1. Upload `voltrana-sites-builder` folder to `/wp-content/plugins/`
+1. Upload `ayonto-sites-builder` folder to `/wp-content/plugins/`
 2. Activate via WordPress Plugins menu
-3. Configure via Voltrana → Einstellungen menu
+3. Configure via Ayonto → Einstellungen menu
 4. Set up company info, colors, and branding
 
 ## 🚀 Features
@@ -193,7 +193,7 @@ Professional WordPress plugin for battery management with Elementor integration.
 
 ## 🔧 Dynamic Tags (Elementor)
 
-Available in **Voltrana** group:
+Available in **Ayonto** group:
 - Model, EAN, Brand, Series
 - Technology, Capacity, Voltage, CCA
 - Dimensions (L, W, H), Weight
@@ -247,12 +247,7 @@ GPL-2.0 or later
 ## 👨‍💻 Author
 
 **Marc Mirschel**  
-Website: [https://mirschel.biz](https://mirschel.biz)
-
-## 🏢 Organization
-
-**Voltrana.de**  
-Website: [https://voltrana.de](https://voltrana.de)
+Website: [https://ayon.to](https://ayon.to)
 
 ---
 
