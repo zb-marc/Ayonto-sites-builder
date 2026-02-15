@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: Voltrana Sites Builder
- * Plugin URI:  https://voltrana.de
+ * Plugin Name: Ayonto Sites Builder
+ * Plugin URI:  https://ayon.to
  * Description: Professional battery management system for WordPress with Elementor integration. Only ONE taxonomy (vt_category) - Brand, Series, Technology, Voltage are Meta Fields!
  * Version:     0.1.37
  * Build:       057
@@ -9,10 +9,10 @@
  * Author URI:  https://mirschel.biz
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain: voltrana-sites
+ * Text Domain: ayonto-sites
  * Domain Path: /languages
  *
- * @package Voltrana_Sites
+ * @package Ayonto_Sites
  */
 
 // Exit if accessed directly.
@@ -37,7 +37,7 @@ define( 'VOLTRANA_SITES_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 spl_autoload_register(
 	function ( $class ) {
 		// Check if class belongs to our namespace.
-		$prefix = 'Voltrana\\Sites\\';
+		$prefix = 'Ayonto\\Sites\\';
 		if ( strpos( $class, $prefix ) !== 0 ) {
 			return;
 		}
@@ -103,72 +103,72 @@ spl_autoload_register(
 /**
  * Plugin activation
  */
-function voltrana_sites_activate() {
+function ayonto_sites_activate() {
 	// Manually load Activator class.
-	if ( ! class_exists( 'Voltrana\Sites\Activator' ) ) {
+	if ( ! class_exists( 'Ayonto\Sites\Activator' ) ) {
 		require_once VOLTRANA_SITES_PLUGIN_DIR . 'includes/class-activator.php';
 	}
-	\Voltrana\Sites\Activator::activate();
+	\Ayonto\Sites\Activator::activate();
 }
 
 /**
  * Plugin deactivation
  */
-function voltrana_sites_deactivate() {
+function ayonto_sites_deactivate() {
 	// Manually load Deactivator class.
-	if ( ! class_exists( 'Voltrana\Sites\Deactivator' ) ) {
+	if ( ! class_exists( 'Ayonto\Sites\Deactivator' ) ) {
 		require_once VOLTRANA_SITES_PLUGIN_DIR . 'includes/class-deactivator.php';
 	}
-	\Voltrana\Sites\Deactivator::deactivate();
+	\Ayonto\Sites\Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'voltrana_sites_activate' );
-register_deactivation_hook( __FILE__, 'voltrana_sites_deactivate' );
+register_activation_hook( __FILE__, 'ayonto_sites_activate' );
+register_deactivation_hook( __FILE__, 'ayonto_sites_deactivate' );
 
 /**
  * Initialize plugin
  */
-function voltrana_sites_init() {
+function ayonto_sites_init() {
 	// Load text domain.
-	load_plugin_textdomain( 'voltrana-sites', false, dirname( VOLTRANA_SITES_PLUGIN_BASENAME ) . '/languages' );
+	load_plugin_textdomain( 'ayonto-sites', false, dirname( VOLTRANA_SITES_PLUGIN_BASENAME ) . '/languages' );
 
 	// Initialize components.
-	\Voltrana\Sites\Post_Type::get_instance();
-	\Voltrana\Sites\Shortcodes::get_instance();
-	\Voltrana\Sites\Services\Cache_Manager::get_instance();
-	\Voltrana\Sites\Services\Permalink_Manager::get_instance(); // NEW: Permalink Manager
+	\Ayonto\Sites\Post_Type::get_instance();
+	\Ayonto\Sites\Shortcodes::get_instance();
+	\Ayonto\Sites\Services\Cache_Manager::get_instance();
+	\Ayonto\Sites\Services\Permalink_Manager::get_instance(); // NEW: Permalink Manager
 
 	// Admin components.
 	if ( is_admin() ) {
-		\Voltrana\Sites\Admin\Admin::get_instance();
-		\Voltrana\Sites\Admin\Settings::get_instance();
-		\Voltrana\Sites\Admin\Import::get_instance();
+		\Ayonto\Sites\Admin\Admin::get_instance();
+		\Ayonto\Sites\Admin\Settings::get_instance();
+		\Ayonto\Sites\Admin\Import::get_instance();
 	}
 
 	// Frontend components.
 	if ( ! is_admin() ) {
-		\Voltrana\Sites\Frontend\Frontend::get_instance();
-		\Voltrana\Sites\Frontend\Schema::get_instance();
+		\Ayonto\Sites\Frontend\Frontend::get_instance();
+		\Ayonto\Sites\Frontend\Schema::get_instance();
 	}
 
 	// Integrations.
 	if ( defined( 'ELEMENTOR_VERSION' ) ) {
-		\Voltrana\Sites\Elementor\Integration::get_instance();
+		\Ayonto\Sites\Elementor\Integration::get_instance();
 	}
 
 	if ( class_exists( 'RankMath' ) ) {
-		\Voltrana\Sites\Integrations\Rank_Math::get_instance();
-		\Voltrana\Sites\Integrations\RankMath_Schema_Sync::get_instance(); // Build 042: Schema Sync
+		\Ayonto\Sites\Integrations\Rank_Math::get_instance();
+		\Ayonto\Sites\Integrations\RankMath_Schema_Sync::get_instance(); // Build 042: Schema Sync
 	}
 
 	/**
-	 * Fires after Voltrana Sites Builder has been initialized
+	 * Fires after Ayonto Sites Builder has been initialized
 	 *
 	 * @since 0.1.0
 	 */
-	do_action( 'voltrana_sites_init' );
+	do_action( 'ayonto_sites_init' );
 }
-add_action( 'plugins_loaded', 'voltrana_sites_init' );
+add_action( 'plugins_loaded', 'ayonto_sites_init' );
 
 /**
  * Privacy Policy Integration
@@ -177,16 +177,16 @@ add_action( 'plugins_loaded', 'voltrana_sites_init' );
  */
 add_action( 'admin_init', function() {
 	wp_add_privacy_policy_content(
-		'Voltrana Sites Builder',
+		'Ayonto Sites Builder',
 		wp_kses_post( 
-			'<h2>' . __( 'Voltrana Sites Builder', 'voltrana-sites' ) . '</h2>' .
-			'<p>' . __( 'Dieses Plugin speichert folgende Daten:', 'voltrana-sites' ) . '</p>' .
+			'<h2>' . __( 'Ayonto Sites Builder', 'ayonto-sites' ) . '</h2>' .
+			'<p>' . __( 'Dieses Plugin speichert folgende Daten:', 'ayonto-sites' ) . '</p>' .
 			'<ul>' .
-			'<li>' . __( 'Technische Batteriedaten (Modell, Kapazität, Spannung)', 'voltrana-sites' ) . '</li>' .
-			'<li>' . __( 'Import-Historie (Dateinamen und Zeitstempel)', 'voltrana-sites' ) . '</li>' .
-			'<li>' . __( 'Plugin-Einstellungen (Farben, Firmenname)', 'voltrana-sites' ) . '</li>' .
+			'<li>' . __( 'Technische Batteriedaten (Modell, Kapazität, Spannung)', 'ayonto-sites' ) . '</li>' .
+			'<li>' . __( 'Import-Historie (Dateinamen und Zeitstempel)', 'ayonto-sites' ) . '</li>' .
+			'<li>' . __( 'Plugin-Einstellungen (Farben, Firmenname)', 'ayonto-sites' ) . '</li>' .
 			'</ul>' .
-			'<p>' . __( 'Es werden keine personenbezogenen Daten erhoben oder an Dritte übertragen.', 'voltrana-sites' ) . '</p>'
+			'<p>' . __( 'Es werden keine personenbezogenen Daten erhoben oder an Dritte übertragen.', 'ayonto-sites' ) . '</p>'
 		)
 	);
 });
@@ -194,18 +194,18 @@ add_action( 'admin_init', function() {
 /**
  * Admin menu
  */
-function voltrana_sites_admin_menu() {
-	// Custom Voltrana SVG icon as Data URI.
+function ayonto_sites_admin_menu() {
+	// Custom Ayonto SVG icon as Data URI.
 	$icon_svg = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDkuMzggMTc3LjE3Ij4KICA8cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMTMwLjg5LDE3Ny4wOGwtMzcuNi04NC40NS0zNy42NCw4NC41NGg3NS4yMSwwcy4wMy0uMDkuMDMtLjA5Wk01Ny42Miw1MS42N0gwbDUzLjQ0LDEyMC41NiwzNy42NS04NC41Ni05LjI3LTIwLjgyYy04LjQ3LTE1LjE4LTI0LjItMTUuMTgtMjQuMi0xNS4xOE0xMzMuMDksMTcyLjEyTDIwOS4zOCwwaC01Ny42MnMtMTcuOTEsMC0yOS4xNiwyNi4wM2wtMjcuMjIsNjEuNDEsMzcuNyw4NC42OFoiLz4KPC9zdmc+Cg==';
 	
 	add_menu_page(
-		__( 'Voltrana', 'voltrana-sites' ),
-		__( 'Voltrana', 'voltrana-sites' ),
+		__( 'Ayonto', 'ayonto-sites' ),
+		__( 'Ayonto', 'ayonto-sites' ),
 		'manage_options',
-		'voltrana-settings', // Zeigt direkt auf Settings (Standard-WordPress-Praxis)
+		'ayonto-settings', // Zeigt direkt auf Settings (Standard-WordPress-Praxis)
 		'', // Callback ist leer, weil Settings-Page den Content liefert
 		$icon_svg,
 		56
 	);
 }
-add_action( 'admin_menu', 'voltrana_sites_admin_menu' );
+add_action( 'admin_menu', 'ayonto_sites_admin_menu' );
