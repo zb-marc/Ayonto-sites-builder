@@ -62,9 +62,6 @@ Professional WordPress plugin for battery management with Elementor integration.
 
 ## 🏗️ Architecture
 
-### SINGLE SOURCE OF TRUTH
-`voltrana-sites-builder.config.json` is the central configuration.
-
 ### Key Design Decision
 **ONE Taxonomy, Everything Else as Meta Fields!**
 
@@ -173,7 +170,7 @@ Professional WordPress plugin for battery management with Elementor integration.
 - ✅ WordPress Coding Standards
 - ✅ PHPDoc Complete
 - ✅ Internationalization (i18n)
-- ✅ Text Domain: 'voltrana-sites'
+- ✅ Text Domain: 'ayonto-sites'
 - ✅ Sanitization & Escaping
 - ✅ Prepared SQL Statements
 
@@ -205,8 +202,6 @@ Available in **Ayonto** group:
 - HTML Renderer (Spec Table)
 
 ## 📚 Documentation
-
-See `voltrana-sites-builder.config.json` for complete specifications.
 
 Full changelog available in `readme.txt`.
 
