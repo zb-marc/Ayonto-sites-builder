@@ -1,4 +1,4 @@
-# Voltrana Sites Builder - Update Log
+# Ayonto Sites Builder - Update Log
 
 ## Version 0.1.37
 
@@ -26,7 +26,7 @@ Bei der Implementierung der neuen Methode `maybe_remove_featured_image()` wurde 
 
 **Files geändert:**
 ```
-✅ voltrana-sites-builder.php              (Version 0.1.37, Build 057)
+✅ ayonto-sites-builder.php              (Version 0.1.37, Build 057)
 ✅ includes/frontend/class-frontend.php    (Syntax-Fix)
 ✅ readme.txt                              (Changelog Build 057)
 ```
@@ -67,7 +67,7 @@ Featured Images wurden auf Single Battery Pages doppelt ausgegeben:
 
 **Files geändert:**
 ```
-✅ voltrana-sites-builder.php              (Version 0.1.36, Build 056)
+✅ ayonto-sites-builder.php              (Version 0.1.36, Build 056)
 ✅ includes/frontend/class-frontend.php    (maybe_remove_featured_image())
 ✅ readme.txt                              (Changelog Build 056)
 ```
@@ -115,7 +115,7 @@ Diese Lösung ist die Standard-WordPress-Methode um Theme-Konflikte bei Custom P
 
 **Files geändert:**
 ```
-✅ voltrana-sites-builder.php              (Version 0.1.35, Build 055)
+✅ ayonto-sites-builder.php              (Version 0.1.35, Build 055)
 ✅ includes/class-shortcodes.php           (product_image Spalte, GLightbox-Enqueue)
 ✅ includes/admin/class-admin.php          (Image-Upload statt PDF-Upload)
 ✅ includes/frontend/class-frontend.php    (GLightbox Asset-Registrierung)
@@ -181,7 +181,7 @@ GLightbox JS wird aktuell von CDN geladen. Für wordpress.org Submission muss di
 **Files geändert:**
 ```
 ✅ includes/admin/class-import.php    (MIME-Type Validation)
-✅ voltrana-sites-builder.php          (Autoloader + Privacy API)
+✅ ayonto-sites-builder.php          (Autoloader + Privacy API)
 ✅ includes/admin/class-settings.php   (POST Sanitization)
 ✅ uninstall.php                       (NEU - Clean Uninstall)
 ✅ readme.txt                          (PHP Version Requirement)
@@ -298,12 +298,12 @@ Besonders niedriger Innenwiderstand... (← Falsche Zeile!)
 
 ---
 
-### Build 052 (November 10, 2025) - Additional Content Styling: Voltrana-Logo-Icons
+### Build 052 (November 10, 2025) - Additional Content Styling: Ayonto-Logo-Icons
 **🎨 Professionelles Styling für Additional Content mit Custom List Icons!**
 
 **Neue Features:**
-- ✅ Custom List Icons mit Voltrana-Logo (SVG)
-- ✅ Ersetzt Standard-Bullet-Points durch Voltrana-Logo
+- ✅ Custom List Icons mit Ayonto-Logo (SVG)
+- ✅ Ersetzt Standard-Bullet-Points durch Ayonto-Logo
 - ✅ Konsistente Abstände für `<ul>` und `<p>` Elemente (20px)
 - ✅ Optimierte Typografie für Listen
 - ✅ Mobile-Responsive Anpassungen
@@ -324,7 +324,7 @@ Besonders niedriger Innenwiderstand... (← Falsche Zeile!)
     margin-bottom: 12px;
 }
 
-/* Voltrana Logo Icon (SVG) */
+/* Ayonto Logo Icon (SVG) */
 .vt-additional-content li::before {
     content: '';
     position: absolute;
@@ -341,7 +341,7 @@ Besonders niedriger Innenwiderstand... (← Falsche Zeile!)
 **Strong-Text in Listen:**
 ```css
 .vt-additional-content li strong {
-    color: #004B61;  /* Voltrana-Blau */
+    color: #004B61;  /* Ayonto-Blau */
     font-weight: 600;
 }
 
@@ -373,10 +373,10 @@ Besonders niedriger Innenwiderstand... (← Falsche Zeile!)
 
 **Verwendung:**
 Der Shortcode `[vt_additional_content]` rendert jetzt automatisch:
-- Listen mit Voltrana-Logo-Icons
+- Listen mit Ayonto-Logo-Icons
 - Konsistente Abstände zwischen Absätzen und Listen
 - Optimierte Mobile-Darstellung
-- Strong-Text in Voltrana-Blau (#004B61)
+- Strong-Text in Ayonto-Blau (#004B61)
 - Small-Text mit reduzierter Schriftgröße
 
 **Beispiel-HTML:**
@@ -440,7 +440,7 @@ Der Shortcode `[vt_additional_content]` rendert jetzt automatisch:
 
 **Änderungen:**
 - ❌ Entfernt: `opacity: 0.1` auf gesamter Zeile (Desktop)
-- ✅ Neu: `rgba(0, 75, 97, 0.05)` - 5% transparentes Voltrana-Blau (Desktop)
+- ✅ Neu: `rgba(0, 75, 97, 0.05)` - 5% transparentes Ayonto-Blau (Desktop)
 - ✅ Neu: `color: #fff` für strong-Elemente auf Mobile
 - ✅ Lesbarkeit bei Desktop-Hover vollständig gewährleistet
 - ✅ Lesbarkeit bei Mobile vollständig gewährleistet
@@ -453,7 +453,7 @@ Der Shortcode `[vt_additional_content]` rendert jetzt automatisch:
 
 **Desktop:** Die `opacity: 0.1` wurde auf die gesamte Zeile angewendet, nicht nur auf die Hintergrundfarbe. Dies machte sowohl Hintergrund als auch Text fast unsichtbar.
 
-**Mobile:** Strong-Elemente behielten ihre Desktop-Farbe (#004B61 - Voltrana-Blau), die auf dunklem Mobile-Hintergrund (#004B61) nicht lesbar war.
+**Mobile:** Strong-Elemente behielten ihre Desktop-Farbe (#004B61 - Ayonto-Blau), die auf dunklem Mobile-Hintergrund (#004B61) nicht lesbar war.
 
 **Korrekte Lösung:**
 
@@ -466,13 +466,13 @@ Der Shortcode `[vt_additional_content]` rendert jetzt automatisch:
 ## Version 0.1.31
 
 ### Build 050 (November 10, 2025) - Battery-Table-Styling für Additional Content
-**🎨 Professionelles Voltrana-Design für alle Tabellen!**
+**🎨 Professionelles Ayonto-Design für alle Tabellen!**
 
 **Verbesserungen:**
 - ✅ Battery-Table-Styling für Additional Content Tabellen
 - ✅ CSS-Klassen statt Inline-Styles (`vt-battery-table`)
 - ✅ Konsistentes Design mit `[vt_battery_table]` Shortcode
-- ✅ Dunkler Header (#004B61 - Voltrana-Blau)
+- ✅ Dunkler Header (#004B61 - Ayonto-Blau)
 - ✅ Box-Shadow für Tiefe
 - ✅ Hover-Effekte auf Zeilen
 - ✅ Responsive Wrapper für Mobile
@@ -518,7 +518,7 @@ register_post_meta(
     'additional_content',
     array(
         'type'              => 'string',
-        'description'       => __( 'Zusätzlicher Inhalt', 'voltrana-sites' ),
+        'description'       => __( 'Zusätzlicher Inhalt', 'ayonto-sites' ),
         'single'            => true,
         'show_in_rest'      => true,
         'sanitize_callback' => array( $this, 'sanitize_html_content' ),
@@ -573,12 +573,12 @@ $additional_content = wp_kses_post( $_POST['vt_additional_content'] );
 ```php
 // Neue Klasse: includes/elementor/class-dynamic-tags.php
 // Tag-Name: 'vt-additional-content'
-// Gruppe: 'Voltrana'
+// Gruppe: 'Ayonto'
 // Kategorie: TEXT_CATEGORY
 
 // Verwendung in Elementor:
 // 1. Text-Widget hinzufügen
-// 2. Dynamic Tag wählen → Voltrana → Zusätzlicher Inhalt
+// 2. Dynamic Tag wählen → Ayonto → Zusätzlicher Inhalt
 // 3. Content wird automatisch mit Formatierung ausgegeben
 ```
 
@@ -648,7 +648,7 @@ includes/elementor/class-dynamic-tags.php (NEU!)
 includes/elementor/class-integration.php
 + Dynamic_Tags::get_instance() initialisiert
 
-voltrana-sites-builder.php
+ayonto-sites-builder.php
 + Version 0.1.29
 + Build 048
 
@@ -703,7 +703,7 @@ public function sanitize_settings( $input ) {
     // Nur die Felder aus dem aktuellen Tab werden gesetzt
     $sanitized['company_name'] = isset( $input['company_name'] ) 
         ? sanitize_text_field( $input['company_name'] ) 
-        : 'Voltrana';
+        : 'Ayonto';
     
     // Alle anderen Felder fehlen → werden überschrieben mit Defaults!
     return $sanitized;
@@ -803,7 +803,7 @@ public function add_organization_to_rankmath( $data, $jsonld ) {
 ```
 
 **3. Organization Daten aus Settings**
-Alle Felder konfigurierbar in: **Voltrana → Einstellungen → Schema.org**
+Alle Felder konfigurierbar in: **Ayonto → Einstellungen → Schema.org**
 ```
 ✅ Organisationsname
 ✅ Organisations-URL
@@ -826,19 +826,19 @@ Alle Felder konfigurierbar in: **Voltrana → Einstellungen → Schema.org**
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://voltrana.de/#organization",
-      "name": "Voltrana",
-      "url": "https://voltrana.de/",
+      "@id": "https://ayonto.de/#organization",
+      "name": "Ayonto",
+      "url": "https://ayonto.de/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://voltrana.de/logo.png"
+        "url": "https://ayonto.de/logo.png"
       },
       "description": "Professionelle Batterielösungen",
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
         "telephone": "+49 30 1234567",
-        "email": "info@voltrana.de"
+        "email": "info@ayonto.de"
       }
     }
   ]
@@ -873,7 +873,7 @@ Alle hart kodierten Werte sind jetzt über das Admin-Panel konfigurierbar:
 
 ```
 ✅ Allgemeine Einstellungen
-   - Firmenname (vorher: "Voltrana" hart kodiert)
+   - Firmenname (vorher: "Ayonto" hart kodiert)
    - Firmen-URL
    - Standard-Marke für Batterien
    - Firmen-Logo URL (mit Media-Upload)
@@ -887,9 +887,9 @@ Alle hart kodierten Werte sind jetzt über das Admin-Panel konfigurierbar:
    - Kontakt-E-Mail
 
 ✅ Design & Farben
-   - Primärfarbe (Standard: #004B61 - Voltrana Petrol)
+   - Primärfarbe (Standard: #004B61 - Ayonto Petrol)
    - Sekundärfarbe (Standard: #F0F4F5 - Helles Grau-Blau)
-   - Akzentfarbe (Standard: #F79D00 - Voltrana Orange)
+   - Akzentfarbe (Standard: #F79D00 - Ayonto Orange)
    - Rahmenfarbe (Standard: #e5e7eb - Hellgrau)
    - Mit Color Picker!
 
@@ -915,7 +915,7 @@ includes/admin/class-settings-helper.php   (neue Helper-Klasse)
 **Schema.org Output (class-schema.php):**
 ```php
 // Vorher:
-'name' => 'Voltrana',
+'name' => 'Ayonto',
 
 // Jetzt:
 'name' => Settings_Helper::get_schema_org_name(),
@@ -926,7 +926,7 @@ includes/admin/class-settings-helper.php   (neue Helper-Klasse)
 **Shortcodes (class-shortcodes.php):**
 ```php
 // Vorher:
-$brand = $battery['brand'] ?? 'Voltrana';
+$brand = $battery['brand'] ?? 'Ayonto';
 
 // Jetzt:
 $brand = $battery['brand'] ?? Settings_Helper::get_default_brand();
@@ -935,7 +935,7 @@ $brand = $battery['brand'] ?? Settings_Helper::get_default_brand();
 **RankMath Schema (class-rankmath-schema-sync.php):**
 ```php
 // Vorher:
-$brand = ! empty( $battery['brand'] ) ? $battery['brand'] : 'Voltrana';
+$brand = ! empty( $battery['brand'] ) ? $battery['brand'] : 'Ayonto';
 
 // Jetzt:
 $brand = ! empty( $battery['brand'] ) ? $battery['brand'] : Settings_Helper::get_default_brand();
@@ -944,7 +944,7 @@ $brand = ! empty( $battery['brand'] ) ? $battery['brand'] : Settings_Helper::get
 **Admin-Formulare (class-admin.php):**
 ```php
 // Vorher:
-<input type="hidden" name="vt_batteries[...][brand]" value="Voltrana">
+<input type="hidden" name="vt_batteries[...][brand]" value="Ayonto">
 
 // Jetzt:
 <input type="hidden" name="vt_batteries[...][brand]" value="<?php echo esc_attr( Settings_Helper::get_default_brand() ); ?>">
@@ -956,9 +956,9 @@ $brand = ! empty( $battery['brand'] ) ? $battery['brand'] : Settings_Helper::get
 ```php
 // Automatische CSS-Variablen:
 :root {
-    --vt-primary: #004B61;   /* Voltrana Petrol */
+    --vt-primary: #004B61;   /* Ayonto Petrol */
     --vt-secondary: #F0F4F5; /* Helles Grau-Blau */
-    --vt-accent: #F79D00;    /* Voltrana Orange */
+    --vt-accent: #F79D00;    /* Ayonto Orange */
     --vt-border: #e5e7eb;    /* Hellgrau */
 }
 
@@ -1003,10 +1003,10 @@ Settings_Helper::get_css_variables()          // CSS-Variablen String
 **Technische Details:**
 ```php
 // Option Name:
-voltrana_sites_settings
+ayonto_sites_settings
 
 // Speicherung:
-get_option( 'voltrana_sites_settings' )
+get_option( 'ayonto_sites_settings' )
 
 // Sanitization:
 - sanitize_text_field()
@@ -1025,7 +1025,7 @@ PSR-4 Autoloader lädt Settings_Helper automatisch
 - ✅ White-Label ready (Firmenname änderbar)
 - ✅ Branding-Optionen (Farben, Logo)
 - ✅ Schema.org vollständig konfigurierbar
-- ✅ Fallback-Werte vorhanden (Voltrana als Default)
+- ✅ Fallback-Werte vorhanden (Ayonto als Default)
 
 **Migration:**
 - Keine Änderungen erforderlich
@@ -1034,7 +1034,7 @@ PSR-4 Autoloader lädt Settings_Helper automatisch
 
 **Dateien geändert:**
 ```
-voltrana-sites-builder.php                      (Version 0.1.28, Build 045)
+ayonto-sites-builder.php                      (Version 0.1.28, Build 045)
 includes/admin/class-settings.php               (vollständig neu)
 includes/admin/class-settings-helper.php        (neu)
 includes/frontend/class-schema.php              (Settings-Integration)
@@ -1188,7 +1188,7 @@ ItemList mit allen Batterien
 Für jede Batterie in der Metabox:
 ✅ Model (Name)
 ✅ EAN (SKU & GTIN13)
-✅ Brand (Voltrana)
+✅ Brand (Ayonto)
 ✅ Technologie (PropertyValue)
 ✅ Kapazität (PropertyValue)
 ✅ Spannung (PropertyValue)
@@ -1205,7 +1205,7 @@ Für jede Batterie in der Metabox:
   "@graph": [
     {
       "@type": "Organization",
-      "name": "Voltrana",
+      "name": "Ayonto",
       ...
     },
     {
@@ -1220,7 +1220,7 @@ Für jede Batterie in der Metabox:
           "item": {
             "@type": "Product",
             "name": "12GEL-70",
-            "brand": {"@type": "Brand", "name": "Voltrana"},
+            "brand": {"@type": "Brand", "name": "Ayonto"},
             "sku": "4250889611712",
             "gtin13": "4250889611712",
             "additionalProperty": [
@@ -1288,7 +1288,7 @@ Die Daten werden als ItemList im Frontend ausgegeben. Prüfe die Ausgabe mit Goo
 
 **Schritt 1:** Batterien in Metabox eintragen
 ```
-Voltrana → Batterien → Lösung bearbeiten
+Ayonto → Batterien → Lösung bearbeiten
 → Metabox "Batterien für diese Lösung"
 → Batterien hinzufügen/bearbeiten
 ```
@@ -1336,11 +1336,11 @@ class RankMath_Schema_Sync {
 }
 ```
 
-**2. Aktivierung in:** `voltrana-sites-builder.php`
+**2. Aktivierung in:** `ayonto-sites-builder.php`
 ```php
 if ( class_exists( 'RankMath' ) ) {
-    \Voltrana\Sites\Integrations\Rank_Math::get_instance();
-    \Voltrana\Sites\Integrations\RankMath_Schema_Sync::get_instance(); // NEW
+    \Ayonto\Sites\Integrations\Rank_Math::get_instance();
+    \Ayonto\Sites\Integrations\RankMath_Schema_Sync::get_instance(); // NEW
 }
 ```
 
@@ -1386,14 +1386,14 @@ Von Build 041 → Build 042:
 
 - [x] WordPress Coding Standards
 - [x] RankMath API korrekt verwendet
-- [x] Alle Strings mit Textdomain 'voltrana-sites'
+- [x] Alle Strings mit Textdomain 'ayonto-sites'
 - [x] PHPDoc für alle Methoden
 - [x] Sanitization für alle Ausgaben
 - [x] Admin-Notice korrekt implementiert
 
 **Betroffene Dateien:**
 
-1. ✅ `voltrana-sites-builder.php` (0.1.25, Build 042)
+1. ✅ `ayonto-sites-builder.php` (0.1.25, Build 042)
 2. ✅ `readme.txt` (0.1.25)
 3. ✅ `includes/integrations/class-rankmath-schema-sync.php` (NEU)
 4. ✅ `includes/frontend/class-schema.php` (Fallback-Check)
@@ -1427,7 +1427,7 @@ Von Build 041 → Build 042:
 
 4. **Organization Schema**
    - Auf allen Seiten ausgegeben
-   - Voltrana Brand-Informationen
+   - Ayonto Brand-Informationen
 
 **Schema-Typen nach Seitentyp:**
 
@@ -1463,13 +1463,13 @@ Landing Page (is_page() + Shortcodes):
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://voltrana.de/#organization",
-      "name": "Voltrana",
-      "url": "https://voltrana.de/"
+      "@id": "https://ayonto.de/#organization",
+      "name": "Ayonto",
+      "url": "https://ayonto.de/"
     },
     {
       "@type": "Product",
-      "@id": "https://voltrana.de/batterie/xyz/#product",
+      "@id": "https://ayonto.de/batterie/xyz/#product",
       "name": "AGM 12-100",
       "brand": {
         "@type": "Brand",
@@ -1525,7 +1525,7 @@ Teste die Ausgabe mit:
 
 - [x] Alle Schema-Typen gemäß Schema.org Specs
 - [x] WordPress Coding Standards eingehalten
-- [x] Alle Strings mit Textdomain 'voltrana-sites'
+- [x] Alle Strings mit Textdomain 'ayonto-sites'
 - [x] PHPDoc für alle Methoden
 - [x] Sanitization für alle Ausgaben
 - [x] Performance-optimiert (max. 100 Batterien pro Liste)
@@ -1582,7 +1582,7 @@ Die Batterie-Meta-Fields (brand, capacity_ah, voltage_v, etc.) werden jetzt **au
 
 #### Config-Anpassungen
 
-**Neue Sektion in `voltrana-sites-builder_config.json`:**
+**Neue Sektion in `ayonto-sites-builder_config.json`:**
 ```json
 "rank_math": {
   "comment": "WICHTIG: RankMath nutzt seine EIGENEN manuell eingetragenen Felder!",
@@ -1647,10 +1647,10 @@ Die Batterie-Meta-Fields (brand, capacity_ah, voltage_v, etc.) werden jetzt **au
 - [x] Schema.org JSON-LD validierbar
 
 #### Betroffene Dateien
-1. ✅ `voltrana-sites-builder.php` (0.1.23, Build 040)
+1. ✅ `ayonto-sites-builder.php` (0.1.23, Build 040)
 2. ✅ `readme.txt` (0.1.23)
 3. ✅ `includes/integrations/class-rank-math.php`
-4. ✅ `voltrana-sites-builder_config.json`
+4. ✅ `ayonto-sites-builder_config.json`
 
 ---
 
@@ -1900,7 +1900,7 @@ $parent_id = get_post_meta( $post->ID, 'vt_parent_page_id', true );
   - Zeile 196: Meta-Key korrigiert (`vt_parent_page_id`)
   - Breadcrumbs funktionieren jetzt
 
-- `voltrana-sites-builder.php`: Version 0.1.20, Build 037
+- `ayonto-sites-builder.php`: Version 0.1.20, Build 037
 - `readme.txt`: Stable tag 0.1.20
 
 ---
@@ -2017,7 +2017,7 @@ Dropdown zeigt:
 **Files Changed:**
 - `includes/admin/class-admin.php`: Parent-Page statt Parent-Solution
 - `includes/class-post-type.php`: Meta-Field vt_parent_page_id registriert, hierarchical=false
-- `voltrana-sites-builder.php`: Version 0.1.18, Build 035
+- `ayonto-sites-builder.php`: Version 0.1.18, Build 035
 - `readme.txt`: Stable tag 0.1.18
 
 ---
@@ -2095,7 +2095,7 @@ Dropdown zeigt:
 
 **Files Changed:**
 - `includes/admin/class-admin.php`: Grid 8 Spalten, Maße clean, Eigenschaften verschoben
-- `voltrana-sites-builder.php`: Version 0.1.16, Build 033
+- `ayonto-sites-builder.php`: Version 0.1.16, Build 033
 - `readme.txt`: Stable tag 0.1.16
 
 ---
@@ -2634,8 +2634,8 @@ dimensions_mm, weight_kg, properties, datasheet_url
 
 ### Build 022 (November 6, 2025) - BATTERY TABLE UX IMPROVEMENTS
 **Optimierte Darstellung mit Markenname, EAN und PDF-Icon**
-- ✅ **NEW:** Markenname "Voltrana" automatisch vor Modell-Bezeichnung
-  - Display: "Voltrana 12GEL-70" statt nur "12GEL-70"
+- ✅ **NEW:** Markenname "Ayonto" automatisch vor Modell-Bezeichnung
+  - Display: "Ayonto 12GEL-70" statt nur "12GEL-70"
   - Smart: Prüft ob Marke bereits im Model enthalten ist
 - ✅ **NEW:** EAN-Spalte zu Standard-Spalten hinzugefügt
   - Monospace-Font mit Border und Padding
@@ -2704,7 +2704,7 @@ dimensions_mm, weight_kg, properties, datasheet_url
 ```php
 // Model mit Marke
 case 'model':
-  $brand = $battery['brand'] ?? 'Voltrana';
+  $brand = $battery['brand'] ?? 'Ayonto';
   $display = $model;
   if ( stripos( $model, $brand ) === false ) {
     $display = $brand . ' ' . $model;
@@ -2809,10 +2809,10 @@ dimensions_mm, weight_kg, properties, datasheet_url
   - Technische Spezifikationen (Technologie, Kapazität, Spannung, etc.)
   - Maße & Gewicht (L×B×H in einer Zeile)
   - Eigenschaften & Dokumente
-- ✅ **NEW:** Marke immer automatisch "Voltrana" (hidden field)
+- ✅ **NEW:** Marke immer automatisch "Ayonto" (hidden field)
 - ✅ **REMOVED:** application_area Feld entfernt (definiert sich über die Lösung)
 - ✅ **REMOVED:** product_group Feld entfernt
-- ✅ **IMPROVED:** Section Headers mit Voltrana-Markenfarbe (#004B61)
+- ✅ **IMPROVED:** Section Headers mit Ayonto-Markenfarbe (#004B61)
 - ✅ **IMPROVED:** Kleinere Inputs (padding: 4px 8px) und Labels (font-size: 12px)
 - ✅ **IMPROVED:** Maße als kompakte Zeile mit visueller Trennung (L × B × H)
 
@@ -2847,7 +2847,7 @@ dimensions_mm, weight_kg, properties, datasheet_url
 ```
 
 **Feldliste (final):**
-1. **Grunddaten:** Modell, EAN, Serie, [Brand=Voltrana hidden]
+1. **Grunddaten:** Modell, EAN, Serie, [Brand=Ayonto hidden]
 2. **Tech Specs:** Technologie, Kapazität, Spannung, Kaltstartstrom, Schaltung, Pole/Klemmen, Garantie
 3. **Maße:** L × B × H (inline), Gewicht
 4. **Extras:** Eigenschaften (textarea), Datenblatt-URL
@@ -2855,7 +2855,7 @@ dimensions_mm, weight_kg, properties, datasheet_url
 **Files Changed:**
 - `includes/admin/class-admin.php`: Komplette Metabox neu strukturiert
   - render_battery_row(): Neue Struktur mit Sections
-  - save_meta_data(): brand='Voltrana', application_area/product_group entfernt
+  - save_meta_data(): brand='Ayonto', application_area/product_group entfernt
 
 ---
 
@@ -2888,7 +2888,7 @@ if ( is_array( $value ) ) {
 ## Version 0.1.1
 
 ### Build 018 (November 6, 2025) - MARKENFARBEN CSS-ANPASSUNG
-**Battery Table mit Voltrana Corporate Design**
+**Battery Table mit Ayonto Corporate Design**
 - ✅ **IMPROVED:** CSS-Formatierung der Battery Table an Markenfarben angepasst
 - ✅ **NEW:** Header-Hintergrund #004B61 (Secondary)
 - ✅ **NEW:** Link-Farbe #004B61 mit Hover #F79D00 (Accent)
@@ -3146,7 +3146,7 @@ register_post_meta(
 
 **Files Changed:**
 - `includes/class-post-type.php` → Wrapper-Methoden + Callbacks (Zeilen 169, 203, 217, 312-343)
-- `voltrana-sites-builder.php` → Build number (013 → 014)
+- `ayonto-sites-builder.php` → Build number (013 → 014)
 - `UPDATE.md` → Changelog
 
 **Production Status:** 🚨 URGENT HOTFIX
@@ -3219,7 +3219,7 @@ foreach ($crumbs as $index => $crumb) {
 
 **Files Changed:**
 - `includes/integrations/class-rank-math.php` → Breadcrumb-Logik (Zeilen 184-233)
-- `voltrana-sites-builder.php` → Build number (007 → 013)
+- `ayonto-sites-builder.php` → Build number (007 → 013)
 - `UPDATE.md` → Changelog
 
 **Production Status:** ⚠️ TESTING REQUIRED
@@ -3331,11 +3331,11 @@ Lösung:   slug => 'loesung' + Custom Rewrite Rules für Root-Level Batteries �
 
 **URL-Beispiele (FUNKTIONIEREN ALLE):**
 ```
-✅ voltrana.de/impressum/              → Normale Seite (FIXED!)
-✅ voltrana.de/datenschutz/            → Normale Seite (FIXED!)
-✅ voltrana.de/golfcarts/              → Battery ohne Parent (Root-Level)
-✅ voltrana.de/loesungen/golfcarts/    → Battery mit Parent
-✅ voltrana.de/loesung/fallback-slug/  → Fallback auf CPT Slug
+✅ ayonto.de/impressum/              → Normale Seite (FIXED!)
+✅ ayonto.de/datenschutz/            → Normale Seite (FIXED!)
+✅ ayonto.de/golfcarts/              → Battery ohne Parent (Root-Level)
+✅ ayonto.de/loesungen/golfcarts/    → Battery mit Parent
+✅ ayonto.de/loesung/fallback-slug/  → Fallback auf CPT Slug
 ```
 
 **Technical Changes:**
@@ -3462,8 +3462,8 @@ Mit Parent:  Home → Batterielösungen → Golfcarts
 
 **URL-Beispiele:**
 ```
-Ohne Parent: voltrana.de/golfcarts
-Mit Parent:  voltrana.de/loesungen/golfcarts
+Ohne Parent: ayonto.de/golfcarts
+Mit Parent:  ayonto.de/loesungen/golfcarts
 ```
 
 **Technical Changes:**
@@ -3493,7 +3493,7 @@ Mit Parent:  voltrana.de/loesungen/golfcarts
 - Added `includes/services/class-permalink-manager.php`: Neues Permalink-System
 - Updated `includes/admin/class-admin.php`: 5 Metaboxen inkl. Parent-Seiten-Auswahl
 - Updated `includes/integrations/class-rank-math.php`: Breadcrumbs mit Parent-Seite
-- Updated `voltrana-sites-builder.php`: Permalink Manager initialisiert
+- Updated `ayonto-sites-builder.php`: Permalink Manager initialisiert
 
 **Features:**
 - Parent-Seiten-Dropdown mit hierarchischer Anzeige
@@ -3512,17 +3512,17 @@ Mit Parent:  Start → Produkte → Kategorie → Lösungsname
 ### Build 006 (November 6, 2025)
 **Icon Improvements**
 - ✅ **FIXED:** Icons jetzt sichtbar im Admin-Menü
-- ✅ **NEW:** Benutzerdefinierte Voltrana-SVG für Hauptmenü
+- ✅ **NEW:** Benutzerdefinierte Ayonto-SVG für Hauptmenü
 - ✅ **NEW:** Custom Batterie-SVG für "Lösungen" Post Type
 - ✅ **IMPROVED:** Beide Icons als Data-URI eingebunden (keine externe Dateien)
 
 **Technical Changes:**
-- Updated `voltrana-sites-builder.php`: Voltrana-Icon als SVG Data-URI
+- Updated `ayonto-sites-builder.php`: Ayonto-Icon als SVG Data-URI
 - Updated `includes/class-post-type.php`: Batterie-Icon als SVG Data-URI
 - SVG-Icons optimiert für WordPress Admin (weiße Füllung)
 
 **Icon Details:**
-- Voltrana-Menü: Custom dreieckiges Logo (weiß)
+- Ayonto-Menü: Custom dreieckiges Logo (weiß)
 - Lösungen-Menü: Batterie-Icon (weiß mit Ladungsanzeige)
 
 ---
@@ -3530,7 +3530,7 @@ Mit Parent:  Start → Produkte → Kategorie → Lösungsname
 ### Build 005 (November 6, 2025)
 **UI/UX Improvements**
 - ✅ **FIXED:** Tote Links im Admin-Menü behoben
-  - Voltrana-Hauptmenü zeigt jetzt direkt auf Settings-Seite
+  - Ayonto-Hauptmenü zeigt jetzt direkt auf Settings-Seite
   - Alle Submenü-Einträge funktionieren korrekt
 - ✅ **CHANGED:** Post Type Label von "Batterien" zu "Lösungen" umbenannt
   - Menüpunkt heißt jetzt "Lösungen"
@@ -3542,7 +3542,7 @@ Mit Parent:  Start → Produkte → Kategorie → Lösungsname
 
 **Technical Changes:**
 - Updated `includes/class-post-type.php`: All labels "Batterien" → "Lösungen"
-- Updated `voltrana-sites-builder.php`: Main menu now points to 'voltrana-settings'
+- Updated `ayonto-sites-builder.php`: Main menu now points to 'ayonto-settings'
 - Updated `includes/admin/class-settings.php`: Parent menu corrected
 - Updated `includes/admin/class-import.php`: Parent menu corrected
 
@@ -3600,7 +3600,7 @@ Mit Parent:  Start → Produkte → Kategorie → Lösungsname
 
 Nach dem Update werden im Admin-Menü folgende Änderungen sichtbar:
 - "Batterien" → "Lösungen" (mit Batterie-Icon)
-- Voltrana-Menü funktioniert ohne tote Links
+- Ayonto-Menü funktioniert ohne tote Links
 
 **Bestehende Inhalte:** Bleiben unverändert  
 **URL-Slugs:** Keine Änderung (`/batterie/...`)  
@@ -3652,7 +3652,7 @@ Nach dem Update werden im Admin-Menü folgende Änderungen sichtbar:
 
 ## Support & Dokumentation
 
-**Config-Datei (SSOT):** `voltrana-sites-builder.config.json`  
+**Config-Datei (SSOT):** `ayonto-sites-builder.config.json`  
 **Projekt-Doku:** Siehe beigelegte Markdown-Dateien  
 **Architektur:** NUR 1 Taxonomie (vt_category), Rest als Meta Fields!
 
