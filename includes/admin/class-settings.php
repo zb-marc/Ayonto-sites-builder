@@ -9,12 +9,12 @@
  * - Import (Import defaults)
  * - Frontend (Display options)
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Admin
  * @since      0.1.28
  */
 
-namespace Voltrana\Sites\Admin;
+namespace Ayonto\Sites\Admin;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -42,7 +42,7 @@ class Settings {
 	 *
 	 * @var string
 	 */
-	const OPTION_NAME = 'voltrana_sites_settings';
+	const OPTION_NAME = 'ayonto_sites_settings';
 
 	/**
 	 * Active tab
@@ -79,11 +79,11 @@ class Settings {
 	 */
 	public function add_settings_page() {
 		add_submenu_page(
-			'voltrana-root',
-			__( 'Einstellungen', 'voltrana-sites' ),
-			__( 'Einstellungen', 'voltrana-sites' ),
+			'ayonto-root',
+			__( 'Einstellungen', 'ayonto-sites' ),
+			__( 'Einstellungen', 'ayonto-sites' ),
 			'manage_options',
-			'voltrana-settings',
+			'ayonto-settings',
 			array( $this, 'render_settings_page' )
 		);
 	}
@@ -95,7 +95,7 @@ class Settings {
 	 * @return void
 	 */
 	public function enqueue_admin_assets( $hook ) {
-		if ( 'voltrana_page_voltrana-settings' !== $hook ) {
+		if ( 'ayonto_page_ayonto-settings' !== $hook ) {
 			return;
 		}
 
@@ -106,32 +106,33 @@ class Settings {
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'wp-color-picker' );
 
-		// Custom settings styles.
-		wp_add_inline_style(
-			'wp-admin',
-			'
-			.voltrana-settings-tabs { margin: 20px 0; border-bottom: 1px solid #ccc; }
-			.voltrana-settings-tabs a { display: inline-block; padding: 10px 15px; text-decoration: none; border: 1px solid transparent; margin-bottom: -1px; }
-			.voltrana-settings-tabs a.nav-tab-active { background: #fff; border-color: #ccc #ccc #fff; }
-			.voltrana-setting-row { margin: 15px 0; padding: 10px; background: #fff; border: 1px solid #e5e5e5; border-radius: 3px; }
-			.voltrana-setting-row th { width: 250px; padding-right: 20px; font-weight: 600; }
-			.voltrana-setting-row td { padding-left: 20px; }
-			.voltrana-setting-description { display: block; margin-top: 5px; color: #666; font-style: italic; }
-			.voltrana-upload-button { margin-left: 10px; }
-			.voltrana-color-preview { display: inline-block; width: 30px; height: 30px; border: 1px solid #ddd; margin-left: 10px; vertical-align: middle; }
-			'
+		// Enqueue Ayonto Admin CSS (unified design system).
+		wp_enqueue_style(
+			'ayonto-admin',
+			AYONTO_SITES_PLUGIN_URL . 'assets/css/admin.css',
+			array(),
+			AYONTO_SITES_VERSION
 		);
 
-		// Custom settings script.
+		// Enqueue Settings Enhancements JS (NEW!).
+		wp_enqueue_script(
+			'ayonto-settings',
+			AYONTO_SITES_PLUGIN_URL . 'assets/js/settings.js',
+			array( 'jquery', 'wp-color-picker' ),
+			AYONTO_SITES_VERSION,
+			true
+		);
+
+		// Custom settings script (inline for media uploader).
 		wp_add_inline_script(
-			'wp-color-picker',
+			'ayonto-settings',
 			'
 			jQuery(document).ready(function($) {
 				// Color picker.
-				$(".voltrana-color-picker").wpColorPicker();
+				$(".ayonto-color-picker").wpColorPicker();
 				
 				// Media uploader.
-				$(".voltrana-upload-button").click(function(e) {
+				$(".ayonto-upload-button").click(function(e) {
 					e.preventDefault();
 					var button = $(this);
 					var input = button.prev("input");
@@ -145,6 +146,7 @@ class Settings {
 					customUploader.on("select", function() {
 						var attachment = customUploader.state().get("selection").first().toJSON();
 						input.val(attachment.url);
+						input.trigger("change");
 					});
 					
 					customUploader.open();
@@ -162,7 +164,7 @@ class Settings {
 	public function register_settings() {
 		// Register main option.
 		register_setting(
-			'voltrana_sites_settings_group',
+			'ayonto_sites_settings_group',
 			self::OPTION_NAME,
 			array(
 				'sanitize_callback' => array( $this, 'sanitize_settings' ),
@@ -185,64 +187,64 @@ class Settings {
 	 */
 	private function register_general_settings() {
 		add_settings_section(
-			'voltrana_general_section',
-			__( 'Allgemeine Einstellungen', 'voltrana-sites' ),
+			'ayonto_general_section',
+			__( 'Allgemeine Einstellungen', 'ayonto-sites' ),
 			array( $this, 'render_general_section_description' ),
-			'voltrana-settings-general'
+			'ayonto-settings-general'
 		);
 
 		// Company Name.
 		add_settings_field(
 			'company_name',
-			__( 'Firmenname', 'voltrana-sites' ),
+			__( 'Firmenname', 'ayonto-sites' ),
 			array( $this, 'render_text_field' ),
-			'voltrana-settings-general',
-			'voltrana_general_section',
+			'ayonto-settings-general',
+			'ayonto_general_section',
 			array(
 				'label_for'   => 'company_name',
-				'description' => __( 'Der Name Ihres Unternehmens (z.B. "Voltrana")', 'voltrana-sites' ),
-				'placeholder' => 'Voltrana',
+				'description' => __( 'Der Name Ihres Unternehmens (z.B. "Ayonto")', 'ayonto-sites' ),
+				'placeholder' => 'Ayonto',
 			)
 		);
 
 		// Company URL.
 		add_settings_field(
 			'company_url',
-			__( 'Firmen-URL', 'voltrana-sites' ),
+			__( 'Firmen-URL', 'ayonto-sites' ),
 			array( $this, 'render_url_field' ),
-			'voltrana-settings-general',
-			'voltrana_general_section',
+			'ayonto-settings-general',
+			'ayonto_general_section',
 			array(
 				'label_for'   => 'company_url',
-				'description' => __( 'Die Haupt-URL Ihrer Website', 'voltrana-sites' ),
-				'placeholder' => 'https://voltrana.de',
+				'description' => __( 'Die Haupt-URL Ihrer Website', 'ayonto-sites' ),
+				'placeholder' => 'https://ayon.to',
 			)
 		);
 
 		// Default Brand.
 		add_settings_field(
 			'default_brand',
-			__( 'Standard-Marke', 'voltrana-sites' ),
+			__( 'Standard-Marke', 'ayonto-sites' ),
 			array( $this, 'render_text_field' ),
-			'voltrana-settings-general',
-			'voltrana_general_section',
+			'ayonto-settings-general',
+			'ayonto_general_section',
 			array(
 				'label_for'   => 'default_brand',
-				'description' => __( 'Standard-Marke für Batterien ohne Markenangabe', 'voltrana-sites' ),
-				'placeholder' => 'Voltrana',
+				'description' => __( 'Standard-Marke für Batterien ohne Markenangabe', 'ayonto-sites' ),
+				'placeholder' => 'Ayonto',
 			)
 		);
 
 		// Company Logo URL.
 		add_settings_field(
 			'company_logo',
-			__( 'Firmen-Logo URL', 'voltrana-sites' ),
+			__( 'Firmen-Logo URL', 'ayonto-sites' ),
 			array( $this, 'render_upload_field' ),
-			'voltrana-settings-general',
-			'voltrana_general_section',
+			'ayonto-settings-general',
+			'ayonto_general_section',
 			array(
 				'label_for'   => 'company_logo',
-				'description' => __( 'Logo für Schema.org und andere Ausgaben', 'voltrana-sites' ),
+				'description' => __( 'Logo für Schema.org und andere Ausgaben', 'ayonto-sites' ),
 			)
 		);
 	}
@@ -254,50 +256,50 @@ class Settings {
 	 */
 	private function register_schema_settings() {
 		add_settings_section(
-			'voltrana_schema_section',
-			__( 'Schema.org Organisation', 'voltrana-sites' ),
+			'ayonto_schema_section',
+			__( 'Schema.org Organisation', 'ayonto-sites' ),
 			array( $this, 'render_schema_section_description' ),
-			'voltrana-settings-schema'
+			'ayonto-settings-schema'
 		);
 
 		// Organization Name.
 		add_settings_field(
 			'schema_org_name',
-			__( 'Organisationsname', 'voltrana-sites' ),
+			__( 'Organisationsname', 'ayonto-sites' ),
 			array( $this, 'render_text_field' ),
-			'voltrana-settings-schema',
-			'voltrana_schema_section',
+			'ayonto-settings-schema',
+			'ayonto_schema_section',
 			array(
 				'label_for'   => 'schema_org_name',
-				'description' => __( 'Name für Schema.org Organization (falls abweichend vom Firmennamen)', 'voltrana-sites' ),
-				'placeholder' => __( 'Wird von Firmennamen übernommen', 'voltrana-sites' ),
+				'description' => __( 'Name für Schema.org Organization (falls abweichend vom Firmennamen)', 'ayonto-sites' ),
+				'placeholder' => __( 'Wird von Firmennamen übernommen', 'ayonto-sites' ),
 			)
 		);
 
 		// Organization URL.
 		add_settings_field(
 			'schema_org_url',
-			__( 'Organisations-URL', 'voltrana-sites' ),
+			__( 'Organisations-URL', 'ayonto-sites' ),
 			array( $this, 'render_url_field' ),
-			'voltrana-settings-schema',
-			'voltrana_schema_section',
+			'ayonto-settings-schema',
+			'ayonto_schema_section',
 			array(
 				'label_for'   => 'schema_org_url',
-				'description' => __( 'URL für Schema.org Organization (falls abweichend von Firmen-URL)', 'voltrana-sites' ),
-				'placeholder' => __( 'Wird von Firmen-URL übernommen', 'voltrana-sites' ),
+				'description' => __( 'URL für Schema.org Organization (falls abweichend von Firmen-URL)', 'ayonto-sites' ),
+				'placeholder' => __( 'Wird von Firmen-URL übernommen', 'ayonto-sites' ),
 			)
 		);
 
 		// Organization Description.
 		add_settings_field(
 			'schema_org_description',
-			__( 'Organisationsbeschreibung', 'voltrana-sites' ),
+			__( 'Organisationsbeschreibung', 'ayonto-sites' ),
 			array( $this, 'render_textarea_field' ),
-			'voltrana-settings-schema',
-			'voltrana_schema_section',
+			'ayonto-settings-schema',
+			'ayonto_schema_section',
 			array(
 				'label_for'   => 'schema_org_description',
-				'description' => __( 'Kurze Beschreibung Ihres Unternehmens für Schema.org', 'voltrana-sites' ),
+				'description' => __( 'Kurze Beschreibung Ihres Unternehmens für Schema.org', 'ayonto-sites' ),
 				'rows'        => 3,
 			)
 		);
@@ -305,20 +307,20 @@ class Settings {
 		// Contact Type.
 		add_settings_field(
 			'schema_contact_type',
-			__( 'Kontakttyp', 'voltrana-sites' ),
+			__( 'Kontakttyp', 'ayonto-sites' ),
 			array( $this, 'render_select_field' ),
-			'voltrana-settings-schema',
-			'voltrana_schema_section',
+			'ayonto-settings-schema',
+			'ayonto_schema_section',
 			array(
 				'label_for'   => 'schema_contact_type',
-				'description' => __( 'Art des Kontakts für Schema.org ContactPoint', 'voltrana-sites' ),
+				'description' => __( 'Art des Kontakts für Schema.org ContactPoint', 'ayonto-sites' ),
 				'options'     => array(
-					''                   => __( '– Keine Angabe –', 'voltrana-sites' ),
-					'customer service'   => __( 'Kundenservice', 'voltrana-sites' ),
-					'technical support'  => __( 'Technischer Support', 'voltrana-sites' ),
-					'sales'              => __( 'Vertrieb', 'voltrana-sites' ),
-					'billing support'    => __( 'Abrechnungssupport', 'voltrana-sites' ),
-					'bill payment'       => __( 'Rechnungszahlung', 'voltrana-sites' ),
+					''                   => __( '– Keine Angabe –', 'ayonto-sites' ),
+					'customer service'   => __( 'Kundenservice', 'ayonto-sites' ),
+					'technical support'  => __( 'Technischer Support', 'ayonto-sites' ),
+					'sales'              => __( 'Vertrieb', 'ayonto-sites' ),
+					'billing support'    => __( 'Abrechnungssupport', 'ayonto-sites' ),
+					'bill payment'       => __( 'Rechnungszahlung', 'ayonto-sites' ),
 				),
 			)
 		);
@@ -326,13 +328,13 @@ class Settings {
 		// Contact Telephone.
 		add_settings_field(
 			'schema_contact_telephone',
-			__( 'Kontakt-Telefon', 'voltrana-sites' ),
+			__( 'Kontakt-Telefon', 'ayonto-sites' ),
 			array( $this, 'render_text_field' ),
-			'voltrana-settings-schema',
-			'voltrana_schema_section',
+			'ayonto-settings-schema',
+			'ayonto_schema_section',
 			array(
 				'label_for'   => 'schema_contact_telephone',
-				'description' => __( 'Telefonnummer für Schema.org ContactPoint (z.B. "+49 30 1234567")', 'voltrana-sites' ),
+				'description' => __( 'Telefonnummer für Schema.org ContactPoint (z.B. "+49 30 1234567")', 'ayonto-sites' ),
 				'placeholder' => '+49 30 1234567',
 			)
 		);
@@ -340,14 +342,14 @@ class Settings {
 		// Contact Email.
 		add_settings_field(
 			'schema_contact_email',
-			__( 'Kontakt-E-Mail', 'voltrana-sites' ),
+			__( 'Kontakt-E-Mail', 'ayonto-sites' ),
 			array( $this, 'render_email_field' ),
-			'voltrana-settings-schema',
-			'voltrana_schema_section',
+			'ayonto-settings-schema',
+			'ayonto_schema_section',
 			array(
 				'label_for'   => 'schema_contact_email',
-				'description' => __( 'E-Mail-Adresse für Schema.org ContactPoint', 'voltrana-sites' ),
-				'placeholder' => 'info@voltrana.de',
+				'description' => __( 'E-Mail-Adresse für Schema.org ContactPoint', 'ayonto-sites' ),
+				'placeholder' => 'info@ayon.to',
 			)
 		);
 	}
@@ -359,22 +361,22 @@ class Settings {
 	 */
 	private function register_design_settings() {
 		add_settings_section(
-			'voltrana_design_section',
-			__( 'Design & Farben', 'voltrana-sites' ),
+			'ayonto_design_section',
+			__( 'Design & Farben', 'ayonto-sites' ),
 			array( $this, 'render_design_section_description' ),
-			'voltrana-settings-design'
+			'ayonto-settings-design'
 		);
 
 		// Primary Color.
 		add_settings_field(
 			'primary_color',
-			__( 'Primärfarbe', 'voltrana-sites' ),
+			__( 'Primärfarbe', 'ayonto-sites' ),
 			array( $this, 'render_color_field' ),
-			'voltrana-settings-design',
-			'voltrana_design_section',
+			'ayonto-settings-design',
+			'ayonto_design_section',
 			array(
 				'label_for'   => 'primary_color',
-				'description' => __( 'Hauptfarbe für Buttons und Akzente', 'voltrana-sites' ),
+				'description' => __( 'Hauptfarbe für Buttons und Akzente', 'ayonto-sites' ),
 				'default'     => '#004B61',
 			)
 		);
@@ -382,13 +384,13 @@ class Settings {
 		// Secondary Color.
 		add_settings_field(
 			'secondary_color',
-			__( 'Sekundärfarbe', 'voltrana-sites' ),
+			__( 'Sekundärfarbe', 'ayonto-sites' ),
 			array( $this, 'render_color_field' ),
-			'voltrana-settings-design',
-			'voltrana_design_section',
+			'ayonto-settings-design',
+			'ayonto_design_section',
 			array(
 				'label_for'   => 'secondary_color',
-				'description' => __( 'Zweite Farbe für Hintergründe und Hervorhebungen', 'voltrana-sites' ),
+				'description' => __( 'Zweite Farbe für Hintergründe und Hervorhebungen', 'ayonto-sites' ),
 				'default'     => '#F0F4F5',
 			)
 		);
@@ -396,13 +398,13 @@ class Settings {
 		// Accent Color.
 		add_settings_field(
 			'accent_color',
-			__( 'Akzentfarbe', 'voltrana-sites' ),
+			__( 'Akzentfarbe', 'ayonto-sites' ),
 			array( $this, 'render_color_field' ),
-			'voltrana-settings-design',
-			'voltrana_design_section',
+			'ayonto-settings-design',
+			'ayonto_design_section',
 			array(
 				'label_for'   => 'accent_color',
-				'description' => __( 'Farbe für wichtige Elemente (z.B. Call-to-Action, Hover-Effekte)', 'voltrana-sites' ),
+				'description' => __( 'Farbe für wichtige Elemente (z.B. Call-to-Action, Hover-Effekte)', 'ayonto-sites' ),
 				'default'     => '#F79D00',
 			)
 		);
@@ -410,13 +412,13 @@ class Settings {
 		// Border Color.
 		add_settings_field(
 			'border_color',
-			__( 'Rahmenfarbe', 'voltrana-sites' ),
+			__( 'Rahmenfarbe', 'ayonto-sites' ),
 			array( $this, 'render_color_field' ),
-			'voltrana-settings-design',
-			'voltrana_design_section',
+			'ayonto-settings-design',
+			'ayonto_design_section',
 			array(
 				'label_for'   => 'border_color',
-				'description' => __( 'Farbe für Rahmen und Trennlinien', 'voltrana-sites' ),
+				'description' => __( 'Farbe für Rahmen und Trennlinien', 'ayonto-sites' ),
 				'default'     => '#e5e7eb',
 			)
 		);
@@ -429,22 +431,22 @@ class Settings {
 	 */
 	private function register_import_settings() {
 		add_settings_section(
-			'voltrana_import_section',
-			__( 'Import-Einstellungen', 'voltrana-sites' ),
+			'ayonto_import_section',
+			__( 'Import-Einstellungen', 'ayonto-sites' ),
 			array( $this, 'render_import_section_description' ),
-			'voltrana-settings-import'
+			'ayonto-settings-import'
 		);
 
 		// Auto-assign Brand.
 		add_settings_field(
 			'import_auto_brand',
-			__( 'Marke automatisch setzen', 'voltrana-sites' ),
+			__( 'Marke automatisch setzen', 'ayonto-sites' ),
 			array( $this, 'render_checkbox_field' ),
-			'voltrana-settings-import',
-			'voltrana_import_section',
+			'ayonto-settings-import',
+			'ayonto_import_section',
 			array(
 				'label_for'   => 'import_auto_brand',
-				'description' => __( 'Wenn aktiviert, wird die Standard-Marke automatisch gesetzt, wenn keine Marke angegeben ist', 'voltrana-sites' ),
+				'description' => __( 'Wenn aktiviert, wird die Standard-Marke automatisch gesetzt, wenn keine Marke angegeben ist', 'ayonto-sites' ),
 				'default'     => true,
 			)
 		);
@@ -452,13 +454,13 @@ class Settings {
 		// Default Batch Size.
 		add_settings_field(
 			'import_batch_size',
-			__( 'Batch-Größe', 'voltrana-sites' ),
+			__( 'Batch-Größe', 'ayonto-sites' ),
 			array( $this, 'render_number_field' ),
-			'voltrana-settings-import',
-			'voltrana_import_section',
+			'ayonto-settings-import',
+			'ayonto_import_section',
 			array(
 				'label_for'   => 'import_batch_size',
-				'description' => __( 'Anzahl der Datensätze pro Import-Batch (Standard: 200)', 'voltrana-sites' ),
+				'description' => __( 'Anzahl der Datensätze pro Import-Batch (Standard: 200)', 'ayonto-sites' ),
 				'default'     => 200,
 				'min'         => 10,
 				'max'         => 500,
@@ -468,13 +470,13 @@ class Settings {
 		// Max File Size.
 		add_settings_field(
 			'import_max_file_size',
-			__( 'Maximale Dateigröße (MB)', 'voltrana-sites' ),
+			__( 'Maximale Dateigröße (MB)', 'ayonto-sites' ),
 			array( $this, 'render_number_field' ),
-			'voltrana-settings-import',
-			'voltrana_import_section',
+			'ayonto-settings-import',
+			'ayonto_import_section',
 			array(
 				'label_for'   => 'import_max_file_size',
-				'description' => __( 'Maximale Größe für Import-Dateien in MB (Standard: 10)', 'voltrana-sites' ),
+				'description' => __( 'Maximale Größe für Import-Dateien in MB (Standard: 10)', 'ayonto-sites' ),
 				'default'     => 10,
 				'min'         => 1,
 				'max'         => 50,
@@ -489,22 +491,22 @@ class Settings {
 	 */
 	private function register_frontend_settings() {
 		add_settings_section(
-			'voltrana_frontend_section',
-			__( 'Frontend-Optionen', 'voltrana-sites' ),
+			'ayonto_frontend_section',
+			__( 'Frontend-Optionen', 'ayonto-sites' ),
 			array( $this, 'render_frontend_section_description' ),
-			'voltrana-settings-frontend'
+			'ayonto-settings-frontend'
 		);
 
 		// Auto-inject Specs.
 		add_settings_field(
 			'auto_inject_specs',
-			__( 'Spezifikationen automatisch einfügen', 'voltrana-sites' ),
+			__( 'Spezifikationen automatisch einfügen', 'ayonto-sites' ),
 			array( $this, 'render_checkbox_field' ),
-			'voltrana-settings-frontend',
-			'voltrana_frontend_section',
+			'ayonto-settings-frontend',
+			'ayonto_frontend_section',
 			array(
 				'label_for'   => 'auto_inject_specs',
-				'description' => __( 'Wenn aktiviert, werden Spezifikationstabellen automatisch in Batterie-Seiten eingefügt', 'voltrana-sites' ),
+				'description' => __( 'Wenn aktiviert, werden Spezifikationstabellen automatisch in Batterie-Seiten eingefügt', 'ayonto-sites' ),
 				'default'     => false,
 			)
 		);
@@ -512,18 +514,18 @@ class Settings {
 		// Spec Table Style.
 		add_settings_field(
 			'spec_table_style',
-			__( 'Tabellentyp', 'voltrana-sites' ),
+			__( 'Tabellentyp', 'ayonto-sites' ),
 			array( $this, 'render_select_field' ),
-			'voltrana-settings-frontend',
-			'voltrana_frontend_section',
+			'ayonto-settings-frontend',
+			'ayonto_frontend_section',
 			array(
 				'label_for'   => 'spec_table_style',
-				'description' => __( 'Stil der Spezifikationstabelle', 'voltrana-sites' ),
+				'description' => __( 'Stil der Spezifikationstabelle', 'ayonto-sites' ),
 				'options'     => array(
-					'default'   => __( 'Standard', 'voltrana-sites' ),
-					'compact'   => __( 'Kompakt', 'voltrana-sites' ),
-					'detailed'  => __( 'Detailliert', 'voltrana-sites' ),
-					'minimal'   => __( 'Minimal', 'voltrana-sites' ),
+					'default'   => __( 'Standard', 'ayonto-sites' ),
+					'compact'   => __( 'Kompakt', 'ayonto-sites' ),
+					'detailed'  => __( 'Detailliert', 'ayonto-sites' ),
+					'minimal'   => __( 'Minimal', 'ayonto-sites' ),
 				),
 				'default'     => 'default',
 			)
@@ -532,13 +534,13 @@ class Settings {
 		// Show Icons in Tables.
 		add_settings_field(
 			'show_icons',
-			__( 'Icons in Tabellen anzeigen', 'voltrana-sites' ),
+			__( 'Icons in Tabellen anzeigen', 'ayonto-sites' ),
 			array( $this, 'render_checkbox_field' ),
-			'voltrana-settings-frontend',
-			'voltrana_frontend_section',
+			'ayonto-settings-frontend',
+			'ayonto_frontend_section',
 			array(
 				'label_for'   => 'show_icons',
-				'description' => __( 'Zeigt Icons neben Spezifikationen an', 'voltrana-sites' ),
+				'description' => __( 'Zeigt Icons neben Spezifikationen an', 'ayonto-sites' ),
 				'default'     => false,
 			)
 		);
@@ -552,9 +554,9 @@ class Settings {
 	private function get_default_settings() {
 		return array(
 			// General.
-			'company_name'            => 'Voltrana',
+			'company_name'            => 'Ayonto',
 			'company_url'             => home_url( '/' ),
-			'default_brand'           => 'Voltrana',
+			'default_brand'           => 'Ayonto',
 			'company_logo'            => '',
 
 			// Schema.
@@ -565,7 +567,7 @@ class Settings {
 			'schema_contact_telephone' => '',
 			'schema_contact_email'    => '',
 
-			// Design - Voltrana Brand Colors from frontend.css
+			// Design - Ayonto Brand Colors from frontend.css
 			'primary_color'           => '#004B61',  // Petrol/Dunkelblau - Hauptfarbe
 			'secondary_color'         => '#F0F4F5',  // Helles Grau-Blau - Hintergründe
 			'accent_color'            => '#F79D00',  // Orange - Hervorhebungen
@@ -705,50 +707,51 @@ class Settings {
 		$this->active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'general';
 
 		?>
-		<div class="wrap">
+		<div class="wrap ayonto-page">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+			<p class="ayonto-page-subtitle"><?php esc_html_e( 'Konfigurieren Sie alle Einstellungen für Ihren Ayonto Sites Builder.', 'ayonto-sites' ); ?></p>
 
-			<h2 class="nav-tab-wrapper voltrana-settings-tabs">
-				<a href="?page=voltrana-settings&tab=general" class="nav-tab <?php echo 'general' === $this->active_tab ? 'nav-tab-active' : ''; ?>">
-					<?php esc_html_e( 'Allgemein', 'voltrana-sites' ); ?>
+			<h2 class="nav-tab-wrapper ayonto-settings-tabs">
+				<a href="?page=ayonto-settings&tab=general" class="nav-tab <?php echo 'general' === $this->active_tab ? 'nav-tab-active' : ''; ?>">
+					<?php esc_html_e( 'Allgemein', 'ayonto-sites' ); ?>
 				</a>
-				<a href="?page=voltrana-settings&tab=schema" class="nav-tab <?php echo 'schema' === $this->active_tab ? 'nav-tab-active' : ''; ?>">
-					<?php esc_html_e( 'Schema.org', 'voltrana-sites' ); ?>
+				<a href="?page=ayonto-settings&tab=schema" class="nav-tab <?php echo 'schema' === $this->active_tab ? 'nav-tab-active' : ''; ?>">
+					<?php esc_html_e( 'Schema.org', 'ayonto-sites' ); ?>
 				</a>
-				<a href="?page=voltrana-settings&tab=design" class="nav-tab <?php echo 'design' === $this->active_tab ? 'nav-tab-active' : ''; ?>">
-					<?php esc_html_e( 'Design', 'voltrana-sites' ); ?>
+				<a href="?page=ayonto-settings&tab=design" class="nav-tab <?php echo 'design' === $this->active_tab ? 'nav-tab-active' : ''; ?>">
+					<?php esc_html_e( 'Design', 'ayonto-sites' ); ?>
 				</a>
-				<a href="?page=voltrana-settings&tab=import" class="nav-tab <?php echo 'import' === $this->active_tab ? 'nav-tab-active' : ''; ?>">
-					<?php esc_html_e( 'Import', 'voltrana-sites' ); ?>
+				<a href="?page=ayonto-settings&tab=import" class="nav-tab <?php echo 'import' === $this->active_tab ? 'nav-tab-active' : ''; ?>">
+					<?php esc_html_e( 'Import', 'ayonto-sites' ); ?>
 				</a>
-				<a href="?page=voltrana-settings&tab=frontend" class="nav-tab <?php echo 'frontend' === $this->active_tab ? 'nav-tab-active' : ''; ?>">
-					<?php esc_html_e( 'Frontend', 'voltrana-sites' ); ?>
+				<a href="?page=ayonto-settings&tab=frontend" class="nav-tab <?php echo 'frontend' === $this->active_tab ? 'nav-tab-active' : ''; ?>">
+					<?php esc_html_e( 'Frontend', 'ayonto-sites' ); ?>
 				</a>
 			</h2>
 
 			<form method="post" action="options.php">
 				<?php
-				settings_fields( 'voltrana_sites_settings_group' );
+				settings_fields( 'ayonto_sites_settings_group' );
 
 				switch ( $this->active_tab ) {
 					case 'schema':
-						do_settings_sections( 'voltrana-settings-schema' );
+						do_settings_sections( 'ayonto-settings-schema' );
 						break;
 					case 'design':
-						do_settings_sections( 'voltrana-settings-design' );
+						do_settings_sections( 'ayonto-settings-design' );
 						break;
 					case 'import':
-						do_settings_sections( 'voltrana-settings-import' );
+						do_settings_sections( 'ayonto-settings-import' );
 						break;
 					case 'frontend':
-						do_settings_sections( 'voltrana-settings-frontend' );
+						do_settings_sections( 'ayonto-settings-frontend' );
 						break;
 					default:
-						do_settings_sections( 'voltrana-settings-general' );
+						do_settings_sections( 'ayonto-settings-general' );
 						break;
 				}
 
-				submit_button();
+				submit_button( __( 'Einstellungen speichern', 'ayonto-sites' ), 'primary ayonto-button' );
 				?>
 			</form>
 		</div>
@@ -759,23 +762,23 @@ class Settings {
 	 * Render section descriptions
 	 */
 	public function render_general_section_description() {
-		echo '<p>' . esc_html__( 'Grundlegende Einstellungen für Ihr Unternehmen und die Marke.', 'voltrana-sites' ) . '</p>';
+		echo '<p>' . esc_html__( 'Grundlegende Einstellungen für Ihr Unternehmen und die Marke.', 'ayonto-sites' ) . '</p>';
 	}
 
 	public function render_schema_section_description() {
-		echo '<p>' . esc_html__( 'Konfigurieren Sie die Schema.org Organisation für strukturierte Daten (SEO).', 'voltrana-sites' ) . '</p>';
+		echo '<p>' . esc_html__( 'Konfigurieren Sie die Schema.org Organisation für strukturierte Daten (SEO).', 'ayonto-sites' ) . '</p>';
 	}
 
 	public function render_design_section_description() {
-		echo '<p>' . esc_html__( 'Passen Sie Farben und Design-Elemente für das Frontend an.', 'voltrana-sites' ) . '</p>';
+		echo '<p>' . esc_html__( 'Passen Sie Farben und Design-Elemente für das Frontend an.', 'ayonto-sites' ) . '</p>';
 	}
 
 	public function render_import_section_description() {
-		echo '<p>' . esc_html__( 'Einstellungen für den Datenimport.', 'voltrana-sites' ) . '</p>';
+		echo '<p>' . esc_html__( 'Einstellungen für den Datenimport.', 'ayonto-sites' ) . '</p>';
 	}
 
 	public function render_frontend_section_description() {
-		echo '<p>' . esc_html__( 'Optionen für die Anzeige im Frontend.', 'voltrana-sites' ) . '</p>';
+		echo '<p>' . esc_html__( 'Optionen für die Anzeige im Frontend.', 'ayonto-sites' ) . '</p>';
 	}
 
 	/**
@@ -801,7 +804,7 @@ class Settings {
 		/>
 		<?php
 		if ( isset( $args['description'] ) ) {
-			echo '<p class="voltrana-setting-description">' . esc_html( $args['description'] ) . '</p>';
+			echo '<p class="ayonto-setting-description">' . esc_html( $args['description'] ) . '</p>';
 		}
 	}
 
@@ -828,7 +831,7 @@ class Settings {
 		/>
 		<?php
 		if ( isset( $args['description'] ) ) {
-			echo '<p class="voltrana-setting-description">' . esc_html( $args['description'] ) . '</p>';
+			echo '<p class="ayonto-setting-description">' . esc_html( $args['description'] ) . '</p>';
 		}
 	}
 
@@ -855,7 +858,7 @@ class Settings {
 		/>
 		<?php
 		if ( isset( $args['description'] ) ) {
-			echo '<p class="voltrana-setting-description">' . esc_html( $args['description'] ) . '</p>';
+			echo '<p class="ayonto-setting-description">' . esc_html( $args['description'] ) . '</p>';
 		}
 	}
 
@@ -880,7 +883,7 @@ class Settings {
 		><?php echo esc_textarea( $value ); ?></textarea>
 		<?php
 		if ( isset( $args['description'] ) ) {
-			echo '<p class="voltrana-setting-description">' . esc_html( $args['description'] ) . '</p>';
+			echo '<p class="ayonto-setting-description">' . esc_html( $args['description'] ) . '</p>';
 		}
 	}
 
@@ -903,12 +906,12 @@ class Settings {
 			value="<?php echo esc_attr( $value ); ?>" 
 			class="regular-text"
 		/>
-		<button type="button" class="button voltrana-upload-button">
-			<?php esc_html_e( 'Logo auswählen', 'voltrana-sites' ); ?>
+		<button type="button" class="button ayonto-upload-button">
+			<?php esc_html_e( 'Logo auswählen', 'ayonto-sites' ); ?>
 		</button>
 		<?php
 		if ( isset( $args['description'] ) ) {
-			echo '<p class="voltrana-setting-description">' . esc_html( $args['description'] ) . '</p>';
+			echo '<p class="ayonto-setting-description">' . esc_html( $args['description'] ) . '</p>';
 		}
 	}
 
@@ -937,7 +940,7 @@ class Settings {
 		/>
 		<?php
 		if ( isset( $args['description'] ) ) {
-			echo '<p class="voltrana-setting-description">' . esc_html( $args['description'] ) . '</p>';
+			echo '<p class="ayonto-setting-description">' . esc_html( $args['description'] ) . '</p>';
 		}
 	}
 
@@ -966,7 +969,7 @@ class Settings {
 		</select>
 		<?php
 		if ( isset( $args['description'] ) ) {
-			echo '<p class="voltrana-setting-description">' . esc_html( $args['description'] ) . '</p>';
+			echo '<p class="ayonto-setting-description">' . esc_html( $args['description'] ) . '</p>';
 		}
 	}
 
@@ -1016,13 +1019,13 @@ class Settings {
 			id="<?php echo esc_attr( $args['label_for'] ); ?>" 
 			name="<?php echo esc_attr( $option_name . '[' . $args['label_for'] . ']' ); ?>" 
 			value="<?php echo esc_attr( $value ); ?>" 
-			class="voltrana-color-picker"
+			class="ayonto-color-picker"
 			data-default-color="<?php echo esc_attr( $args['default'] ); ?>"
 		/>
-		<span class="voltrana-color-preview" style="background-color: <?php echo esc_attr( $value ); ?>;"></span>
+		<span class="ayonto-color-preview" style="background-color: <?php echo esc_attr( $value ); ?>;"></span>
 		<?php
 		if ( isset( $args['description'] ) ) {
-			echo '<p class="voltrana-setting-description">' . esc_html( $args['description'] ) . '</p>';
+			echo '<p class="ayonto-setting-description">' . esc_html( $args['description'] ) . '</p>';
 		}
 	}
 

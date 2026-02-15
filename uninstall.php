@@ -1,10 +1,10 @@
 <?php
 /**
- * Uninstall Voltrana Sites Builder
+ * Uninstall Ayonto Sites Builder
  *
  * Removes all plugin data when deleted through WordPress admin
  *
- * @package Voltrana_Sites
+ * @package Ayonto_Sites
  * @since 0.1.34
  */
 
@@ -14,8 +14,8 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 // Delete plugin options
-delete_option( 'voltrana_sites_settings' );
-delete_option( 'voltrana_sites_version' );
+delete_option( 'ayonto_sites_settings' );
+delete_option( 'ayonto_sites_version' );
 
 // Delete all vt_battery posts
 $batteries = get_posts( array(
@@ -45,11 +45,11 @@ wp_cache_flush();
 
 // Clear any transients
 global $wpdb;
-$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_voltrana_%'" );
-$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_timeout_voltrana_%'" );
+$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_ayonto_%'" );
+$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_timeout_ayonto_%'" );
 
 // Clear any custom tables (if any exist in future versions)
 // Reserved for future use
 
 // Log uninstall completion
-error_log( 'Voltrana Sites Builder: Uninstall completed successfully' );
+error_log( 'Ayonto Sites Builder: Uninstall completed successfully' );

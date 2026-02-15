@@ -1,4 +1,68 @@
-/* Voltrana Sites Builder - Frontend Styles */
+/* Ayonto Sites Builder - Frontend Styles */
+
+/* ============================================
+   Shortcode Protection (Build 079)
+   ============================================ */
+
+/* Prevent extra spacing around shortcodes */
+.vt-shortcode-protect {
+	margin: 0 !important;
+	padding: 0 !important;
+	display: contents; /* Makes wrapper transparent to layout */
+}
+
+/* Ensure no extra margins on paragraphs before/after tables */
+p:has(+ .vt-battery-table-wrapper),
+p:has(.vt-battery-table-wrapper) {
+	margin-bottom: 0 !important;
+}
+
+.vt-battery-table-wrapper + p,
+p + .vt-battery-table-wrapper {
+	margin-top: 0 !important;
+}
+
+/* Remove any auto-generated empty paragraphs */
+.vt-battery-table-wrapper + br,
+br + .vt-battery-table-wrapper,
+.vt-battery-table-wrapper + p:empty,
+p:empty + .vt-battery-table-wrapper {
+	display: none !important;
+}
+
+/* Specific mobile fixes to prevent gaps */
+@media screen and (max-width: 767px) {
+	/* Ensure wrapper has no margins on mobile */
+	.vt-battery-table-wrapper {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	
+	/* Remove any spacing after the last table row */
+	.vt-battery-table tbody tr:last-child {
+		margin-bottom: 0 !important;
+	}
+	
+	/* Clean up any paragraph spacing around shortcodes */
+	p:has(.vt-battery-table-wrapper),
+	.vt-battery-table-wrapper + p:not(:empty) {
+		margin-top: 1em; /* Normal paragraph spacing */
+		margin-bottom: 1em;
+	}
+	
+	/* But remove margin if paragraph is empty */
+	.vt-battery-table-wrapper + p:empty {
+		margin: 0 !important;
+		padding: 0 !important;
+		height: 0 !important;
+		line-height: 0 !important;
+	}
+}
+
+/* ============================================
+   Battery List & Cards
+   ============================================ */
+
 .vt-battery-list {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -58,7 +122,7 @@
 	margin-bottom: 12px;
 }
 
-/* Voltrana Logo Icon (SVG) */
+/* Ayonto Logo Icon (SVG) */
 .vt-additional-content li::before {
 	content: '';
 	position: absolute;
@@ -117,9 +181,17 @@
 /* Wrapper */
 .vt-battery-table-wrapper {
 	width: 100%;
-	margin: 20px 0;
+	margin: 20px 0 0 0; /* Only top margin on desktop to prevent gaps */
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
+}
+
+/* Mobile: Remove ALL margins */
+@media screen and (max-width: 767px) {
+	.vt-battery-table-wrapper {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
 }
 
 /* Table */
@@ -180,7 +252,12 @@
 }
 
 .vt-battery-table th[data-column="ean"] {
-	min-width: 130px;
+	min-width: 145px;
+}
+
+.vt-battery-table td[data-label*="EAN"] {
+	text-align: left;
+	padding: 8px 12px;
 }
 
 .vt-battery-table th[data-column="capacity_ah"],
@@ -347,14 +424,15 @@
 }
 
 .vt-value-ean {
-	font-family: 'Courier New', monospace;
-	font-size: 10px;
-	background: #f9fafb;
-	padding: 3px 6px;
+	font-size: 13px;
+	background: #F0F4F5;
+	padding: 4px 8px;
 	border-radius: 3px;
-	color: #6b7280;
-	border: 1px solid #e5e7eb;
-	line-height: 1.3;
+	color: #181818;
+	border: 1px solid #004B61;
+	line-height: 1.4;
+	font-weight: 500;
+	letter-spacing: 0.5px;
 }
 
 .vt-dimensions {
@@ -420,6 +498,11 @@
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 		overflow: hidden;
 	}
+	
+	/* Remove margin from last row to prevent gap */
+	.vt-battery-table tbody tr:last-child {
+		margin-bottom: 0;
+	}
 
 	.vt-battery-table tbody tr:hover {
 		background-color: #fff;
@@ -480,6 +563,8 @@
 	/* Adjust wrapper for mobile */
 	.vt-battery-table-wrapper {
 		overflow-x: visible;
+		margin: 0 !important; /* Remove all margins on mobile to prevent gaps */
+		padding: 0;
 	}
 
 	/* Additional Content - Mobile Adjustments (Build 052) */
@@ -533,5 +618,120 @@
 
 	.vt-property-tag {
 		border: 1px solid #dbeafe;
+	}
+}
+
+/* ============================================
+   GLightbox Custom Styles (Build 058)
+   ============================================ */
+
+/* Overlay - Ayonto Brand Color */
+.goverlay {
+	background: rgba(0, 75, 97, 0.70) !important;
+}
+
+/* Close Button - Sichtbares X-Icon */
+.gclose {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	z-index: 99999;
+	width: 44px;
+	height: 44px;
+	background: rgba(255, 255, 255, 0.95) !important;
+	border-radius: 50%;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+	border: 2px solid rgba(0, 75, 97, 0.1);
+	/* Accessibility: Fokussierbar machen */
+	outline: none;
+}
+
+/* Focus State für Keyboard-Navigation */
+.gclose:focus {
+	outline: 3px solid #F79D00;
+	outline-offset: 2px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25), 0 0 0 3px rgba(247, 157, 0, 0.3);
+}
+
+.gclose:hover,
+.gclose:focus-visible {
+	background: rgba(247, 157, 0, 1) !important;
+	border-color: rgba(247, 157, 0, 1);
+	transform: scale(1.15) rotate(90deg);
+	box-shadow: 0 4px 16px rgba(247, 157, 0, 0.5);
+}
+
+/* X-Icon mit CSS (Fallback wenn SVG nicht funktioniert) */
+.gclose::before,
+.gclose::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 22px;
+	height: 3px;
+	background-color: #004B61;
+	border-radius: 2px;
+	transition: all 0.3s ease;
+}
+
+.gclose::before {
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.gclose::after {
+	transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.gclose:hover::before,
+.gclose:hover::after {
+	background-color: #ffffff;
+	width: 24px;
+}
+
+/* Verstecke Default SVG falls vorhanden */
+.gclose svg {
+	display: none !important;
+}
+
+/* Navigation Buttons ausblenden (nur 1 Bild pro Batterie) */
+.gnext,
+.gprev {
+	display: none !important;
+}
+
+/* Lightbox Container */
+.glightbox-container {
+	z-index: 999999 !important;
+}
+
+.glightbox-clean .gslide-description {
+	background: rgba(0, 75, 97, 0.95);
+	color: #ffffff;
+}
+
+/* Mobile Anpassungen für GLightbox */
+@media screen and (max-width: 767px) {
+	.gclose {
+		top: 15px;
+		right: 15px;
+		width: 40px;
+		height: 40px;
+	}
+	
+	.gclose::before,
+	.gclose::after {
+		width: 20px;
+		height: 2px;
+	}
+	
+	.gclose:hover::before,
+	.gclose:hover::after {
+		width: 22px;
 	}
 }

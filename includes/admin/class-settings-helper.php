@@ -4,12 +4,12 @@
  *
  * Provides easy access to plugin settings throughout the codebase.
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Admin
  * @since      0.1.28
  */
 
-namespace Voltrana\Sites\Admin;
+namespace Ayonto\Sites\Admin;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,7 +31,7 @@ class Settings_Helper {
 	 * @return string Company name.
 	 */
 	public static function get_company_name() {
-		return Settings::get( 'company_name', 'Voltrana' );
+		return Settings::get( 'company_name', 'Ayonto' );
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Settings_Helper {
 	 * @return string Default brand.
 	 */
 	public static function get_default_brand() {
-		return Settings::get( 'default_brand', 'Voltrana' );
+		return Settings::get( 'default_brand', 'Ayonto' );
 	}
 
 	/**

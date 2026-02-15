@@ -2,12 +2,12 @@
 /**
  * Permalink management
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Services
  * @since      0.1.0
  */
 
-namespace Voltrana\Sites\Services;
+namespace Ayonto\Sites\Services;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {

@@ -1,4 +1,4 @@
-/* Voltrana Sites Builder - Admin Scripts */
+/* Ayonto Sites Builder - Admin Scripts */
 (function($) {
 	'use strict';
 	

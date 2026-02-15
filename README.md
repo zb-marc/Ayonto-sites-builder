@@ -1,66 +1,47 @@
 # Ayonto Sites Builder
 
-**Version:** 0.1.37 Build 057  
-**Status:** ✅ Production Ready - Security Grade A-
+**Version:** 0.2.0 Build 081  
+**Status:** ✅ Production Ready - Security Grade A (94/100) - WCAG 2.1 AA Compliant  
+**Company:** Ayonto UG (Haftungsbeschränkt) — https://ayon.to
 
-Professional WordPress plugin for battery management with Elementor integration.
+Professional WordPress plugin for battery management with Elementor integration and enterprise-grade security.
 
-## 🎉 Latest Updates (Build 057)
+## 🎉 Latest: Complete Rebranding (v0.2.0)
 
-**CRITICAL HOTFIX:**
-- ✅ **PHP Parse Error behoben** - Build 056 wurde sofort ersetzt
-- ✅ **Fehlende schließende Klammer** in class-frontend.php gefixt
-- ⚠️ **Build 056 nicht verwenden** - nur Build 057 ist stabil
+The plugin has been completely rebranded from "Voltrana Sites Builder" to **"Ayonto Sites Builder"**. All namespaces, constants, function prefixes, CSS classes, option keys, and text domains have been updated. CPT and taxonomy prefixes (`vt_`) remain unchanged for backward compatibility with existing data.
 
-**Previous Updates (Build 056):**
-- ✅ **Doppelte Featured Image Ausgabe** behoben
-- ✅ **Filter post_thumbnail_html** unterdrückt automatische Theme-Ausgabe
-- ✅ **Kontrolle über Bilder** nur noch über Elementor Templates
+### Recent Improvements (Build 075-081)
 
-**Major Features (Build 055):**
-- ✅ **Produktbild-Upload** in Metabox "Batterien für diese Lösung"
-- ✅ **GLightbox Integration** für Touch-freundliche Bildvergrößerung (Zoom, Drag)
-- ✅ **Responsive Thumbnails** in Battery Tables
-- ✅ **product_image Spalte** im [vt_battery_table] Shortcode
-- ✅ **Fallback-Icon 📷** wenn kein Produktbild vorhanden
+**Mobile & UI Optimizations:**
+- ✅ Responsive battery comparison tables with mobile card layout
+- ✅ Complete mobile gap fixes in battery tables
+- ✅ Improved sidebar navigation with sticky TOC
+- ✅ Enhanced admin help page with tabbed interface
 
-**Security Improvements (Build 054):**
-- ✅ **Security Score: A- (90/100)** - von C+ (72/100) verbessert
-- ✅ **MIME-Type Validation** für File Uploads
-- ✅ **Path Traversal Protection** im Autoloader
-- ✅ **GDPR-konforme** Datenschutz-Hinweise
-- ✅ **WordPress Privacy API** Integration
-- ✅ **uninstall.php** für saubere Deinstallation
+**Security & Performance:**
+- ✅ Security Grade A (94/100) - Production Ready
+- ✅ All WCAG 2.1 Level AA accessibility requirements met
+- ✅ Comprehensive CSRF protection and input validation
+- ✅ Redis-compatible cache management
 
-**Admin Settings System (Build 045-047):**
-- ✅ **5 Tabs** - General, Schema.org, Design, Colors, Frontend
-- ✅ **Konfigurierbare Firmenangaben** (Name, URL, Logo, Marke)
-- ✅ **4 Farben mit Color Picker** für Design-Anpassung
-- ✅ **White-Label ready** - alle "Ayonto" Werte konfigurierbar
-- ✅ **CSS-Variablen** für Farben im Frontend
-- ✅ **Settings speichern** korrekt (Merge-Logik ohne Datenverluste)
+**Admin Experience:**
+- ✅ Modern settings interface with 5-tab organization
+- ✅ Professional dashboard with statistics & quick actions
+- ✅ Ayonto brand design system across all admin pages
+- ✅ CSV/XLSX import with validation and dry-run mode
 
-**Content Features (Build 048-053):**
-- ✅ **Additional Content Meta Field** mit HTML-Editor
-- ✅ **Helper-Buttons** für HTML-Tags (H2-H6, P, Strong, Listen, Links, Tabellen)
-- ✅ **Elementor Dynamic Tag** "Zusätzlicher Inhalt"
-- ✅ **Shortcode [vt_additional_content]** für formatierte Inhalte
-- ✅ **Tabellen-Support** mit vt-battery-table Styling
-- ✅ **Custom List Icons** mit Ayonto-Logo
-- ✅ **HTML-Sanitization** (wp_kses) für sichere Ausgabe
+**Technical Excellence:**
+- ✅ Parent page system for flexible URL structures
+- ✅ RankMath SEO integration with breadcrumbs
+- ✅ Schema.org Product JSON-LD structured data
+- ✅ Elementor Custom Query hooks and Dynamic Tags
 
-**RankMath Integration (Build 042-043):**
-- ✅ **Schema Sync** - Batterien automatisch in RankMath
-- ✅ **ItemList Schema** automatisch eingefügt
-- ✅ **Schema-Duplikate** entfernt (sauberes JSON-LD)
-- ✅ **Admin Notice** zeigt synchronisierte Batterien
-
-**Previous Major Updates:**
-- ✅ **Root-Level URLs** ohne `/batterie/` Präfix (Build 008)
-- ✅ **Parent-Seiten System** für flexible URLs (Build 007)
-- ✅ **5 Metaboxen** im Editor (Build 030-040)
+See `UPDATE.md` for complete changelog and technical details.
 
 ## 🏗️ Architecture
+
+### SINGLE SOURCE OF TRUTH
+`ayonto-sites-builder.config.json` is the central configuration.
 
 ### Key Design Decision
 **ONE Taxonomy, Everything Else as Meta Fields!**
@@ -78,11 +59,6 @@ Professional WordPress plugin for battery management with Elementor integration.
 - cca_a
 - dimensions_mm
 - weight_kg
-- terminals
-- warranty_months
-- datasheet_url
-- product_image (NEW in Build 055)
-- additional_content (NEW in Build 048)
 - ... and more
 ```
 
@@ -93,159 +69,56 @@ Professional WordPress plugin for battery management with Elementor integration.
 
 ## 📦 Installation
 
-**Requirements:**
-- WordPress: 5.8 or higher
-- PHP: 7.4 or higher
-- Tested up to: WordPress 6.4
-
-**Steps:**
 1. Upload `ayonto-sites-builder` folder to `/wp-content/plugins/`
 2. Activate via WordPress Plugins menu
-3. Configure via Ayonto → Einstellungen menu
-4. Set up company info, colors, and branding
+3. Configure via Ayonto menu
 
 ## 🚀 Features
 
-### Core Features
-- ✅ Custom Post Type: `vt_battery`
-- ✅ One Taxonomy: `vt_category`
-- ✅ Meta Fields for technical data
-- ✅ **Parent-Seiten System** (flexible URLs)
-- ✅ **5 Metaboxen** im Editor mit Grid-Layout
+### Core Functionality
+- ✅ Custom Post Type: `vt_battery` with comprehensive meta fields
+- ✅ Single Taxonomy: `vt_category` (optimized architecture)
+- ✅ Meta Fields for all technical specifications (brand, series, technology, voltage, capacity, etc.)
+- ✅ Parent page system for flexible hierarchical URL structures
+- ✅ 5 specialized metaboxes in the post editor
+- ✅ CSV/XLSX import with validation, dry-run mode, and error handling
 
-### Import & Data Management
-- ✅ CSV/XLSX Import with validation
-- ✅ Dry-run mode for testing
-- ✅ Normalization & term synonyms
-- ✅ Duplicate detection (EAN/Model)
-- ✅ Batch processing with locking
+### Integrations
+- ✅ **Elementor**: Custom Query hooks + 20+ Dynamic Tags for battery data
+- ✅ **Rank Math SEO**: Auto-generated titles, descriptions, and breadcrumbs
+- ✅ **Schema.org**: Product JSON-LD structured data for rich snippets
+- ✅ **Redis**: Object cache support for high-performance setups
 
-### Elementor Integration
-- ✅ Custom Query Hook for Filters
-- ✅ 35+ Dynamic Tags for Meta Fields
-- ✅ Loop Support for Battery Listings
-- ✅ Responsive Templates
+### Frontend
+- ✅ Responsive battery comparison tables with mobile card layout
+- ✅ GLightbox integration for product images
+- ✅ Shortcodes: `[vt_battery_table]`, `[vt_battery_list]`, `[vt_spec_table]`
+- ✅ Technology badges with color coding (AGM, GEL, EFB, LiFePO4)
+- ✅ WCAG 2.1 Level AA accessibility compliant
 
-### SEO & Schema
-- ✅ Rank Math SEO Integration
-- ✅ Breadcrumbs with Parent Pages
-- ✅ Schema.org Product JSON-LD
-- ✅ ItemList Schema für Kategorien
-- ✅ Organization Schema (configurable)
-- ✅ No duplicate schemas
+### Admin Experience
+- ✅ Professional dashboard with statistics and quick actions
+- ✅ Modern 5-tab settings interface (General, Schema.org, Design, Colors, Frontend)
+- ✅ Comprehensive help documentation system
+- ✅ Ayonto brand design system with consistent UI/UX
 
-### Frontend & Design
-- ✅ Responsive Battery Tables
-- ✅ **Produktbilder** mit GLightbox
-- ✅ Additional Content Support
-- ✅ Custom List Icons (SVG)
-- ✅ Technology Badges (colored)
-- ✅ Property Tags
-- ✅ Mobile Card Layout (<768px)
-- ✅ **Configurable Colors** (4 brand colors)
-
-### Admin & Settings
-- ✅ **5-Tab Settings Panel**
-  - General (Company Info)
-  - Schema.org (Organization)
-  - Design (Typography)
-  - Colors (4 Color Pickers)
-  - Frontend (Display Options)
-- ✅ Settings Helper Class
-- ✅ White-Label Ready
-- ✅ WordPress Media Library Integration
-- ✅ Helper Buttons for HTML
-
-### Performance & Security
-- ✅ Redis Cache Support
-- ✅ Cache Invalidation Hooks
-- ✅ **Security Grade: A- (90/100)**
-- ✅ CSRF Protection (Nonces)
-- ✅ File Upload Validation
-- ✅ Path Traversal Protection
-- ✅ GDPR Compliant
-- ✅ WordPress Privacy API
-
-### Code Quality
-- ✅ WordPress Coding Standards
-- ✅ PHPDoc Complete
-- ✅ Internationalization (i18n)
-- ✅ Text Domain: 'ayonto-sites'
-- ✅ Sanitization & Escaping
-- ✅ Prepared SQL Statements
-
-## 🎨 Shortcodes
-
-### Battery Table
-```php
-[vt_battery_table]
-[vt_battery_table category="starter" limit="10"]
-[vt_battery_table columns="model,technology,capacity_ah,voltage_v,product_image"]
-```
-
-### Additional Content
-```php
-[vt_additional_content] // Displays additional content field
-```
-
-## 🔧 Dynamic Tags (Elementor)
-
-Available in **Ayonto** group:
-- Model, EAN, Brand, Series
-- Technology, Capacity, Voltage, CCA
-- Dimensions (L, W, H), Weight
-- Terminals, Warranty
-- Category (Name & URL)
-- **Product Image** (NEW)
-- **Additional Content** (NEW)
-- Composed Tags (Dimensions Compact)
-- HTML Renderer (Spec Table)
+### Security & Compliance
+- ✅ **Grade A (94/100)** security score
+- ✅ CSRF protection with nonce verification on all forms
+- ✅ Input sanitization and output escaping throughout
+- ✅ SQL injection protection with prepared statements
+- ✅ File upload validation (MIME type + extension check)
+- ✅ GDPR compliant - no external data transmission
+- ✅ WordPress Coding Standards compliant
 
 ## 📚 Documentation
 
-Full changelog available in `readme.txt`.
-
-## 🐛 Known Issues
-
-**None** - All critical bugs fixed in Build 057!
-
-**Build 056** should NOT be used (PHP Parse Error).
-
-## 📝 What's Next?
-
-Planned features for future builds:
-- More Elementor Dynamic Tags
-- WP-CLI Commands (vt import, vt import:preview)
-- Landing Pages Auto-Creation
-- Advanced Filtering
-- Extended Schema Types
-- PDF Generation
-
-## 🔐 Security
-
-**Current Grade: A- (90/100)**
-
-Security measures:
-- ✅ MIME-Type Validation
-- ✅ File Extension Checks
-- ✅ Path Traversal Protection
-- ✅ CSRF Nonce Verification
-- ✅ Input Sanitization
-- ✅ Output Escaping
-- ✅ Prepared Statements
-- ✅ Capability Checks
+Comprehensive documentation available:
+- **Single Source of Truth**: `ayonto-sites-builder.config.json`
+- **Complete Changelog**: `UPDATE.md` (4000+ lines)
+- **Testing Guide**: `TESTING.md`
+- **Security Audit**: See project documentation
 
 ## 📄 License
 
-GPL-2.0 or later
-
-## 👨‍💻 Author
-
-**Marc Mirschel**  
-Website: [https://ayon.to](https://ayon.to)
-
----
-
-**Tags:** battery, elementor, batteries, meta-fields, custom-post-type, seo, schema-org, rankmath, wordpress-plugin
-
-**Contributors:** marcmirschel
+GPL-2.0+ - See LICENSE file for details.

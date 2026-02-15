@@ -1,5 +1,5 @@
 <?php
-namespace Voltrana\Sites\Elementor;
+namespace Ayonto\Sites\Elementor;
 
 class Integration {
 	private static $instance = null;

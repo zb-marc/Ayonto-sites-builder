@@ -2,12 +2,12 @@
 /**
  * Custom post type registration
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Includes
  * @since      0.1.0
  */
 
-namespace Voltrana\Sites;
+namespace Ayonto\Sites;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -67,30 +67,30 @@ class Post_Type {
 	 */
 	public function register_post_type() {
 		$labels = array(
-			'name'                  => _x( 'Lösungen', 'Post type general name', 'voltrana-sites' ),
-			'singular_name'         => _x( 'Lösung', 'Post type singular name', 'voltrana-sites' ),
-			'menu_name'             => _x( 'Lösungen', 'Admin Menu text', 'voltrana-sites' ),
-			'name_admin_bar'        => _x( 'Lösung', 'Add New on Toolbar', 'voltrana-sites' ),
-			'add_new'               => __( 'Neue hinzufügen', 'voltrana-sites' ),
-			'add_new_item'          => __( 'Neue Lösung hinzufügen', 'voltrana-sites' ),
-			'new_item'              => __( 'Neue Lösung', 'voltrana-sites' ),
-			'edit_item'             => __( 'Lösung bearbeiten', 'voltrana-sites' ),
-			'view_item'             => __( 'Lösung ansehen', 'voltrana-sites' ),
-			'all_items'             => __( 'Alle Lösungen', 'voltrana-sites' ),
-			'search_items'          => __( 'Lösungen durchsuchen', 'voltrana-sites' ),
-			'parent_item_colon'     => __( 'Übergeordnete Lösung:', 'voltrana-sites' ),
-			'not_found'             => __( 'Keine Lösungen gefunden.', 'voltrana-sites' ),
-			'not_found_in_trash'    => __( 'Keine Lösungen im Papierkorb gefunden.', 'voltrana-sites' ),
-			'featured_image'        => _x( 'Lösungs-Bild', 'Overrides the "Featured Image" phrase', 'voltrana-sites' ),
-			'set_featured_image'    => _x( 'Lösungs-Bild festlegen', 'Overrides the "Set featured image" phrase', 'voltrana-sites' ),
-			'remove_featured_image' => _x( 'Lösungs-Bild entfernen', 'Overrides the "Remove featured image" phrase', 'voltrana-sites' ),
-			'use_featured_image'    => _x( 'Als Lösungs-Bild verwenden', 'Overrides the "Use as featured image" phrase', 'voltrana-sites' ),
-			'archives'              => _x( 'Lösungs-Archive', 'The post type archive label used in nav menus', 'voltrana-sites' ),
-			'insert_into_item'      => _x( 'In Lösung einfügen', 'Overrides the "Insert into post" phrase', 'voltrana-sites' ),
-			'uploaded_to_this_item' => _x( 'Zu dieser Lösung hochgeladen', 'Overrides the "Uploaded to this post" phrase', 'voltrana-sites' ),
-			'filter_items_list'     => _x( 'Lösungs-Liste filtern', 'Screen reader text for the filter links', 'voltrana-sites' ),
-			'items_list_navigation' => _x( 'Lösungs-Listen-Navigation', 'Screen reader text for the pagination', 'voltrana-sites' ),
-			'items_list'            => _x( 'Lösungs-Liste', 'Screen reader text for the items list', 'voltrana-sites' ),
+			'name'                  => _x( 'Lösungen', 'Post type general name', 'ayonto-sites' ),
+			'singular_name'         => _x( 'Lösung', 'Post type singular name', 'ayonto-sites' ),
+			'menu_name'             => _x( 'Lösungen', 'Admin Menu text', 'ayonto-sites' ),
+			'name_admin_bar'        => _x( 'Lösung', 'Add New on Toolbar', 'ayonto-sites' ),
+			'add_new'               => __( 'Neue hinzufügen', 'ayonto-sites' ),
+			'add_new_item'          => __( 'Neue Lösung hinzufügen', 'ayonto-sites' ),
+			'new_item'              => __( 'Neue Lösung', 'ayonto-sites' ),
+			'edit_item'             => __( 'Lösung bearbeiten', 'ayonto-sites' ),
+			'view_item'             => __( 'Lösung ansehen', 'ayonto-sites' ),
+			'all_items'             => __( 'Alle Lösungen', 'ayonto-sites' ),
+			'search_items'          => __( 'Lösungen durchsuchen', 'ayonto-sites' ),
+			'parent_item_colon'     => __( 'Übergeordnete Lösung:', 'ayonto-sites' ),
+			'not_found'             => __( 'Keine Lösungen gefunden.', 'ayonto-sites' ),
+			'not_found_in_trash'    => __( 'Keine Lösungen im Papierkorb gefunden.', 'ayonto-sites' ),
+			'featured_image'        => _x( 'Lösungs-Bild', 'Overrides the "Featured Image" phrase', 'ayonto-sites' ),
+			'set_featured_image'    => _x( 'Lösungs-Bild festlegen', 'Overrides the "Set featured image" phrase', 'ayonto-sites' ),
+			'remove_featured_image' => _x( 'Lösungs-Bild entfernen', 'Overrides the "Remove featured image" phrase', 'ayonto-sites' ),
+			'use_featured_image'    => _x( 'Als Lösungs-Bild verwenden', 'Overrides the "Use as featured image" phrase', 'ayonto-sites' ),
+			'archives'              => _x( 'Lösungs-Archive', 'The post type archive label used in nav menus', 'ayonto-sites' ),
+			'insert_into_item'      => _x( 'In Lösung einfügen', 'Overrides the "Insert into post" phrase', 'ayonto-sites' ),
+			'uploaded_to_this_item' => _x( 'Zu dieser Lösung hochgeladen', 'Overrides the "Uploaded to this post" phrase', 'ayonto-sites' ),
+			'filter_items_list'     => _x( 'Lösungs-Liste filtern', 'Screen reader text for the filter links', 'ayonto-sites' ),
+			'items_list_navigation' => _x( 'Lösungs-Listen-Navigation', 'Screen reader text for the pagination', 'ayonto-sites' ),
+			'items_list'            => _x( 'Lösungs-Liste', 'Screen reader text for the items list', 'ayonto-sites' ),
 		);
 
 		$args = array(
@@ -98,14 +98,14 @@ class Post_Type {
 			'public'             => true,
 			'publicly_queryable' => true,
 			'show_ui'            => true,
-			'show_in_menu'       => true,
+			'show_in_menu'       => 'ayonto-root', // Build 061: Unter Ayonto-Menü statt eigenständig
 			'query_var'          => true,
 			'rewrite'            => array( 'slug' => 'loesung', 'with_front' => false ),  // BUILD 011: Spezifischer Slug statt '/'
 			'capability_type'    => 'post',
 			'has_archive'        => false,  // Kein Archiv
 			'hierarchical'       => false,  // Keine Lösung-zu-Lösung-Hierarchie
-			'menu_position'      => 56,
-			'menu_icon'          => 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+CiAgPHJlY3QgZmlsbD0iI2ZmZmZmZiIgeD0iNSIgeT0iMiIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIiLz4KICA8cmVjdCBmaWxsPSIjZmZmZmZmIiB4PSIzIiB5PSI0IiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHJ4PSIxIi8+CiAgPHJlY3QgZmlsbD0iIzAwMDAwMCIgeD0iNSIgeT0iNiIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIi8+CiAgPHJlY3QgZmlsbD0iI2ZmZmZmZiIgeD0iNyIgeT0iOCIgd2lkdGg9IjYiIGhlaWdodD0iMiIvPgogIDxyZWN0IGZpbGw9IiNmZmZmZmYiIHg9IjciIHk9IjExIiB3aWR0aD0iNiIgaGVpZ2h0PSIyIi8+Cjwvc3ZnPgo=',
+			'menu_position'      => null, // Build 061: Position nicht mehr nötig, da unter Ayonto
+			'menu_icon'          => null, // Build 061: Icon nicht mehr nötig, da unter Ayonto
 			'show_in_rest'       => true,
 			'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ),
 		);
@@ -123,17 +123,17 @@ class Post_Type {
 	 */
 	public function register_taxonomy() {
 		$labels = array(
-			'name'              => _x( 'Kategorien', 'taxonomy general name', 'voltrana-sites' ),
-			'singular_name'     => _x( 'Kategorie', 'taxonomy singular name', 'voltrana-sites' ),
-			'search_items'      => __( 'Kategorien durchsuchen', 'voltrana-sites' ),
-			'all_items'         => __( 'Alle Kategorien', 'voltrana-sites' ),
-			'parent_item'       => __( 'Übergeordnete Kategorie', 'voltrana-sites' ),
-			'parent_item_colon' => __( 'Übergeordnete Kategorie:', 'voltrana-sites' ),
-			'edit_item'         => __( 'Kategorie bearbeiten', 'voltrana-sites' ),
-			'update_item'       => __( 'Kategorie aktualisieren', 'voltrana-sites' ),
-			'add_new_item'      => __( 'Neue Kategorie hinzufügen', 'voltrana-sites' ),
-			'new_item_name'     => __( 'Neuer Kategoriename', 'voltrana-sites' ),
-			'menu_name'         => __( 'Kategorien', 'voltrana-sites' ),
+			'name'              => _x( 'Kategorien', 'taxonomy general name', 'ayonto-sites' ),
+			'singular_name'     => _x( 'Kategorie', 'taxonomy singular name', 'ayonto-sites' ),
+			'search_items'      => __( 'Kategorien durchsuchen', 'ayonto-sites' ),
+			'all_items'         => __( 'Alle Kategorien', 'ayonto-sites' ),
+			'parent_item'       => __( 'Übergeordnete Kategorie', 'ayonto-sites' ),
+			'parent_item_colon' => __( 'Übergeordnete Kategorie:', 'ayonto-sites' ),
+			'edit_item'         => __( 'Kategorie bearbeiten', 'ayonto-sites' ),
+			'update_item'       => __( 'Kategorie aktualisieren', 'ayonto-sites' ),
+			'add_new_item'      => __( 'Neue Kategorie hinzufügen', 'ayonto-sites' ),
+			'new_item_name'     => __( 'Neuer Kategoriename', 'ayonto-sites' ),
+			'menu_name'         => __( 'Kategorien', 'ayonto-sites' ),
 		);
 
 		// Build 016: Taxonomie verstecken (aber registriert lassen für später).
@@ -170,16 +170,16 @@ class Post_Type {
 	public function register_meta_fields() {
 		// String meta fields.
 		$string_fields = array(
-			'model'       => __( 'Modell', 'voltrana-sites' ),
-			'ean'         => __( 'EAN', 'voltrana-sites' ),
-			'brand'       => __( 'Marke', 'voltrana-sites' ),          // Meta Field!
-			'series'      => __( 'Serie', 'voltrana-sites' ),          // Meta Field!
-			'technology'  => __( 'Technologie', 'voltrana-sites' ),    // Meta Field!
-			'terminals'   => __( 'Pole/Klemmen', 'voltrana-sites' ),
-			'datasheet_url' => __( 'Datenblatt-URL', 'voltrana-sites' ),
-			'circuit_type'     => __( 'Schaltung', 'voltrana-sites' ),       // Build 015: New!
-			'product_group'    => __( 'Produktgruppe', 'voltrana-sites' ),   // Build 015: New!
-			'application_area' => __( 'Anwendungsbereich', 'voltrana-sites' ), // Build 015: New!
+			'model'       => __( 'Modell', 'ayonto-sites' ),
+			'ean'         => __( 'EAN', 'ayonto-sites' ),
+			'brand'       => __( 'Marke', 'ayonto-sites' ),          // Meta Field!
+			'series'      => __( 'Serie', 'ayonto-sites' ),          // Meta Field!
+			'technology'  => __( 'Technologie', 'ayonto-sites' ),    // Meta Field!
+			'terminals'   => __( 'Pole/Klemmen', 'ayonto-sites' ),
+			'datasheet_url' => __( 'Datenblatt-URL', 'ayonto-sites' ),
+			'circuit_type'     => __( 'Schaltung', 'ayonto-sites' ),       // Build 015: New!
+			'product_group'    => __( 'Produktgruppe', 'ayonto-sites' ),   // Build 015: New!
+			'application_area' => __( 'Anwendungsbereich', 'ayonto-sites' ), // Build 015: New!
 		);
 
 		foreach ( $string_fields as $key => $label ) {
@@ -198,10 +198,10 @@ class Post_Type {
 
 		// Numeric meta fields.
 		$numeric_fields = array(
-			'capacity_ah' => __( 'Kapazität (Ah)', 'voltrana-sites' ),
-			'voltage_v'   => __( 'Spannung (V)', 'voltrana-sites' ),  // Meta Field!
-			'cca_a'       => __( 'Kaltstartstrom (A)', 'voltrana-sites' ),
-			'weight_kg'   => __( 'Gewicht (kg)', 'voltrana-sites' ),
+			'capacity_ah' => __( 'Kapazität (Ah)', 'ayonto-sites' ),
+			'voltage_v'   => __( 'Spannung (V)', 'ayonto-sites' ),  // Meta Field!
+			'cca_a'       => __( 'Kaltstartstrom (A)', 'ayonto-sites' ),
+			'weight_kg'   => __( 'Gewicht (kg)', 'ayonto-sites' ),
 		);
 
 		foreach ( $numeric_fields as $key => $label ) {
@@ -224,7 +224,7 @@ class Post_Type {
 			'warranty_months',
 			array(
 				'type'              => 'integer',
-				'description'       => __( 'Garantie (Monate)', 'voltrana-sites' ),
+				'description'       => __( 'Garantie (Monate)', 'ayonto-sites' ),
 				'single'            => true,
 				'show_in_rest'      => true,
 				'sanitize_callback' => array( $this, 'sanitize_int_meta' ),
@@ -237,7 +237,7 @@ class Post_Type {
 			'vt_parent_page_id',
 			array(
 				'type'              => 'integer',
-				'description'       => __( 'Übergeordnete Seite (ID)', 'voltrana-sites' ),
+				'description'       => __( 'Übergeordnete Seite (ID)', 'ayonto-sites' ),
 				'single'            => true,
 				'show_in_rest'      => true,
 				'sanitize_callback' => array( $this, 'sanitize_int_meta' ),
@@ -251,7 +251,7 @@ class Post_Type {
 			'dimensions_mm',
 			array(
 				'type'              => 'object',
-				'description'       => __( 'Abmessungen (mm)', 'voltrana-sites' ),
+				'description'       => __( 'Abmessungen (mm)', 'ayonto-sites' ),
 				'single'            => true,
 				'show_in_rest'      => array(
 					'schema' => array(
@@ -259,15 +259,15 @@ class Post_Type {
 						'properties' => array(
 							'l' => array(
 								'type'        => 'number',
-								'description' => __( 'Länge (mm)', 'voltrana-sites' ),
+								'description' => __( 'Länge (mm)', 'ayonto-sites' ),
 							),
 							'w' => array(
 								'type'        => 'number',
-								'description' => __( 'Breite (mm)', 'voltrana-sites' ),
+								'description' => __( 'Breite (mm)', 'ayonto-sites' ),
 							),
 							'h' => array(
 								'type'        => 'number',
-								'description' => __( 'Höhe (mm)', 'voltrana-sites' ),
+								'description' => __( 'Höhe (mm)', 'ayonto-sites' ),
 							),
 						),
 					),
@@ -283,7 +283,7 @@ class Post_Type {
 			'oem_refs',
 			array(
 				'type'              => 'array',
-				'description'       => __( 'OEM-Referenzen', 'voltrana-sites' ),
+				'description'       => __( 'OEM-Referenzen', 'ayonto-sites' ),
 				'single'            => true,
 				'show_in_rest'      => array(
 					'schema' => array(
@@ -304,7 +304,7 @@ class Post_Type {
 			'properties',
 			array(
 				'type'              => 'array',
-				'description'       => __( 'Eigenschaften', 'voltrana-sites' ),
+				'description'       => __( 'Eigenschaften', 'ayonto-sites' ),
 				'single'            => true,
 				'show_in_rest'      => array(
 					'schema' => array(
@@ -324,7 +324,7 @@ class Post_Type {
 			'additional_content',
 			array(
 				'type'              => 'string',
-				'description'       => __( 'Zusätzlicher Inhalt', 'voltrana-sites' ),
+				'description'       => __( 'Zusätzlicher Inhalt', 'ayonto-sites' ),
 				'single'            => true,
 				'show_in_rest'      => true,
 				'sanitize_callback' => array( $this, 'sanitize_html_content' ),

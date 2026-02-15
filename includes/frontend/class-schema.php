@@ -8,14 +8,14 @@
  * - BreadcrumbList (all pages with breadcrumbs)
  * - Organization (all pages)
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Frontend
  * @since      0.1.23
  */
 
-namespace Voltrana\Sites\Frontend;
+namespace Ayonto\Sites\Frontend;
 
-use Voltrana\Sites\Admin\Settings_Helper;
+use Ayonto\Sites\Admin\Settings_Helper;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -157,7 +157,7 @@ class Schema {
 	 * Get Organization schema
 	 *
 	 * This schema is output on ALL pages to establish site-wide organization identity.
-	 * All values are configurable in: Voltrana → Einstellungen → Schema.org
+	 * All values are configurable in: Ayonto → Einstellungen → Schema.org
 	 *
 	 * @return array Organization schema.
 	 */
@@ -262,7 +262,7 @@ class Schema {
 		if ( $capacity_ah ) {
 			$properties[] = array(
 				'@type' => 'PropertyValue',
-				'name'  => __( 'Kapazität', 'voltrana-sites' ),
+				'name'  => __( 'Kapazität', 'ayonto-sites' ),
 				'value' => sanitize_text_field( $capacity_ah ) . ' Ah',
 			);
 		}
@@ -270,7 +270,7 @@ class Schema {
 		if ( $voltage_v ) {
 			$properties[] = array(
 				'@type' => 'PropertyValue',
-				'name'  => __( 'Spannung', 'voltrana-sites' ),
+				'name'  => __( 'Spannung', 'ayonto-sites' ),
 				'value' => sanitize_text_field( $voltage_v ) . ' V',
 			);
 		}
@@ -278,7 +278,7 @@ class Schema {
 		if ( $cca_a ) {
 			$properties[] = array(
 				'@type' => 'PropertyValue',
-				'name'  => __( 'Kaltstartstrom', 'voltrana-sites' ),
+				'name'  => __( 'Kaltstartstrom', 'ayonto-sites' ),
 				'value' => sanitize_text_field( $cca_a ) . ' A',
 			);
 		}
@@ -286,7 +286,7 @@ class Schema {
 		if ( $dim_l && $dim_w && $dim_h ) {
 			$properties[] = array(
 				'@type' => 'PropertyValue',
-				'name'  => __( 'Maße (L×B×H)', 'voltrana-sites' ),
+				'name'  => __( 'Maße (L×B×H)', 'ayonto-sites' ),
 				'value' => sprintf(
 					'%s × %s × %s mm',
 					sanitize_text_field( $dim_l ),
@@ -299,7 +299,7 @@ class Schema {
 		if ( $weight_kg ) {
 			$properties[] = array(
 				'@type' => 'PropertyValue',
-				'name'  => __( 'Gewicht', 'voltrana-sites' ),
+				'name'  => __( 'Gewicht', 'ayonto-sites' ),
 				'value' => sanitize_text_field( $weight_kg ) . ' kg',
 			);
 		}
@@ -307,7 +307,7 @@ class Schema {
 		if ( $technology ) {
 			$properties[] = array(
 				'@type' => 'PropertyValue',
-				'name'  => __( 'Technologie', 'voltrana-sites' ),
+				'name'  => __( 'Technologie', 'ayonto-sites' ),
 				'value' => sanitize_text_field( $technology ),
 			);
 		}
@@ -341,7 +341,7 @@ class Schema {
 				'@id'        => get_term_link( $term ) . '#collection',
 				'name'       => sprintf(
 					/* translators: %s: Category name */
-					__( 'Batterien – %s', 'voltrana-sites' ),
+					__( 'Batterien – %s', 'ayonto-sites' ),
 					$term->name
 				),
 				'url'        => get_term_link( $term ),
@@ -475,7 +475,7 @@ class Schema {
 
 		// Home.
 		$breadcrumbs[] = array(
-			'name' => __( 'Home', 'voltrana-sites' ),
+			'name' => __( 'Home', 'ayonto-sites' ),
 			'url'  => home_url( '/' ),
 		);
 
@@ -585,13 +585,13 @@ class Schema {
 		if ( $model && $capacity_ah && $voltage_v ) {
 			return sprintf(
 				/* translators: 1: Model, 2: Capacity, 3: Voltage, 4: Technology, 5: Brand, 6: Category */
-				__( '%1$s Batterie mit %2$s Ah Kapazität und %3$s V Spannung. Technologie: %4$s. Marke: %5$s. Ideal für %6$s.', 'voltrana-sites' ),
+				__( '%1$s Batterie mit %2$s Ah Kapazität und %3$s V Spannung. Technologie: %4$s. Marke: %5$s. Ideal für %6$s.', 'ayonto-sites' ),
 				$model,
 				$capacity_ah,
 				$voltage_v,
-				$technology ? $technology : __( 'Standard', 'voltrana-sites' ),
+				$technology ? $technology : __( 'Standard', 'ayonto-sites' ),
 				$brand ? $brand : Settings_Helper::get_default_brand(),
-				$category ? $category : __( 'verschiedene Anwendungen', 'voltrana-sites' )
+				$category ? $category : __( 'verschiedene Anwendungen', 'ayonto-sites' )
 			);
 		}
 

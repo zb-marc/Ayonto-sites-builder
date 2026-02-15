@@ -1,10 +1,10 @@
-=== Voltrana Sites Builder ===
-Contributors: marcmirschel
+=== Ayonto Sites Builder ===
+Contributors: ayonto
 Tags: battery, elementor, batteries, meta-fields, custom-post-type
 Requires at least: 5.8
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 0.1.37
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Professional battery management system with Elementor integration. Architecture:
 
 == Description ==
 
-Voltrana Sites Builder is a professional WordPress plugin for managing battery products with deep Elementor integration.
+Ayonto Sites Builder is a professional WordPress plugin for managing battery products with deep Elementor integration.
 
 **Key Architecture Decision:**
 * Only ONE taxonomy: vt_category (Categories)
@@ -31,11 +31,225 @@ Voltrana Sites Builder is a professional WordPress plugin for managing battery p
 
 == Installation ==
 
-1. Upload the plugin files to `/wp-content/plugins/voltrana-sites-builder/`
+1. Upload the plugin files to `/wp-content/plugins/ayonto-sites-builder/`
 2. Activate the plugin through the 'Plugins' screen
-3. Use Voltrana menu to configure settings
+3. Use Ayonto menu to configure settings
 
 == Changelog ==
+
+= 0.2.0 Build 081 - Complete Rebranding: Voltrana → Ayonto =
+* REBRANDING: Complete plugin rename from "Voltrana Sites Builder" to "Ayonto Sites Builder"
+* REBRANDING: All namespaces changed from Voltrana\Sites to Ayonto\Sites
+* REBRANDING: All constants changed from VOLTRANA_SITES_ to AYONTO_SITES_
+* REBRANDING: All function prefixes changed from voltrana_sites_ to ayonto_sites_
+* REBRANDING: Text domain changed from voltrana-sites to ayonto-sites
+* REBRANDING: All CSS classes changed from voltrana-* to ayonto-*
+* REBRANDING: All option keys changed from voltrana_ to ayonto_
+* REBRANDING: Plugin slug changed to ayonto-sites-builder
+* REBRANDING: Domain changed to https://ayon.to
+* REBRANDING: Company changed to Ayonto UG (Haftungsbeschränkt)
+* REBRANDING: Admin menu slug changed from voltrana-root to ayonto-root
+* NOTE: CPT (vt_battery) and taxonomy (vt_category) prefixes remain unchanged for data compatibility
+* NOTE: Meta field keys (vt_*) remain unchanged for data compatibility
+* MIGRATION: Existing installations require database option migration (see UPDATE.md)
+
+= 0.1.61 Build 080 - Mobile Table Gap Fix (Complete) =
+* FIXED: Large gap after battery table specifically on mobile devices
+* IMPROVED: Removed margin-bottom from last table row in mobile view
+* IMPROVED: Enhanced wpautop protection with placeholder system
+* CSS: Set margin to 0 for .vt-battery-table-wrapper on mobile
+* CSS: Added :last-child selector for tr elements to remove bottom margin
+* CSS: Enhanced shortcode protection CSS for mobile devices
+* JS: Added automatic cleanup of empty paragraphs and breaks around tables
+* JS: Dynamic margin removal for mobile devices (< 768px)
+* TECHNICAL: Improved protect_shortcodes_from_wpautop() with placeholder replacement
+* RESULT: No gaps after tables on both desktop and mobile views
+
+= 0.1.60 Build 079 - Battery Table Gap Fix =
+* FIXED: Large gap after [vt_battery_table] shortcode caused by unwanted whitespace
+* IMPROVED: Removed trailing whitespace in table rendering output
+* IMPROVED: Added trim() to remove unnecessary spacing from shortcode output
+* IMPROVED: Protected shortcodes from wpautop to prevent extra paragraph tags
+* CSS: Adjusted .vt-battery-table-wrapper margins (removed bottom margin)
+* CSS: Added .vt-shortcode-protect class to prevent wpautop interference
+* TECHNICAL: Added protect_shortcodes_from_wpautop() filter at priority 9
+* RESULT: Clean table display without unwanted gaps below the table
+
+= 0.1.59 Build 078 - Help Page UI Improvement =
+* UI IMPROVEMENT: Moved "Inhaltsverzeichnis" (Table of Contents) from content area to sidebar
+* CHANGED: TOC now appears in sidebar below Plugin Information for better navigation
+* IMPROVED: TOC styling updated to match sidebar design (consistent with vt-help-info)
+* IMPROVED: More compact TOC design for better space utilization in sidebar
+* REASON: Better overview and navigation - TOC always visible while reading documentation
+* NOTE: TOC only shows for documents with 3+ headings
+
+= 0.1.58 Build 077 - Help Page Critical Fixes =
+* CRITICAL FIX: Fixed PHP Fatal Error in Help page (Parsedown::blockSetextHeader() missing)
+* CRITICAL FIX: Added missing blockSetextHeader() method to Parsedown library
+* UI IMPROVEMENT: Help page now shows only 3 main documents instead of all BUILD files
+* CHANGED: Help documentation now displays: Overview (README), Changelog (UPDATE), Test Guide (TESTING)
+* REMOVED: BUILD-*.md files from Help page (they are development artifacts)
+* REASON: Cleaner UI and better user experience - users don't need to see every build file
+* NOTE: All BUILD information is still available in UPDATE.md (Changelog)
+
+= 0.1.57 Build 076 - EAN Display Bugfix =
+* CRITICAL FIX: Removed duplicate 'case ean:' in Shortcodes class (dead code at line 485-487)
+* FIX: Changed EAN output from <code> to <span> for semantic correctness
+* REASON: <code> is meant for programming code, not for product identifiers
+* NOTE: This fixes the incomplete implementation from Build 075
+* INCLUDES: All improvements from Build 075
+
+= 0.1.56 Build 075 - EAN Readability Improvements =
+* IMPROVED: Enhanced EAN number readability in battery tables
+* IMPROVED: Increased EAN font size from 10px to 13px for better visibility
+* IMPROVED: Better contrast with darker text color (#181818 instead of #6b7280)
+* IMPROVED: Stronger border color (#004B61) for EAN fields
+* IMPROVED: Added specific CSS class (vt-value-ean) to EAN column output
+* IMPROVED: Increased EAN column width from 130px to 145px
+* REMOVED: Font-family definitions from frontend CSS (now using theme fonts)
+* STYLE: Optimized EAN display with better padding and letter-spacing
+
+= 0.1.55 Build 074 - Help Class Property Fix =
+* CRITICAL FIX: Fixed "Cannot redeclare Help::$instance" fatal error
+* FIX: Removed duplicate property declaration in Help class (line 38)
+* INCLUDES: All fixes from Builds 071-073
+* NOTE: Help page now fully functional
+
+= 0.1.54 Build 073 - Help Page Fix =
+* FIX: Fixed "permission denied" error when accessing Help page
+* FIX: Converted Help class to use proper namespace (Ayonto\Sites\Admin\Help)
+* FIX: Integrated Help initialization into main plugin init
+* IMPROVED: Help class now uses singleton pattern like other admin classes
+* INCLUDES: All fixes from Builds 071-072
+* NOTE: Help page now accessible at Ayonto → Hilfe
+
+= 0.1.53 Build 072 - CRITICAL HOTFIX #2 =
+* CRITICAL FIX: Fixed undefined constant AYONTO_SITES_FILE error in Data_Retention class
+* FIX: Corrected constant reference to use AYONTO_SITES_PLUGIN_FILE with proper namespace
+* INCLUDES: All fixes from Build 071
+* NOTE: Second critical hotfix - resolves all issues from Build 070
+
+= 0.1.52 Build 071 - CRITICAL HOTFIX =
+* CRITICAL FIX: Fixed autoloader namespace validation preventing main namespace classes from loading
+* CRITICAL FIX: Resolved PHP Fatal Error "Class Post_Type not found"
+* FIX: Adjusted namespace whitelist logic to allow root namespace classes
+* FIX: Classes like Post_Type, Shortcodes, Activator, Deactivator now load correctly
+* NOTE: This is a critical hotfix for Build 070 - all users must update immediately
+
+= 0.1.51 Build 070 =
+* SECURITY: Fixed XSS vulnerability in JavaScript context using wp_json_encode()
+* SECURITY: Implemented rate limiting for import function (10 imports/hour)
+* SECURITY: Added explicit namespace whitelist to autoloader
+* SECURITY: Enhanced file size validation (max 10MB, min 100 bytes)
+* NEW: Data Retention Policy for GDPR compliance (90-day auto-cleanup)
+* NEW: Security Audit Logger for tracking critical actions
+* IMPROVED: Better input validation and output escaping
+* IMPROVED: Session security enhancements
+* IMPROVED: Overall security score increased from B+ (87%) to A (94%)
+* FIX: All critical security vulnerabilities resolved
+* COMPLIANCE: Full GDPR/DSGVO compliance with automatic data cleanup
+* DOCUMENTATION: Added security audit documentation
+
+= 0.1.46 Build 065 =
+* NEW: Moderne Settings-Page CSS (280+ Zeilen)
+* NEW: Settings Enhancements JavaScript (Logo-Preview, Field-Icons)
+* NEW: Section-Cards mit Gradient-Headers
+* NEW: 2-Spalten-Layout für Settings auf Desktop
+* NEW: Logo-Upload mit Live-Preview
+* NEW: Moderne Input-Fields mit besseren Focus-States
+* NEW: Field-Icons werden automatisch hinzugefügt
+* NEW: Upload-Button-Group mit Remove-Option
+* IMPROVED: Besseres Spacing und visuelle Hierarchie
+* IMPROVED: Responsive Design für alle Screen-Größen
+* IMPROVED: Color-Picker mit visueller Anzeige
+
+= 0.1.45 Build 064 =
+* REMOVED: Statistiken-Widget aus Dashboard entfernt
+* REMOVED: Datenqualität-Widget aus Dashboard entfernt
+* IMPROVED: Dashboard fokussiert auf Schnellaktionen, Recent Activity und System Status
+* IMPROVED: Klareres, fokussierteres Dashboard-Layout
+* IMPROVED: Reduzierte Animation-Delays (nur noch 3 Widgets)
+
+= 0.1.44 Build 063 =
+* NEW: Erweiterte Dashboard-Statistiken mit echten Daten
+* NEW: Top 5 Marken-Statistik (fehlte komplett!)
+* NEW: Kapazitätsbereich (Durchschnitt, Min, Max)
+* NEW: Entwürfe-Zähler im Dashboard
+* NEW: Datenqualität-Widget mit Debug-Informationen
+* NEW: Post-Status-Übersicht (Publish, Draft, etc.)
+* NEW: Fehlende Daten-Checker (Ohne Technologie, Ohne Marke, Ohne Kapazität)
+* IMPROVED: Alle Statistiken verwenden jetzt echte Daten aus der Datenbank
+* IMPROVED: Bessere SQL-Queries für Performance
+* IMPROVED: Visuelle Warnung bei fehlenden Daten
+* IMPROVED: Hilfreiche Tipps zur Datenqualität
+
+= 0.1.43 Build 062 =
+* NEW: Einheitliches Design-System für alle Ayonto Admin-Seiten
+* NEW: Zentrale admin.css mit Ayonto Brand Colors und CSS Variables
+* IMPROVED: Settings-Seite mit Ayonto-Branding (Cards, Tabs, Buttons)
+* IMPROVED: Import-Seite mit Ayonto-Branding
+* IMPROVED: Dashboard nutzt jetzt einheitliches Design-System
+* IMPROVED: Konsistente Button-Styles auf allen Admin-Seiten
+* IMPROVED: Konsistente Tab-Navigation mit Ayonto-Akzentfarbe
+* IMPROVED: Alle Formulare mit Ayonto-Farben und Focus-States
+* IMPROVED: Notice-Boxen im Ayonto-Style (Info, Success, Warning, Error)
+* IMPROVED: Responsive Design für alle Admin-Seiten
+* ADDED: CSS Variables für Ayonto Brand Colors (Primary: #004B61, Accent: #F79D00)
+* ADDED: Utility-Klassen für konsistentes Spacing und Layout
+* ADDED: Animationen für Card-Elemente (fadeIn mit staggered delay)
+* ADDED: Hover-Effekte für Buttons und Interactive Elements
+* TECHNICAL: Neue zentrale assets/css/admin.css (22KB)
+* TECHNICAL: Dashboard lädt jetzt admin.css + admin-dashboard.css
+* TECHNICAL: Settings und Import laden admin.css
+* UX: Einheitliche Optik über alle Ayonto-Menüpunkte
+* UX: Professionelleres Erscheinungsbild
+
+= 0.1.41 Build 061 =
+* NEW: Dashboard-Seite mit Statistiken, Quick Actions, Recent Activity und System Status
+* NEW: Zentrale Übersichtsseite als Einstiegspunkt im Admin-Bereich
+* IMPROVED: Optimierte Admin-Menüstruktur - CPT "Lösungen" jetzt unter Ayonto-Menü
+* IMPROVED: Konsistente Parent-Slug-Struktur (alle Submenüs unter 'ayonto-root')
+* IMPROVED: Dashboard zeigt Statistiken nach Technologie und Spannung
+* IMPROVED: Dashboard zeigt letzte 5 bearbeitete Lösungen
+* IMPROVED: Dashboard zeigt System-Status (PHP, WordPress, Plugins, Permalinks)
+* IMPROVED: Quick Actions für häufige Aufgaben (Neue Lösung, Import, Einstellungen)
+* FIXED: Statistiken filtern jetzt leere/Null-Werte bei Technologie und Spannung
+* FIXED: "Neue Lösung" wird automatisch als Submenu-Item hinzugefügt falls fehlend
+* FIXED: Dashboard immer als erstes Submenu-Item (Menü-Reihenfolge korrigiert)
+* ADDED: Neues Dashboard-CSS mit Ayonto Branding (Primary: #004B61, Accent: #F79D00)
+* ADDED: Responsive Widget-Grid-Layout mit Animationen
+* TECHNICAL: Neue Klasse \Ayonto\Sites\Admin\Dashboard
+* TECHNICAL: Custom CSS assets/css/admin-dashboard.css
+* TECHNICAL: Menü-Reihenfolge-Fix-Funktion ayonto_sites_fix_admin_menu_order()
+* UX: Dashboard als erste Submenu-Page (Position 0)
+* UX: Verbesserte Admin-Navigation und Übersichtlichkeit
+
+= 0.1.40 Build 060 =
+* FIXED: CRITICAL - aria-hidden Console Warning komplett behoben (Build 059 fix unvollständig)
+* FIXED: document.activeElement.blur() wird explizit aufgerufen beim Öffnen der Lightbox
+* IMPROVED: Doppelte Absicherung via Click Event Listener auf alle .glightbox Links
+* IMPROVED: Reduziertes setTimeout Delay (100ms → 50ms) für schnellere Focus-Verschiebung
+* TECHNICAL: onOpen Event blur() + setTimeout focus() Kombination
+* TECHNICAL: Zusätzlicher Click Handler mit 10ms Delay für sofortigen Focus-Removal
+* RESULT: Keine aria-hidden Warnings mehr in Browser Console
+
+= 0.1.39 Build 059 =
+* FIXED: CRITICAL - Accessibility Warning in Browser Console behoben
+* FIXED: "Blocked aria-hidden on element" Warnung beim Öffnen der Lightbox
+* IMPROVED: Focus Management - Close Button erhält automatisch Focus beim Öffnen
+* IMPROVED: Keyboard Navigation - Sichtbarer Focus Outline (orange) für Close Button
+* IMPROVED: WCAG 2.1 Compliance - Screen Reader freundlich
+* TECHNICAL: onOpen Event Handler in GLightbox für Focus-Verschiebung
+* TECHNICAL: :focus und :focus-visible Styles für Close Button
+
+= 0.1.38 Build 058 =
+* IMPROVED: GLightbox Overlay Background jetzt in Ayonto Brand Color rgba(0, 75, 97, 0.70)
+* IMPROVED: Close Button mit CSS-basiertem X-Icon (größer, besser sichtbar)
+* IMPROVED: Close Button Hover-Effekt mit Rotation und Ayonto Accent Color (#F79D00)
+* IMPROVED: Navigation Buttons (gnext/gprev) komplett ausgeblendet (nur 1 Bild pro Batterie)
+* IMPROVED: Mobile-optimierte Close Button Größe (40px auf Mobile, 44px auf Desktop)
+* TECHNICAL: GLightbox SVGs durch CSS ::before/::after ersetzt für bessere Kontrolle
+* TECHNICAL: frontend.css erweitert um GLightbox Custom Styles Section
 
 = 0.1.37 Build 057 =
 * CRITICAL HOTFIX: PHP Parse Error in Build 056 behoben
@@ -81,7 +295,7 @@ Voltrana Sites Builder is a professional WordPress plugin for managing battery p
 * IMPROVED: Inline-Display für Strong-Elemente forciert
 
 = 0.1.33 Build 052 =
-* FEATURE: Additional Content Styling - Custom List Icons mit Voltrana-Logo
+* FEATURE: Additional Content Styling - Custom List Icons mit Ayonto-Logo
 * FEATURE: Listen verwenden jetzt SVG-Logo statt Standard-Bullet-Points
 * IMPROVED: Konsistente Abstände für <ul> und <p> Elemente (20px)
 * IMPROVED: Strong-Text Styling in Listen (#004B61, 600 font-weight)
@@ -114,7 +328,7 @@ Voltrana Sites Builder is a professional WordPress plugin for managing battery p
 = 0.1.29 Build 048 =
 * NEW: Additional Content Meta Field mit HTML-Editor
 * NEW: Metabox "Zusätzlicher Inhalt" mit Textarea + Helper-Buttons
-* NEW: Elementor Dynamic Tag "Zusätzlicher Inhalt" (Gruppe: Voltrana)
+* NEW: Elementor Dynamic Tag "Zusätzlicher Inhalt" (Gruppe: Ayonto)
 * NEW: Shortcode [vt_additional_content] für formatierte Inhalte
 * NEW: HTML-Sanitization (wp_kses) für sichere Ausgabe
 * IMPROVED: Stabiler HTML-Editor (kein wp_editor wegen DOM-Problemen)
@@ -143,7 +357,7 @@ Voltrana Sites Builder is a professional WordPress plugin for managing battery p
 * NEW: Import-Einstellungen konfigurierbar
 * NEW: Frontend-Optionen konfigurierbar
 * NEW: Settings_Helper Klasse für einfachen Zugriff
-* IMPROVED: Alle hart kodierten "Voltrana" Werte durch Settings ersetzt
+* IMPROVED: Alle hart kodierten "Ayonto" Werte durch Settings ersetzt
 * IMPROVED: CSS-Variablen für Farben im Frontend
 * IMPROVED: White-Label ready durch konfigurierbare Firmendaten
 
@@ -273,7 +487,7 @@ Voltrana Sites Builder is a professional WordPress plugin for managing battery p
 * CSS: Alle Elemente für einzeilige Darstellung optimiert
 
 = 0.1.5 Build 022 =
-* NEW: Markenname "Voltrana" automatisch vor Modell in Tabelle
+* NEW: Markenname "Ayonto" automatisch vor Modell in Tabelle
 * NEW: EAN-Spalte zu Standard-Spalten hinzugefügt
 * NEW: PDF-Icon (📄) statt Text für Datenblatt-Link
 * IMPROVED: Datenblatt als kompakter Icon-Button (36×36px) mit Hover-Effekt
@@ -305,7 +519,7 @@ Voltrana Sites Builder is a professional WordPress plugin for managing battery p
 * IMPROVED: Kompakte und übersichtliche Admin-Metabox mit 4-Spalten-Layout
 * IMPROVED: Felder logisch in Sektionen gruppiert (Grunddaten, Technische Spezifikationen, Maße & Gewicht, Eigenschaften)
 * NEW: Maße (L×B×H) in einer kompakten Zeile mit visueller Trennung
-* NEW: Brand immer automatisch auf "Voltrana" gesetzt (hidden field)
+* NEW: Brand immer automatisch auf "Ayonto" gesetzt (hidden field)
 * REMOVED: application_area und product_group Felder entfernt
 * IMPROVED: Kleinere Inputs und Labels für bessere Übersichtlichkeit
 * IMPROVED: Section Headers mit Markenfarbe (#004B61)
@@ -316,7 +530,7 @@ Voltrana Sites Builder is a professional WordPress plugin for managing battery p
 * Arrays are now properly converted to comma-separated strings in textarea fields
 
 = 0.1.1 Build 018 =
-* IMPROVED: Battery Table CSS mit Voltrana-Markenfarben
+* IMPROVED: Battery Table CSS mit Ayonto-Markenfarben
 * NEW: Header-Hintergrund #004B61 (Secondary)
 * NEW: Link-Farbe #004B61, Hover #F79D00 (Accent)
 * NEW: Text-Farbe #333333

@@ -2,14 +2,14 @@
 /**
  * Frontend functionality
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Frontend
  * @since      0.1.0
  */
 
-namespace Voltrana\Sites\Frontend;
+namespace Ayonto\Sites\Frontend;
 
-use Voltrana\Sites\Admin\Settings_Helper;
+use Ayonto\Sites\Admin\Settings_Helper;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -63,24 +63,24 @@ class Frontend {
 	public function enqueue_scripts() {
 		// Always register frontend styles so shortcodes can enqueue them.
 		wp_register_style(
-			'voltrana-frontend',
-			VOLTRANA_SITES_PLUGIN_URL . 'assets/css/frontend.css',
+			'ayonto-frontend',
+			AYONTO_SITES_PLUGIN_URL . 'assets/css/frontend.css',
 			array(),
-			VOLTRANA_SITES_VERSION
+			AYONTO_SITES_VERSION
 		);
 
 		// Build 055: Register GLightbox CSS.
 		wp_register_style(
-			'voltrana-glightbox',
-			VOLTRANA_SITES_PLUGIN_URL . 'assets/css/glightbox.min.css',
+			'ayonto-glightbox',
+			AYONTO_SITES_PLUGIN_URL . 'assets/css/glightbox.min.css',
 			array(),
 			'3.3.0'
 		);
 
 		// Build 055: Register GLightbox JS (LOCAL).
 		wp_register_script(
-			'voltrana-glightbox',
-			VOLTRANA_SITES_PLUGIN_URL . 'assets/js/glightbox.min.js',
+			'ayonto-glightbox',
+			AYONTO_SITES_PLUGIN_URL . 'assets/js/glightbox.min.js',
 			array(),
 			'3.3.0',
 			true
@@ -88,19 +88,19 @@ class Frontend {
 
 		// Build 055: Register GLightbox Init Script.
 		wp_register_script(
-			'voltrana-glightbox-init',
-			VOLTRANA_SITES_PLUGIN_URL . 'assets/js/glightbox-init.js',
-			array( 'voltrana-glightbox' ),
-			VOLTRANA_SITES_VERSION,
+			'ayonto-glightbox-init',
+			AYONTO_SITES_PLUGIN_URL . 'assets/js/glightbox-init.js',
+			array( 'ayonto-glightbox' ),
+			AYONTO_SITES_VERSION,
 			true
 		);
 
 		// Auto-enqueue on battery pages.
 		if ( is_singular( 'vt_battery' ) || is_post_type_archive( 'vt_battery' ) || is_tax( 'vt_category' ) ) {
-			wp_enqueue_style( 'voltrana-frontend' );
-			wp_enqueue_style( 'voltrana-glightbox' );
-			wp_enqueue_script( 'voltrana-glightbox' );
-			wp_enqueue_script( 'voltrana-glightbox-init' );
+			wp_enqueue_style( 'ayonto-frontend' );
+			wp_enqueue_style( 'ayonto-glightbox' );
+			wp_enqueue_script( 'ayonto-glightbox' );
+			wp_enqueue_script( 'ayonto-glightbox-init' );
 		}
 	}
 
@@ -111,7 +111,7 @@ class Frontend {
 	 */
 	public function output_custom_css() {
 		?>
-		<style id="voltrana-custom-colors">
+		<style id="ayonto-custom-colors">
 			<?php echo Settings_Helper::get_css_variables(); ?>
 			
 			/* Apply colors to plugin elements */

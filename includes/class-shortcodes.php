@@ -2,14 +2,14 @@
 /**
  * Shortcodes handler
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Includes
  * @since      0.1.0
  */
 
-namespace Voltrana\Sites;
+namespace Ayonto\Sites;
 
-use Voltrana\Sites\Admin\Settings_Helper;
+use Ayonto\Sites\Admin\Settings_Helper;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -53,6 +53,66 @@ class Shortcodes {
 		add_shortcode( 'vt_battery_specs', array( $this, 'battery_specs' ) );
 		add_shortcode( 'vt_battery_table', array( $this, 'battery_table' ) ); // Build 015: NEW!
 		add_shortcode( 'vt_additional_content', array( $this, 'additional_content' ) ); // Build 048: NEW!
+		
+		// Prevent wpautop from adding extra paragraphs around our shortcodes (Build 079)
+		add_filter( 'the_content', array( $this, 'protect_shortcodes_from_wpautop' ), 9 );
+	}
+
+	/**
+	 * Protect shortcodes from wpautop
+	 * 
+	 * Prevents WordPress from adding <p> and <br> tags around our shortcodes
+	 * which can cause unwanted spacing issues.
+	 * 
+	 * @since 0.1.60
+	 * @param string $content The post content.
+	 * @return string Modified content.
+	 */
+	public function protect_shortcodes_from_wpautop( $content ) {
+		// List of our shortcodes that should be protected
+		$shortcodes = array(
+			'vt_battery_table',
+			'vt_battery_list',
+			'vt_battery_filters',
+			'vt_battery_specs',
+			'vt_additional_content'
+		);
+		
+		// First, temporarily replace shortcodes with placeholders
+		$placeholders = array();
+		foreach ( $shortcodes as $shortcode ) {
+			// Match shortcode with any attributes
+			$pattern = '/(\[' . $shortcode . '(?:\s[^\]]*)?(?:\](?:.*?\[\/'. $shortcode . '\])?|\]))/s';
+			
+			if ( preg_match_all( $pattern, $content, $matches ) ) {
+				foreach ( $matches[0] as $index => $match ) {
+					$placeholder = '<!--VT_SHORTCODE_' . strtoupper( $shortcode ) . '_' . $index . '-->';
+					$placeholders[ $placeholder ] = $match;
+					$content = str_replace( $match, $placeholder, $content );
+				}
+			}
+		}
+		
+		// Let wpautop process the content (it will run after this filter)
+		// But our shortcodes are now protected as HTML comments
+		
+		// After wpautop runs (priority 10), we need to restore our shortcodes
+		// We'll add another filter for that
+		add_filter( 'the_content', function( $content ) use ( $placeholders ) {
+			// Restore shortcodes from placeholders
+			foreach ( $placeholders as $placeholder => $shortcode ) {
+				$content = str_replace( $placeholder, $shortcode, $content );
+			}
+			
+			// Clean up any <p> or <br> tags that might have been added around our shortcodes
+			$content = preg_replace( '/<p>\s*(\[vt_[^\]]+\])\s*<\/p>/', '$1', $content );
+			$content = preg_replace( '/<br\s*\/?>\s*(\[vt_[^\]]+\])/', '$1', $content );
+			$content = preg_replace( '/(\[vt_[^\]]+\])\s*<br\s*\/?>/', '$1', $content );
+			
+			return $content;
+		}, 11 ); // Priority 11, after wpautop
+		
+		return $content;
 	}
 
 	/**
@@ -76,7 +136,7 @@ class Shortcodes {
 		ob_start();
 		?>
 		<div class="vt-battery-list">
-			<p><?php esc_html_e( 'Batterie-Liste (wird in zukünftigen Builds erweitert)', 'voltrana-sites' ); ?></p>
+			<p><?php esc_html_e( 'Batterie-Liste (wird in zukünftigen Builds erweitert)', 'ayonto-sites' ); ?></p>
 		</div>
 		<?php
 		return ob_get_clean();
@@ -102,7 +162,7 @@ class Shortcodes {
 		ob_start();
 		?>
 		<div class="vt-filters">
-			<p><?php esc_html_e( 'Filter (wird in zukünftigen Builds erweitert)', 'voltrana-sites' ); ?></p>
+			<p><?php esc_html_e( 'Filter (wird in zukünftigen Builds erweitert)', 'ayonto-sites' ); ?></p>
 		</div>
 		<?php
 		return ob_get_clean();
@@ -133,7 +193,7 @@ class Shortcodes {
 		ob_start();
 		?>
 		<div class="vt-specs">
-			<p><?php esc_html_e( 'Spezifikationstabelle (wird in zukünftigen Builds erweitert)', 'voltrana-sites' ); ?></p>
+			<p><?php esc_html_e( 'Spezifikationstabelle (wird in zukünftigen Builds erweitert)', 'ayonto-sites' ); ?></p>
 		</div>
 		<?php
 		return ob_get_clean();
@@ -162,23 +222,23 @@ class Shortcodes {
 
 		$post_id = absint( $atts['id'] );
 		if ( ! $post_id || 'vt_battery' !== get_post_type( $post_id ) ) {
-			return '<p class="vt-no-results">' . esc_html__( 'Ungültige Lösung.', 'voltrana-sites' ) . '</p>';
+			return '<p class="vt-no-results">' . esc_html__( 'Ungültige Lösung.', 'ayonto-sites' ) . '</p>';
 		}
 
 		// Load batteries from post meta.
 		$batteries = get_post_meta( $post_id, 'vt_batteries', true );
 		if ( ! is_array( $batteries ) || empty( $batteries ) ) {
-			return '<p class="vt-no-results">' . esc_html__( 'Keine Batterien gefunden.', 'voltrana-sites' ) . '</p>';
+			return '<p class="vt-no-results">' . esc_html__( 'Keine Batterien gefunden.', 'ayonto-sites' ) . '</p>';
 		}
 
 		// Sort batteries.
 		$batteries = $this->sort_batteries( $batteries, $atts['orderby'], $atts['order'] );
 
 		// Enqueue styles and scripts (Build 055: added GLightbox).
-		wp_enqueue_style( 'voltrana-frontend' );
-		wp_enqueue_style( 'voltrana-glightbox' );
-		wp_enqueue_script( 'voltrana-glightbox' );
-		wp_enqueue_script( 'voltrana-glightbox-init' );
+		wp_enqueue_style( 'ayonto-frontend' );
+		wp_enqueue_style( 'ayonto-glightbox' );
+		wp_enqueue_script( 'ayonto-glightbox' );
+		wp_enqueue_script( 'ayonto-glightbox-init' );
 
 		// Parse columns.
 		$columns = $this->parse_table_columns( $atts['columns'] );
@@ -186,7 +246,10 @@ class Shortcodes {
 		// Render table.
 		ob_start();
 		$this->render_battery_table_from_array( $batteries, $columns );
-		return ob_get_clean();
+		$output = ob_get_clean();
+		
+		// Remove any trailing whitespace that could cause gaps
+		return trim( $output );
 	}
 
 	/**
@@ -197,25 +260,25 @@ class Shortcodes {
 	 */
 	private function parse_table_columns( $columns_str ) {
 		$available_columns = array(
-			'model'           => __( 'Modell', 'voltrana-sites' ),
-			'brand'           => __( 'Marke', 'voltrana-sites' ),
-			'series'          => __( 'Serie', 'voltrana-sites' ),
-			'category'        => __( 'Kategorie', 'voltrana-sites' ),
-			'technology'      => __( 'Technologie', 'voltrana-sites' ),
-			'ean'             => __( 'EAN', 'voltrana-sites' ),
-			'capacity_ah'     => __( 'Kapazität (Ah)', 'voltrana-sites' ),
-			'voltage_v'       => __( 'Spannung (V)', 'voltrana-sites' ),
-			'cca_a'           => __( 'Kaltstartstrom (A)', 'voltrana-sites' ),
-			'dimensions_mm'   => __( 'Maße (mm)', 'voltrana-sites' ),
-			'weight_kg'       => __( 'Gewicht (kg)', 'voltrana-sites' ),
-			'terminals'       => __( 'Pole/Klemmen', 'voltrana-sites' ),
-			'circuit_type'    => __( 'Schaltung', 'voltrana-sites' ),
-			'product_group'   => __( 'Produktgruppe', 'voltrana-sites' ),
-			'application_area' => __( 'Anwendungsbereich', 'voltrana-sites' ),
-			'properties'      => __( 'Eigenschaften', 'voltrana-sites' ),
-			'warranty_months' => __( 'Garantie (Monate)', 'voltrana-sites' ),
-			'product_image'   => __( 'Bild', 'voltrana-sites' ), // Build 055: NEW!
-			'datasheet_url'   => __( 'Datenblatt', 'voltrana-sites' ),
+			'model'           => __( 'Modell', 'ayonto-sites' ),
+			'brand'           => __( 'Marke', 'ayonto-sites' ),
+			'series'          => __( 'Serie', 'ayonto-sites' ),
+			'category'        => __( 'Kategorie', 'ayonto-sites' ),
+			'technology'      => __( 'Technologie', 'ayonto-sites' ),
+			'ean'             => __( 'EAN', 'ayonto-sites' ),
+			'capacity_ah'     => __( 'Kapazität (Ah)', 'ayonto-sites' ),
+			'voltage_v'       => __( 'Spannung (V)', 'ayonto-sites' ),
+			'cca_a'           => __( 'Kaltstartstrom (A)', 'ayonto-sites' ),
+			'dimensions_mm'   => __( 'Maße (mm)', 'ayonto-sites' ),
+			'weight_kg'       => __( 'Gewicht (kg)', 'ayonto-sites' ),
+			'terminals'       => __( 'Pole/Klemmen', 'ayonto-sites' ),
+			'circuit_type'    => __( 'Schaltung', 'ayonto-sites' ),
+			'product_group'   => __( 'Produktgruppe', 'ayonto-sites' ),
+			'application_area' => __( 'Anwendungsbereich', 'ayonto-sites' ),
+			'properties'      => __( 'Eigenschaften', 'ayonto-sites' ),
+			'warranty_months' => __( 'Garantie (Monate)', 'ayonto-sites' ),
+			'product_image'   => __( 'Bild', 'ayonto-sites' ), // Build 055: NEW!
+			'datasheet_url'   => __( 'Datenblatt', 'ayonto-sites' ),
 		);
 
 		// Parse requested columns.
@@ -275,8 +338,7 @@ class Shortcodes {
 	 * @return void
 	 */
 	private function render_battery_table_from_array( $batteries, $columns ) {
-		?>
-		<div class="vt-battery-table-wrapper vt-style-table">
+		?><div class="vt-battery-table-wrapper vt-style-table">
 			<table class="vt-battery-table">
 				<thead>
 					<tr>
@@ -293,8 +355,7 @@ class Shortcodes {
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-		</div>
-		<?php
+		</div><?php
 	}
 
 	/**
@@ -360,7 +421,7 @@ class Shortcodes {
 			case 'ean':
 				$value = $battery[ $key ] ?? '';
 				if ( ! empty( $value ) ) {
-					return '<code class="vt-value-ean">' . esc_html( $value ) . '</code>';
+					return '<span class="vt-value-ean">' . esc_html( $value ) . '</span>';
 				}
 				return '—';
 
@@ -388,7 +449,7 @@ class Shortcodes {
 				$url = $battery['datasheet_url'] ?? '';
 				if ( ! empty( $url ) ) {
 					// PDF Icon via CSS (SVG Background).
-					return '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener" class="vt-datasheet-link" title="' . esc_attr__( 'Datenblatt öffnen', 'voltrana-sites' ) . '"><span class="vt-pdf-icon"></span></a>';
+					return '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener" class="vt-datasheet-link" title="' . esc_attr__( 'Datenblatt öffnen', 'ayonto-sites' ) . '"><span class="vt-pdf-icon"></span></a>';
 				}
 				return '—';
 
@@ -407,7 +468,7 @@ class Shortcodes {
 				}
 				
 				// Fallback: Icon wenn kein Bild vorhanden.
-				return '<span class="vt-no-image-icon" title="' . esc_attr__( 'Kein Bild verfügbar', 'voltrana-sites' ) . '">📷</span>';
+				return '<span class="vt-no-image-icon" title="' . esc_attr__( 'Kein Bild verfügbar', 'ayonto-sites' ) . '">📷</span>';
 
 
 			case 'capacity_ah':
@@ -448,9 +509,9 @@ class Shortcodes {
 					// Show years if 12, 24, 36, etc.
 					if ( $months >= 12 && $months % 12 === 0 ) {
 						$years = $months / 12;
-						return '<span class="vt-value-warranty">' . esc_html( $years . ' ' . ( $years === 1 ? __( 'Jahr', 'voltrana-sites' ) : __( 'Jahre', 'voltrana-sites' ) ) ) . '</span>';
+						return '<span class="vt-value-warranty">' . esc_html( $years . ' ' . ( $years === 1 ? __( 'Jahr', 'ayonto-sites' ) : __( 'Jahre', 'ayonto-sites' ) ) ) . '</span>';
 					}
-					return '<span class="vt-value-warranty">' . esc_html( $months . ' ' . __( 'Monate', 'voltrana-sites' ) ) . '</span>';
+					return '<span class="vt-value-warranty">' . esc_html( $months . ' ' . __( 'Monate', 'ayonto-sites' ) ) . '</span>';
 				}
 				return '—';
 

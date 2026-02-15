@@ -2,12 +2,12 @@
 /**
  * Plugin activation handler
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Includes
  * @since      0.1.0
  */
 
-namespace Voltrana\Sites;
+namespace Ayonto\Sites;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -36,8 +36,8 @@ class Activator {
 		flush_rewrite_rules();
 
 		// Set default options.
-		$version = defined( 'VOLTRANA_SITES_VERSION' ) ? VOLTRANA_SITES_VERSION : '0.1.0';
-		add_option( 'voltrana_sites_version', $version );
+		$version = defined( 'AYONTO_SITES_VERSION' ) ? AYONTO_SITES_VERSION : '0.1.0';
+		add_option( 'ayonto_sites_version', $version );
 		add_option( 'vt_retain_data_on_uninstall', true );
 	}
 

@@ -1,0 +1,838 @@
+/**
+ * Help & Documentation Page Styles
+ * @package AyontoSitesBuilder
+ * @since 0.1.47
+ */
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.vt-help-wrap {
+	margin: 20px 20px 20px 0;
+}
+
+.vt-help-wrap h1 {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
+	color: #1d2327;
+}
+
+.vt-help-wrap h1 .dashicons {
+	font-size: 32px;
+	width: 32px;
+	height: 32px;
+	color: #2271b1;
+}
+
+.vt-help-container {
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	gap: 20px;
+	margin-top: 20px;
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+
+.vt-help-sidebar {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 20px;
+	height: fit-content;
+	position: sticky;
+	top: 32px;
+}
+
+/* Search */
+.vt-help-search {
+	margin-bottom: 20px;
+}
+
+.vt-help-search form {
+	display: flex;
+	gap: 5px;
+}
+
+.vt-search-input {
+	flex: 1;
+	padding: 8px 12px;
+	border: 1px solid #8c8f94;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.vt-search-input:focus {
+	border-color: #2271b1;
+	outline: none;
+	box-shadow: 0 0 0 1px #2271b1;
+}
+
+.vt-search-btn {
+	padding: 8px 12px;
+	background: #2271b1;
+	border: none;
+	border-radius: 4px;
+	color: #fff;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+
+.vt-search-btn:hover {
+	background: #135e96;
+}
+
+.vt-search-btn .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+}
+
+/* Navigation */
+.vt-help-nav h3 {
+	margin: 0 0 10px 0;
+	padding: 0;
+	font-size: 13px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #646970;
+	border-bottom: 1px solid #dcdcde;
+	padding-bottom: 8px;
+}
+
+.vt-help-nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.vt-help-nav li {
+	margin: 0;
+	padding: 0;
+}
+
+.vt-help-nav li a {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 12px;
+	color: #2c3338;
+	text-decoration: none;
+	border-radius: 4px;
+	transition: all 0.2s;
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.vt-help-nav li a:hover {
+	background: #f6f7f7;
+	color: #2271b1;
+}
+
+.vt-help-nav li.active a {
+	background: #2271b1;
+	color: #fff;
+	font-weight: 600;
+}
+
+.vt-help-nav li a .dashicons {
+	flex-shrink: 0;
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+	margin-top: -1px;
+}
+
+.vt-help-nav li.active a .dashicons {
+	color: #fff;
+}
+
+.vt-help-nav .doc-title {
+	flex: 1;
+	min-width: 0;
+}
+
+.vt-help-nav .doc-build {
+	font-size: 11px;
+	padding: 2px 6px;
+	background: rgba(0, 0, 0, 0.05);
+	border-radius: 3px;
+	flex-shrink: 0;
+}
+
+.vt-help-nav li.active .doc-build {
+	background: rgba(255, 255, 255, 0.2);
+}
+
+/* Info Box */
+.vt-help-info {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #dcdcde;
+}
+
+.vt-help-info h4 {
+	margin: 0 0 10px 0;
+	font-size: 13px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #646970;
+}
+
+.vt-help-info dl {
+	margin: 0;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 8px;
+	font-size: 13px;
+}
+
+.vt-help-info dt {
+	font-weight: 600;
+	color: #1d2327;
+}
+
+.vt-help-info dd {
+	margin: 0;
+	color: #646970;
+}
+
+/* ==========================================================================
+   Content Area
+   ========================================================================== */
+
+.vt-help-content {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 30px;
+	min-height: 500px;
+}
+
+/* Document Header */
+.vt-doc-header {
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #f0f0f1;
+}
+
+.vt-doc-header h2 {
+	display: inline-block;
+	margin: 0 10px 10px 0;
+	font-size: 28px;
+	color: #1d2327;
+}
+
+.vt-doc-badge {
+	display: inline-block;
+	padding: 4px 10px;
+	background: #2271b1;
+	color: #fff;
+	border-radius: 4px;
+	font-size: 12px;
+	font-weight: 600;
+	vertical-align: middle;
+}
+
+.vt-doc-meta {
+	display: flex;
+	gap: 20px;
+	margin-top: 10px;
+	font-size: 13px;
+	color: #646970;
+}
+
+.vt-doc-meta > span {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.vt-doc-meta .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+/* ==========================================================================
+   Markdown Content
+   ========================================================================== */
+
+.vt-markdown-content {
+	line-height: 1.7;
+	color: #1d2327;
+}
+
+.vt-markdown-content h1,
+.vt-markdown-content h2,
+.vt-markdown-content h3,
+.vt-markdown-content h4,
+.vt-markdown-content h5,
+.vt-markdown-content h6 {
+	margin-top: 30px;
+	margin-bottom: 15px;
+	font-weight: 600;
+	line-height: 1.3;
+	color: #1d2327;
+}
+
+.vt-markdown-content h1 {
+	font-size: 32px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #f0f0f1;
+}
+
+.vt-markdown-content h2 {
+	font-size: 24px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.vt-markdown-content h3 {
+	font-size: 20px;
+}
+
+.vt-markdown-content h4 {
+	font-size: 16px;
+}
+
+.vt-markdown-content p {
+	margin: 0 0 15px 0;
+}
+
+.vt-markdown-content ul,
+.vt-markdown-content ol {
+	margin: 0 0 15px 20px;
+	padding: 0;
+}
+
+.vt-markdown-content li {
+	margin-bottom: 8px;
+}
+
+.vt-markdown-content a {
+	color: #2271b1;
+	text-decoration: none;
+}
+
+.vt-markdown-content a:hover {
+	text-decoration: underline;
+}
+
+.vt-markdown-content code {
+	padding: 2px 6px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 3px;
+	font-family: 'Monaco', 'Courier New', monospace;
+	font-size: 13px;
+	color: #d63638;
+}
+
+.vt-markdown-content pre {
+	margin: 0 0 20px 0;
+	padding: 0;
+	background: #1e1e1e;
+	border-radius: 6px;
+	overflow-x: auto;
+}
+
+.vt-markdown-content pre code {
+	display: block;
+	padding: 15px 20px;
+	background: transparent;
+	border: none;
+	color: #d4d4d4;
+	font-size: 13px;
+	line-height: 1.6;
+	overflow-x: auto;
+}
+
+.vt-markdown-content blockquote {
+	margin: 0 0 20px 0;
+	padding: 10px 20px;
+	background: #f6f7f7;
+	border-left: 4px solid #2271b1;
+	color: #50575e;
+}
+
+.vt-markdown-content blockquote p:last-child {
+	margin-bottom: 0;
+}
+
+.vt-markdown-content table {
+	width: 100%;
+	margin: 0 0 20px 0;
+	border-collapse: collapse;
+	font-size: 14px;
+}
+
+.vt-markdown-content table th,
+.vt-markdown-content table td {
+	padding: 10px 12px;
+	text-align: left;
+	border: 1px solid #dcdcde;
+}
+
+.vt-markdown-content table th {
+	background: #f6f7f7;
+	font-weight: 600;
+	color: #1d2327;
+}
+
+.vt-markdown-content table tr:nth-child(even) {
+	background: #f9f9f9;
+}
+
+.vt-markdown-content hr {
+	margin: 30px 0;
+	border: none;
+	border-top: 1px solid #dcdcde;
+}
+
+.vt-markdown-content img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 4px;
+	margin: 15px 0;
+}
+
+/* ==========================================================================
+   Document Navigation
+   ========================================================================== */
+
+.vt-doc-nav {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	margin-top: 40px;
+	padding-top: 20px;
+	border-top: 1px solid #dcdcde;
+}
+
+.vt-doc-nav a {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 20px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	color: #2c3338;
+	text-decoration: none;
+	font-weight: 500;
+	transition: all 0.2s;
+}
+
+.vt-doc-nav a:hover {
+	background: #2271b1;
+	border-color: #2271b1;
+	color: #fff;
+}
+
+.vt-doc-nav .dashicons {
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+}
+
+/* ==========================================================================
+   Search Results
+   ========================================================================== */
+
+.vt-search-results h2 {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
+	font-size: 24px;
+	color: #1d2327;
+}
+
+.vt-search-results h2 .dashicons {
+	font-size: 24px;
+	width: 24px;
+	height: 24px;
+	color: #2271b1;
+}
+
+.vt-search-count {
+	margin-bottom: 20px;
+	color: #646970;
+	font-size: 14px;
+}
+
+.vt-search-result {
+	margin-bottom: 30px;
+	padding: 20px;
+	background: #f6f7f7;
+	border-left: 4px solid #2271b1;
+	border-radius: 4px;
+}
+
+.vt-search-result h3 {
+	margin: 0 0 15px 0;
+	font-size: 18px;
+}
+
+.vt-search-result h3 a {
+	color: #2271b1;
+	text-decoration: none;
+}
+
+.vt-search-result h3 a:hover {
+	text-decoration: underline;
+}
+
+.vt-search-match {
+	margin-bottom: 15px;
+	padding: 12px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+
+.vt-search-match:last-child {
+	margin-bottom: 0;
+}
+
+.vt-match-line {
+	display: inline-block;
+	padding: 2px 8px;
+	background: #2271b1;
+	color: #fff;
+	border-radius: 3px;
+	font-size: 11px;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+.vt-match-content {
+	font-family: 'Monaco', 'Courier New', monospace;
+	font-size: 13px;
+	line-height: 1.6;
+	color: #2c3338;
+}
+
+.vt-match-content mark {
+	background: #fcf9e8;
+	color: #000;
+	padding: 2px 4px;
+	border-radius: 2px;
+	font-weight: 600;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media screen and (max-width: 1200px) {
+	.vt-help-container {
+		grid-template-columns: 240px 1fr;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.vt-help-container {
+		grid-template-columns: 1fr;
+	}
+
+	.vt-help-sidebar {
+		position: static;
+	}
+
+	.vt-doc-nav {
+		flex-direction: column;
+	}
+
+	.vt-doc-nav a {
+		justify-content: center;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.vt-help-wrap {
+		margin: 10px 10px 10px 0;
+	}
+
+	.vt-help-content {
+		padding: 20px;
+	}
+
+	.vt-doc-header h2 {
+		font-size: 22px;
+	}
+
+	.vt-markdown-content h1 {
+		font-size: 24px;
+	}
+
+	.vt-markdown-content h2 {
+		font-size: 20px;
+	}
+
+	.vt-doc-meta {
+		flex-direction: column;
+		gap: 8px;
+	}
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+	.vt-help-sidebar,
+	.vt-doc-nav,
+	.vt-doc-meta {
+		display: none !important;
+	}
+
+	.vt-help-container {
+		grid-template-columns: 1fr;
+	}
+
+	.vt-help-content {
+		border: none;
+		padding: 0;
+	}
+
+	.vt-markdown-content a {
+		color: #000;
+		text-decoration: underline;
+	}
+
+	.vt-markdown-content code {
+		border: 1px solid #000;
+	}
+}
+
+/* ==========================================================================
+   Additional UI Elements (Build 066)
+   ========================================================================== */
+
+/* Copy Button for Code Blocks */
+.vt-copy-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 6px 10px;
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 4px;
+	color: #fff;
+	cursor: pointer;
+	transition: all 0.2s;
+	font-size: 13px;
+	line-height: 1;
+	z-index: 10;
+}
+
+.vt-copy-btn:hover {
+	background: rgba(255, 255, 255, 0.2);
+	border-color: rgba(255, 255, 255, 0.3);
+}
+
+.vt-copy-btn.copied {
+	background: #00a32a;
+	border-color: #00a32a;
+}
+
+.vt-copy-btn .dashicons {
+	font-size: 14px;
+	width: 14px;
+	height: 14px;
+}
+
+/* Table of Contents */
+.vt-toc {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #dcdcde;
+}
+
+.vt-toc h4 {
+	margin: 0 0 10px 0;
+	font-size: 13px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #646970;
+}
+
+.vt-toc ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.vt-toc li {
+	margin: 0;
+	padding: 0;
+}
+
+.vt-toc a {
+	display: block;
+	padding: 6px 10px;
+	color: #2c3338;
+	text-decoration: none;
+	border-radius: 4px;
+	font-size: 13px;
+	line-height: 1.4;
+	transition: all 0.2s;
+}
+
+.vt-toc a:hover {
+	background: #f6f7f7;
+	color: #2271b1;
+}
+
+.vt-toc a.active {
+	background: #f0f6fc;
+	color: #2271b1;
+	font-weight: 500;
+}
+
+.vt-toc-level-2 {
+	padding-left: 0;
+}
+
+.vt-toc-level-3 {
+	padding-left: 15px;
+}
+
+.vt-toc-level-3 a {
+	font-size: 12px;
+	color: #646970;
+}
+
+/* Search Clear Button */
+.vt-search-clear {
+	position: absolute;
+	right: 45px;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 4px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	color: #646970;
+	line-height: 1;
+	display: none;
+}
+
+.vt-search-clear:hover {
+	color: #d63638;
+}
+
+.vt-search-clear .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.vt-help-search {
+	position: relative;
+}
+
+/* Scroll Progress Bar */
+.vt-scroll-progress {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 3px;
+	background: #2271b1;
+	z-index: 9999;
+	transition: width 0.1s;
+}
+
+/* Print Button */
+.vt-print-btn {
+	float: right;
+	margin-top: 5px;
+}
+
+.vt-print-btn .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	margin-right: 5px;
+	vertical-align: middle;
+}
+
+/* Collapsible Code Blocks */
+.vt-code-collapsible.collapsed {
+	max-height: 400px;
+	overflow: hidden;
+	position: relative;
+}
+
+.vt-code-collapsible.collapsed::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100px;
+	background: linear-gradient(to bottom, transparent, #1e1e1e);
+	pointer-events: none;
+}
+
+.vt-code-toggle {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	margin-top: 10px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	color: #2c3338;
+	cursor: pointer;
+	font-size: 13px;
+	text-align: center;
+	transition: all 0.2s;
+}
+
+.vt-code-toggle:hover {
+	background: #fff;
+	border-color: #2271b1;
+	color: #2271b1;
+}
+
+.vt-code-toggle .expand-text {
+	display: inline;
+}
+
+.vt-code-toggle .collapse-text {
+	display: none;
+}
+
+.vt-code-collapsible:not(.collapsed) + .vt-code-toggle .expand-text {
+	display: none;
+}
+
+.vt-code-collapsible:not(.collapsed) + .vt-code-toggle .collapse-text {
+	display: inline;
+}
+
+/* Skip to Content Link */
+.vt-skip-link {
+	position: absolute;
+	top: -40px;
+	left: 0;
+	background: #2271b1;
+	color: #fff;
+	padding: 8px 15px;
+	text-decoration: none;
+	border-radius: 4px;
+	z-index: 10000;
+}
+
+.vt-skip-link:focus {
+	top: 10px;
+}
+

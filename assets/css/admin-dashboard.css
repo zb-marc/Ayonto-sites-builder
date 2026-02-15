@@ -1,0 +1,425 @@
+/**
+ * Ayonto Dashboard Styles
+ *
+ * @package    Ayonto_Sites
+ * @since      0.1.41
+ */
+
+/* ========================================
+   Dashboard Container
+   ======================================== */
+
+.vt-dashboard {
+	max-width: 1400px;
+}
+
+.vt-dashboard h1 {
+	color: #004B61;
+	margin-bottom: 20px;
+}
+
+/* ========================================
+   Widget Grid Layout
+   ======================================== */
+
+.vt-dashboard-widgets {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 20px;
+	margin-top: 20px;
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 768px) and (max-width: 1024px) {
+	.vt-dashboard-widgets {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/* Mobile: 1 column */
+@media (max-width: 767px) {
+	.vt-dashboard-widgets {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ========================================
+   Widget Styles
+   ======================================== */
+
+.vt-widget {
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.3s ease;
+}
+
+.vt-widget:hover {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.vt-widget h2 {
+	color: #004B61;
+	font-size: 18px;
+	margin: 0 0 15px 0;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #F79D00;
+}
+
+.vt-widget h3 {
+	color: #004B61;
+	font-size: 14px;
+	margin: 15px 0 10px 0;
+	font-weight: 600;
+}
+
+/* ========================================
+   Statistics Widget
+   ======================================== */
+
+.vt-stat-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.vt-stat-item:last-child {
+	border-bottom: none;
+}
+
+.vt-stat-item.vt-stat-total {
+	background: linear-gradient(135deg, #004B61 0%, #006B84 100%);
+	color: #fff;
+	padding: 15px;
+	border-radius: 6px;
+	margin-bottom: 15px;
+	border-bottom: none;
+}
+
+.vt-stat-item.vt-stat-total .vt-stat-label,
+.vt-stat-item.vt-stat-total .vt-stat-value {
+	color: #fff;
+}
+
+.vt-stat-label {
+	color: #666;
+	font-size: 14px;
+}
+
+.vt-stat-value {
+	font-size: 24px;
+	font-weight: 600;
+	color: #004B61;
+}
+
+.vt-stat-item.vt-stat-total .vt-stat-value {
+	font-size: 32px;
+}
+
+.vt-stat-item.vt-stat-small {
+	padding: 5px 0 5px 15px;
+}
+
+.vt-stat-item.vt-stat-small .vt-stat-label {
+	font-size: 13px;
+}
+
+.vt-stat-item.vt-stat-small .vt-stat-value {
+	font-size: 16px;
+}
+
+/* ========================================
+   Quick Actions Widget
+   ======================================== */
+
+.vt-quick-actions-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 15px;
+	margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+	.vt-quick-actions-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.vt-action-button {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background: #f7f7f7;
+	border: 2px solid #ddd;
+	border-radius: 8px;
+	text-decoration: none;
+	color: #004B61;
+	transition: all 0.3s ease;
+	text-align: center;
+}
+
+.vt-action-button:hover {
+	background: #004B61;
+	border-color: #004B61;
+	color: #fff;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 75, 97, 0.2);
+}
+
+.vt-action-button:focus {
+	box-shadow: 0 0 0 3px rgba(247, 157, 0, 0.3);
+	outline: none;
+}
+
+.vt-action-button .dashicons {
+	font-size: 32px;
+	width: 32px;
+	height: 32px;
+	margin-bottom: 8px;
+}
+
+.vt-action-label {
+	font-size: 13px;
+	font-weight: 600;
+}
+
+/* ========================================
+   Recent Activity Widget
+   ======================================== */
+
+.vt-recent-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.vt-recent-item {
+	padding: 10px 0;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.vt-recent-item:last-child {
+	border-bottom: none;
+}
+
+.vt-recent-item a {
+	color: #004B61;
+	text-decoration: none;
+	font-weight: 500;
+	display: block;
+	margin-bottom: 4px;
+}
+
+.vt-recent-item a:hover {
+	color: #F79D00;
+}
+
+.vt-recent-date {
+	color: #999;
+	font-size: 12px;
+}
+
+.vt-no-items {
+	color: #999;
+	font-style: italic;
+	margin: 10px 0;
+}
+
+/* ========================================
+   System Status Widget
+   ======================================== */
+
+.vt-system-item {
+	display: flex;
+	align-items: center;
+	padding: 8px 0;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.vt-system-item:last-child {
+	border-bottom: none;
+}
+
+.vt-system-label {
+	flex: 0 0 140px;
+	color: #666;
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.vt-system-value {
+	flex: 1;
+	color: #333;
+	font-size: 13px;
+}
+
+.vt-status-icon {
+	flex: 0 0 30px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.vt-status-ok {
+	color: #46b450;
+}
+
+.vt-status-warning {
+	color: #ffb900;
+}
+
+.vt-status-error {
+	color: #dc3232;
+}
+
+/* ========================================
+   Responsive Adjustments
+   ======================================== */
+
+@media (max-width: 768px) {
+	.vt-widget {
+		padding: 15px;
+	}
+	
+	.vt-stat-value {
+		font-size: 20px;
+	}
+	
+	.vt-stat-item.vt-stat-total .vt-stat-value {
+		font-size: 28px;
+	}
+	
+	.vt-action-button {
+		padding: 15px;
+	}
+	
+	.vt-action-button .dashicons {
+		font-size: 28px;
+		width: 28px;
+		height: 28px;
+	}
+	
+	.vt-system-label {
+		flex: 0 0 120px;
+		font-size: 12px;
+	}
+	
+	.vt-system-value {
+		font-size: 12px;
+	}
+}
+
+/* ========================================
+   Ayonto Branding
+   ======================================== */
+
+.vt-widget::before {
+	content: '';
+	display: block;
+	height: 3px;
+	width: 40px;
+	background: linear-gradient(90deg, #F79D00 0%, #004B61 100%);
+	margin-bottom: 15px;
+	border-radius: 2px;
+}
+
+/* ========================================
+   Data Quality / Debug Widget (NEW!)
+   ======================================== */
+
+.vt-debug-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	border-radius: 4px;
+	margin-bottom: 8px;
+	background: #f7f7f7;
+	transition: background 0.2s ease;
+}
+
+.vt-debug-item:hover {
+	background: #f0f0f0;
+}
+
+.vt-debug-item.vt-debug-warning {
+	background: #fff8e1;
+	border-left: 3px solid #ffb900;
+}
+
+.vt-debug-item.vt-debug-ok {
+	background: #e8f5e9;
+	border-left: 3px solid #46b450;
+}
+
+.vt-debug-label {
+	font-size: 13px;
+	color: #666;
+	flex: 1;
+}
+
+.vt-debug-value {
+	font-size: 14px;
+	font-weight: 600;
+	color: #004B61;
+	margin: 0 10px;
+}
+
+.vt-debug-hint {
+	background: #e3f2fd;
+	padding: 12px;
+	border-radius: 4px;
+	font-size: 12px;
+	color: #004B61;
+	margin-top: 15px;
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.vt-debug-hint .dashicons {
+	flex-shrink: 0;
+	color: #F79D00;
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+/* Status icons in debug items */
+.vt-debug-item .vt-status-icon {
+	font-size: 16px;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* ========================================
+   Ayonto Branding
+   ======================================== */
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.vt-widget {
+	animation: fadeIn 0.5s ease-out;
+}
+
+.vt-widget:nth-child(1) { animation-delay: 0.1s; }
+.vt-widget:nth-child(2) { animation-delay: 0.2s; }
+.vt-widget:nth-child(3) { animation-delay: 0.3s; }

@@ -2,12 +2,12 @@
 /**
  * Cache management functionality
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Services
  * @since      0.1.0
  */
 
-namespace Voltrana\Sites\Services;
+namespace Ayonto\Sites\Services;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -35,7 +35,7 @@ class Cache_Manager {
 	 *
 	 * @var string
 	 */
-	private $cache_group = 'voltrana_batteries';
+	private $cache_group = 'ayonto_batteries';
 
 	/**
 	 * Get singleton instance
@@ -112,7 +112,7 @@ class Cache_Manager {
 		 *
 		 * @since 0.1.0
 		 */
-		do_action( 'voltrana_cache_invalidated' );
+		do_action( 'ayonto_cache_invalidated' );
 	}
 
 	/**

@@ -1,11 +1,1066 @@
-/* Voltrana Sites Builder - Admin Styles */
-.vt-import-container {
+/**
+ * Ayonto Admin Styles - Unified Design System
+ *
+ * @package    Ayonto_Sites
+ * @since      0.1.43
+ */
+
+/* ========================================
+   CSS Variables - Ayonto Brand Colors
+   ======================================== */
+
+:root {
+	--ayonto-primary: #004B61;
+	--ayonto-primary-light: #006B84;
+	--ayonto-primary-dark: #003545;
+	--ayonto-accent: #F79D00;
+	--ayonto-accent-hover: #E88D00;
+	--ayonto-success: #46b450;
+	--ayonto-warning: #ffb900;
+	--ayonto-error: #dc3232;
+	--ayonto-gray-100: #f7f7f7;
+	--ayonto-gray-200: #f0f0f0;
+	--ayonto-gray-300: #ddd;
+	--ayonto-gray-400: #ccc;
+	--ayonto-gray-500: #999;
+	--ayonto-gray-600: #666;
+	--ayonto-gray-700: #333;
+	--ayonto-white: #fff;
+	--ayonto-border-radius: 8px;
+	--ayonto-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	--ayonto-box-shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   Page Container
+   ======================================== */
+
+.wrap.ayonto-page {
+	max-width: 1400px;
+	padding: 20px;
+}
+
+.ayonto-page h1 {
+	color: var(--ayonto-primary);
+	margin-bottom: 10px;
+	position: relative;
+	display: inline-block;
+}
+
+.ayonto-page h1::after {
+	content: '';
+	display: block;
+	height: 3px;
+	width: 60px;
+	background: linear-gradient(90deg, var(--ayonto-accent) 0%, var(--ayonto-primary) 100%);
+	margin-top: 10px;
+	border-radius: 2px;
+}
+
+.ayonto-page-subtitle {
+	color: var(--ayonto-gray-600);
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+
+/* ========================================
+   Card/Widget Layout
+   ======================================== */
+
+.ayonto-card,
+.vt-widget {
+	background: var(--ayonto-white);
+	border: 1px solid var(--ayonto-gray-300);
+	border-radius: var(--ayonto-border-radius);
+	padding: 20px;
+	margin-bottom: 20px;
+	box-shadow: var(--ayonto-box-shadow);
+	transition: box-shadow 0.3s ease;
+}
+
+.ayonto-card:hover,
+.vt-widget:hover {
+	box-shadow: var(--ayonto-box-shadow-hover);
+}
+
+.ayonto-card h2,
+.ayonto-card h3,
+.vt-widget h2,
+.vt-widget h3 {
+	color: var(--ayonto-primary);
+	margin-top: 0;
+	padding-bottom: 10px;
+	border-bottom: 2px solid var(--ayonto-accent);
+}
+
+.ayonto-card::before,
+.vt-widget::before {
+	content: '';
+	display: block;
+	height: 3px;
+	width: 40px;
+	background: linear-gradient(90deg, var(--ayonto-accent) 0%, var(--ayonto-primary) 100%);
+	margin-bottom: 15px;
+	border-radius: 2px;
+}
+
+/* ========================================
+   Tabs (Settings)
+   ======================================== */
+
+.ayonto-settings-tabs {
+	border-bottom: 2px solid var(--ayonto-primary);
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+.ayonto-settings-tabs .nav-tab {
+	border: 1px solid var(--ayonto-gray-300);
+	border-bottom: none;
+	background: var(--ayonto-gray-100);
+	color: var(--ayonto-gray-600);
+	padding: 12px 20px;
+	margin-right: 5px;
+	margin-bottom: 0;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+.ayonto-settings-tabs .nav-tab:hover {
+	background: var(--ayonto-gray-200);
+	color: var(--ayonto-primary);
+}
+
+.ayonto-settings-tabs .nav-tab-active {
+	background: var(--ayonto-white);
+	border-color: var(--ayonto-primary) var(--ayonto-primary) var(--ayonto-white);
+	color: var(--ayonto-primary);
+	border-top: 3px solid var(--ayonto-accent);
+}
+
+/* ========================================
+   Settings Fields
+   ======================================== */
+
+.ayonto-setting-row {
+	margin: 15px 0;
+	padding: 15px;
+	background: var(--ayonto-white);
+	border: 1px solid var(--ayonto-gray-200);
+	border-radius: var(--ayonto-border-radius);
+	border-left: 3px solid var(--ayonto-accent);
+}
+
+.ayonto-setting-row:hover {
+	background: var(--ayonto-gray-100);
+}
+
+.ayonto-setting-row th {
+	width: 250px;
+	padding-right: 20px;
+	font-weight: 600;
+	color: var(--ayonto-primary);
+	vertical-align: top;
+	padding-top: 5px;
+}
+
+.ayonto-setting-row td {
+	padding-left: 20px;
+}
+
+.ayonto-setting-description {
+	display: block;
+	margin-top: 5px;
+	color: var(--ayonto-gray-600);
+	font-style: italic;
+	font-size: 13px;
+}
+
+.ayonto-color-preview {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border: 1px solid var(--ayonto-gray-300);
+	margin-left: 10px;
+	vertical-align: middle;
+	border-radius: 4px;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+
+.button.ayonto-button,
+.button.button-primary.ayonto-button {
+	background: var(--ayonto-primary);
+	border-color: var(--ayonto-primary);
+	color: var(--ayonto-white);
+	padding: 10px 20px;
+	height: auto;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+.button.ayonto-button:hover,
+.button.button-primary.ayonto-button:hover {
+	background: var(--ayonto-primary-light);
+	border-color: var(--ayonto-primary-light);
+	color: var(--ayonto-white);
+	transform: translateY(-1px);
+	box-shadow: 0 3px 8px rgba(0, 75, 97, 0.3);
+}
+
+.button.ayonto-button:active,
+.button.button-primary.ayonto-button:active {
+	transform: translateY(0);
+}
+
+.button.ayonto-button-accent {
+	background: var(--ayonto-accent);
+	border-color: var(--ayonto-accent);
+	color: var(--ayonto-white);
+}
+
+.button.ayonto-button-accent:hover {
+	background: var(--ayonto-accent-hover);
+	border-color: var(--ayonto-accent-hover);
+}
+
+.ayonto-upload-button {
+	margin-left: 10px;
+}
+
+/* ========================================
+   Form Fields
+   ======================================== */
+
+.ayonto-page input[type="text"],
+.ayonto-page input[type="url"],
+.ayonto-page input[type="email"],
+.ayonto-page input[type="number"],
+.ayonto-page textarea,
+.ayonto-page select {
+	border: 1px solid var(--ayonto-gray-300);
+	border-radius: 4px;
+	padding: 8px 12px;
+	transition: border-color 0.3s ease;
+}
+
+.ayonto-page input[type="text"]:focus,
+.ayonto-page input[type="url"]:focus,
+.ayonto-page input[type="email"]:focus,
+.ayonto-page input[type="number"]:focus,
+.ayonto-page textarea:focus,
+.ayonto-page select:focus {
+	border-color: var(--ayonto-primary);
+	box-shadow: 0 0 0 1px var(--ayonto-primary);
+	outline: none;
+}
+
+/* ========================================
+   Notices
+   ======================================== */
+
+.ayonto-notice {
+	padding: 15px;
+	margin: 20px 0;
+	border-left: 4px solid;
+	border-radius: 4px;
+	background: var(--ayonto-white);
+}
+
+.ayonto-notice-info {
+	border-left-color: var(--ayonto-primary);
+	background: #e7f3f6;
+}
+
+.ayonto-notice-success {
+	border-left-color: var(--ayonto-success);
+	background: #ecf7ed;
+}
+
+.ayonto-notice-warning {
+	border-left-color: var(--ayonto-warning);
+	background: #fff8e5;
+}
+
+.ayonto-notice-error {
+	border-left-color: var(--ayonto-error);
+	background: #fef7f7;
+}
+
+.ayonto-notice p:first-child {
+	margin-top: 0;
+}
+
+.ayonto-notice p:last-child {
+	margin-bottom: 0;
+}
+
+/* ========================================
+   Import Page Specific
+   ======================================== */
+
+.ayonto-import-form {
+	max-width: 700px;
+}
+
+.ayonto-import-field {
+	margin-bottom: 20px;
+}
+
+.ayonto-import-field label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 8px;
+	color: var(--ayonto-primary);
+}
+
+.ayonto-import-actions {
+	display: flex;
+	gap: 10px;
+	margin-top: 20px;
+}
+
+.ayonto-file-input-wrapper {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+}
+
+.ayonto-file-input-wrapper input[type="file"] {
+	width: 100%;
+	padding: 10px;
+	border: 2px dashed var(--ayonto-gray-300);
+	border-radius: var(--ayonto-border-radius);
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.ayonto-file-input-wrapper input[type="file"]:hover {
+	border-color: var(--ayonto-primary);
+	background: var(--ayonto-gray-100);
+}
+
+/* ========================================
+   Dashboard Specific
+   ======================================== */
+
+.vt-dashboard-widgets {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 20px;
+	margin-top: 20px;
+}
+
+/* Statistics Widget */
+.vt-stat-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+	border-bottom: 1px solid var(--ayonto-gray-200);
+}
+
+.vt-stat-item:last-child {
+	border-bottom: none;
+}
+
+.vt-stat-item.vt-stat-total {
+	background: linear-gradient(135deg, var(--ayonto-primary) 0%, var(--ayonto-primary-light) 100%);
+	color: var(--ayonto-white);
+	padding: 15px;
+	border-radius: 6px;
+	margin-bottom: 15px;
+	border-bottom: none;
+}
+
+.vt-stat-item.vt-stat-total .vt-stat-label,
+.vt-stat-item.vt-stat-total .vt-stat-value {
+	color: var(--ayonto-white);
+}
+
+.vt-stat-label {
+	color: var(--ayonto-gray-600);
+	font-size: 14px;
+}
+
+.vt-stat-value {
+	font-size: 24px;
+	font-weight: 600;
+	color: var(--ayonto-primary);
+}
+
+.vt-stat-item.vt-stat-total .vt-stat-value {
+	font-size: 32px;
+}
+
+.vt-stat-item.vt-stat-small {
+	padding: 5px 0 5px 15px;
+}
+
+.vt-stat-item.vt-stat-small .vt-stat-label {
+	font-size: 13px;
+}
+
+.vt-stat-item.vt-stat-small .vt-stat-value {
+	font-size: 16px;
+}
+
+/* Quick Actions */
+.vt-quick-actions-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 15px;
+	margin-top: 10px;
+}
+
+.vt-action-button {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background: var(--ayonto-gray-100);
+	border: 2px solid var(--ayonto-gray-300);
+	border-radius: var(--ayonto-border-radius);
+	text-decoration: none;
+	color: var(--ayonto-primary);
+	transition: all 0.3s ease;
+	text-align: center;
+}
+
+.vt-action-button:hover {
+	background: var(--ayonto-primary);
+	border-color: var(--ayonto-primary);
+	color: var(--ayonto-white);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 75, 97, 0.2);
+}
+
+.vt-action-button:focus {
+	box-shadow: 0 0 0 3px rgba(247, 157, 0, 0.3);
+	outline: none;
+}
+
+.vt-action-button .dashicons {
+	font-size: 32px;
+	width: 32px;
+	height: 32px;
+	margin-bottom: 8px;
+}
+
+.vt-action-label {
+	font-size: 13px;
+	font-weight: 600;
+}
+
+/* Recent Activity */
+.vt-recent-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.vt-recent-item {
+	padding: 10px 0;
+	border-bottom: 1px solid var(--ayonto-gray-200);
+}
+
+.vt-recent-item:last-child {
+	border-bottom: none;
+}
+
+.vt-recent-item a {
+	color: var(--ayonto-primary);
+	text-decoration: none;
+	font-weight: 500;
+	display: block;
+	margin-bottom: 4px;
+}
+
+.vt-recent-item a:hover {
+	color: var(--ayonto-accent);
+}
+
+.vt-recent-date {
+	color: var(--ayonto-gray-500);
+	font-size: 12px;
+}
+
+.vt-no-items {
+	color: var(--ayonto-gray-500);
+	font-style: italic;
+	margin: 10px 0;
+}
+
+/* System Status */
+.vt-system-item {
+	display: flex;
+	align-items: center;
+	padding: 8px 0;
+	border-bottom: 1px solid var(--ayonto-gray-200);
+}
+
+.vt-system-item:last-child {
+	border-bottom: none;
+}
+
+.vt-system-label {
+	flex: 0 0 140px;
+	color: var(--ayonto-gray-600);
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.vt-system-value {
+	flex: 1;
+	color: var(--ayonto-gray-700);
+	font-size: 13px;
+}
+
+.vt-status-icon {
+	flex: 0 0 30px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.vt-status-ok {
+	color: var(--ayonto-success);
+}
+
+.vt-status-warning {
+	color: var(--ayonto-warning);
+}
+
+.vt-status-error {
+	color: var(--ayonto-error);
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	.vt-dashboard-widgets {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	
+	.vt-quick-actions-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 767px) {
+	.vt-dashboard-widgets {
+		grid-template-columns: 1fr;
+	}
+	
+	.vt-quick-actions-grid {
+		grid-template-columns: 1fr;
+	}
+	
+	.ayonto-card,
+	.vt-widget {
+		padding: 15px;
+	}
+	
+	.vt-stat-value {
+		font-size: 20px;
+	}
+	
+	.vt-stat-item.vt-stat-total .vt-stat-value {
+		font-size: 28px;
+	}
+	
+	.vt-action-button {
+		padding: 15px;
+	}
+	
+	.vt-action-button .dashicons {
+		font-size: 28px;
+		width: 28px;
+		height: 28px;
+	}
+	
+	.vt-system-label {
+		flex: 0 0 120px;
+		font-size: 12px;
+	}
+	
+	.vt-system-value {
+		font-size: 12px;
+	}
+	
+	.ayonto-setting-row th {
+		width: auto;
+		display: block;
+		padding-bottom: 10px;
+	}
+	
+	.ayonto-setting-row td {
+		padding-left: 0;
+		display: block;
+	}
+	
+	.ayonto-import-actions {
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 480px) {
+	.ayonto-settings-tabs .nav-tab {
+		display: block;
+		margin-bottom: 5px;
+	}
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.ayonto-card,
+.vt-widget {
+	animation: fadeIn 0.5s ease-out;
+}
+
+.ayonto-card:nth-child(1),
+.vt-widget:nth-child(1) { animation-delay: 0.1s; }
+.ayonto-card:nth-child(2),
+.vt-widget:nth-child(2) { animation-delay: 0.2s; }
+.ayonto-card:nth-child(3),
+.vt-widget:nth-child(3) { animation-delay: 0.3s; }
+.ayonto-card:nth-child(4),
+.vt-widget:nth-child(4) { animation-delay: 0.4s; }
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+.ayonto-text-center {
+	text-align: center;
+}
+
+.ayonto-text-right {
+	text-align: right;
+}
+
+.ayonto-mt-20 {
+	margin-top: 20px;
+}
+
+.ayonto-mb-20 {
+	margin-bottom: 20px;
+}
+
+.ayonto-hidden {
+	display: none;
+}
+
+.ayonto-flex {
+	display: flex;
+}
+
+.ayonto-flex-between {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.ayonto-gap-10 {
+	gap: 10px;
+}
+
+.ayonto-gap-20 {
+	gap: 20px;
+}
+
+/* ========================================
+   Modern Settings Page Styles (NEW!)
+   ======================================== */
+
+/* Settings Form Container */
+.ayonto-settings-form {
 	max-width: 1200px;
 }
 
-.vt-import-form {
-	background: #fff;
+/* Settings Section Card */
+.ayonto-settings-section {
+	background: var(--ayonto-white);
+	border: 1px solid var(--ayonto-gray-300);
+	border-radius: var(--ayonto-border-radius);
+	padding: 0;
+	margin-bottom: 30px;
+	box-shadow: var(--ayonto-box-shadow);
+	overflow: hidden;
+}
+
+.ayonto-settings-section:hover {
+	box-shadow: var(--ayonto-box-shadow-hover);
+}
+
+/* Section Header */
+.ayonto-section-header {
+	background: linear-gradient(135deg, var(--ayonto-primary) 0%, var(--ayonto-primary-light) 100%);
+	color: var(--ayonto-white);
+	padding: 20px 25px;
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.ayonto-section-icon {
+	font-size: 24px;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 8px;
+	flex-shrink: 0;
+}
+
+.ayonto-section-icon .dashicons {
+	font-size: 24px;
+	width: 24px;
+	height: 24px;
+}
+
+.ayonto-section-title {
+	flex: 1;
+}
+
+.ayonto-section-title h2 {
+	margin: 0;
+	padding: 0;
+	color: var(--ayonto-white);
+	font-size: 18px;
+	border: none;
+}
+
+.ayonto-section-title p {
+	margin: 5px 0 0 0;
+	opacity: 0.9;
+	font-size: 13px;
+}
+
+/* Section Body */
+.ayonto-section-body {
+	padding: 25px;
+}
+
+/* Settings Table Override */
+.ayonto-settings-section table.form-table {
+	margin: 0;
+	border: none;
+	background: transparent;
+}
+
+.ayonto-settings-section table.form-table th,
+.ayonto-settings-section table.form-table td {
+	padding: 0;
+	border: none;
+	background: transparent;
+}
+
+.ayonto-settings-section table.form-table tr {
+	border: none;
+}
+
+/* Modern Setting Row */
+.ayonto-setting-row {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 15px;
 	padding: 20px;
-	margin-bottom: 20px;
-	border: 1px solid #ccd0d4;
+	border-bottom: 1px solid var(--ayonto-gray-200);
+	transition: background 0.2s ease;
+}
+
+.ayonto-setting-row:last-child {
+	border-bottom: none;
+}
+
+.ayonto-setting-row:hover {
+	background: var(--ayonto-gray-100);
+}
+
+/* 2-Column Layout for larger screens */
+@media (min-width: 1024px) {
+	.ayonto-setting-row {
+		grid-template-columns: 280px 1fr;
+		gap: 30px;
+		align-items: start;
+	}
+}
+
+/* Setting Label */
+.ayonto-setting-label {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.ayonto-setting-label-icon {
+	color: var(--ayonto-accent);
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+	margin-top: 2px;
+}
+
+.ayonto-setting-label-icon .dashicons {
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+}
+
+.ayonto-setting-label-text {
+	flex: 1;
+}
+
+.ayonto-setting-label-text label {
+	display: block;
+	font-weight: 600;
+	font-size: 14px;
+	color: var(--ayonto-primary);
+	margin-bottom: 5px;
+}
+
+.ayonto-setting-label-text .description {
+	color: var(--ayonto-gray-600);
+	font-size: 13px;
+	line-height: 1.5;
+	font-style: italic;
+}
+
+/* Setting Input */
+.ayonto-setting-input {
+	flex: 1;
+}
+
+.ayonto-setting-input input[type="text"],
+.ayonto-setting-input input[type="url"],
+.ayonto-setting-input input[type="email"],
+.ayonto-setting-input input[type="number"],
+.ayonto-setting-input textarea,
+.ayonto-setting-input select {
+	width: 100%;
+	max-width: 600px;
+	padding: 10px 15px;
+	border: 2px solid var(--ayonto-gray-300);
+	border-radius: 6px;
+	font-size: 14px;
+	transition: all 0.3s ease;
+}
+
+.ayonto-setting-input input[type="text"]:focus,
+.ayonto-setting-input input[type="url"]:focus,
+.ayonto-setting-input input[type="email"]:focus,
+.ayonto-setting-input input[type="number"]:focus,
+.ayonto-setting-input textarea:focus,
+.ayonto-setting-input select:focus {
+	border-color: var(--ayonto-primary);
+	box-shadow: 0 0 0 3px rgba(0, 75, 97, 0.1);
+	outline: none;
+}
+
+/* Color Picker */
+.ayonto-setting-input input[type="text"].color-picker {
+	max-width: 120px;
+}
+
+/* Checkbox/Radio */
+.ayonto-setting-input input[type="checkbox"],
+.ayonto-setting-input input[type="radio"] {
+	margin-right: 8px;
+	width: 18px;
+	height: 18px;
+	vertical-align: middle;
+}
+
+.ayonto-setting-input label {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+/* Logo Upload & Preview */
+.ayonto-logo-preview-wrapper {
+	margin-top: 15px;
+}
+
+.ayonto-logo-preview {
+	max-width: 200px;
+	padding: 15px;
+	border: 2px dashed var(--ayonto-gray-300);
+	border-radius: 8px;
+	background: var(--ayonto-gray-100);
+	text-align: center;
+	transition: all 0.3s ease;
+}
+
+.ayonto-logo-preview:hover {
+	border-color: var(--ayonto-primary);
+	background: var(--ayonto-white);
+}
+
+.ayonto-logo-preview img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+	border-radius: 4px;
+}
+
+.ayonto-logo-preview-empty {
+	padding: 40px 20px;
+	color: var(--ayonto-gray-500);
+	font-size: 13px;
+}
+
+.ayonto-logo-preview-empty .dashicons {
+	font-size: 48px;
+	width: 48px;
+	height: 48px;
+	opacity: 0.5;
+	margin-bottom: 10px;
+}
+
+/* Upload Button Group */
+.ayonto-upload-button-group {
+	display: flex;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.ayonto-upload-button,
+.ayonto-remove-button {
+	padding: 8px 16px;
+	border-radius: 6px;
+	font-size: 13px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	border: none;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.ayonto-upload-button {
+	background: var(--ayonto-primary);
+	color: var(--ayonto-white);
+}
+
+.ayonto-upload-button:hover {
+	background: var(--ayonto-primary-light);
+	transform: translateY(-1px);
+	box-shadow: 0 2px 6px rgba(0, 75, 97, 0.3);
+}
+
+.ayonto-remove-button {
+	background: var(--ayonto-error);
+	color: var(--ayonto-white);
+}
+
+.ayonto-remove-button:hover {
+	background: #b32d2d;
+	transform: translateY(-1px);
+	box-shadow: 0 2px 6px rgba(220, 50, 50, 0.3);
+}
+
+/* Submit Button Container */
+.ayonto-submit-container {
+	padding: 25px;
+	background: var(--ayonto-gray-100);
+	border-top: 2px solid var(--ayonto-gray-300);
+}
+
+.ayonto-submit-container .button-primary {
+	padding: 12px 30px;
+	font-size: 15px;
+	font-weight: 600;
+	border-radius: 6px;
+	border: none;
+	background: var(--ayonto-primary);
+	transition: all 0.3s ease;
+}
+
+.ayonto-submit-container .button-primary:hover {
+	background: var(--ayonto-primary-light);
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(0, 75, 97, 0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1023px) {
+	.ayonto-setting-row {
+		padding: 15px;
+	}
+	
+	.ayonto-setting-input input[type="text"],
+	.ayonto-setting-input input[type="url"],
+	.ayonto-setting-input input[type="email"],
+	.ayonto-setting-input input[type="number"],
+	.ayonto-setting-input textarea,
+	.ayonto-setting-input select {
+		max-width: 100%;
+	}
+}
+
+@media (max-width: 767px) {
+	.ayonto-section-header {
+		padding: 15px 20px;
+	}
+	
+	.ayonto-section-icon {
+		width: 35px;
+		height: 35px;
+	}
+	
+	.ayonto-section-icon .dashicons {
+		font-size: 20px;
+		width: 20px;
+		height: 20px;
+	}
+	
+	.ayonto-section-title h2 {
+		font-size: 16px;
+	}
+	
+	.ayonto-section-body {
+		padding: 15px;
+	}
+	
+	.ayonto-setting-row {
+		padding: 12px;
+	}
+	
+	.ayonto-upload-button-group {
+		flex-direction: column;
+	}
+	
+	.ayonto-upload-button,
+	.ayonto-remove-button {
+		width: 100%;
+		justify-content: center;
+	}
 }

@@ -2,12 +2,12 @@
 /**
  * Plugin deactivation handler
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Includes
  * @since      0.1.0
  */
 
-namespace Voltrana\Sites;
+namespace Ayonto\Sites;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {

@@ -5,14 +5,14 @@
  * Synchronisiert Batterien aus "Batterien für diese Lösung" Metabox
  * automatisch in RankMath's Schema Generator.
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Integrations
  * @since      0.1.25
  */
 
-namespace Voltrana\Sites\Integrations;
+namespace Ayonto\Sites\Integrations;
 
-use Voltrana\Sites\Admin\Settings_Helper;
+use Ayonto\Sites\Admin\Settings_Helper;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -103,7 +103,7 @@ class RankMath_Schema_Sync {
 		?>
 		<div class="notice notice-success is-dismissible">
 			<p>
-				<strong><?php _e( 'Schema.org synchronisiert:', 'voltrana-sites' ); ?></strong>
+				<strong><?php _e( 'Schema.org synchronisiert:', 'ayonto-sites' ); ?></strong>
 				<?php
 				printf(
 					/* translators: %d: Number of batteries */
@@ -111,14 +111,14 @@ class RankMath_Schema_Sync {
 						'%d Batterie wurde automatisch in RankMath Schema Generator übertragen.',
 						'%d Batterien wurden automatisch in RankMath Schema Generator übertragen.',
 						$count,
-						'voltrana-sites'
+						'ayonto-sites'
 					),
 					$count
 				);
 				?>
 			</p>
 			<p style="font-size: 12px; color: #646970;">
-				<?php _e( 'Die Daten werden als ItemList im Frontend ausgegeben. Prüfe die Ausgabe mit Google Rich Results Test.', 'voltrana-sites' ); ?>
+				<?php _e( 'Die Daten werden als ItemList im Frontend ausgegeben. Prüfe die Ausgabe mit Google Rich Results Test.', 'ayonto-sites' ); ?>
 			</p>
 		</div>
 		<?php
@@ -170,7 +170,7 @@ class RankMath_Schema_Sync {
 		// Das Schema wird zur Laufzeit via Filter eingefügt.
 
 		// Action für Logging/Debug.
-		do_action( 'voltrana_batteries_synced_to_rankmath', $post_id, count( $batteries ) );
+		do_action( 'ayonto_batteries_synced_to_rankmath', $post_id, count( $batteries ) );
 	}
 
 	/**
@@ -275,7 +275,7 @@ class RankMath_Schema_Sync {
 				'name'  => sanitize_text_field( $battery['model'] ),
 			);
 
-			// Brand (immer Voltrana).
+			// Brand (immer Ayonto).
 			if ( ! empty( $battery['brand'] ) ) {
 				$product['brand'] = array(
 					'@type' => 'Brand',
@@ -298,7 +298,7 @@ class RankMath_Schema_Sync {
 			if ( ! empty( $battery['technology'] ) ) {
 				$properties[] = array(
 					'@type' => 'PropertyValue',
-					'name'  => __( 'Technologie', 'voltrana-sites' ),
+					'name'  => __( 'Technologie', 'ayonto-sites' ),
 					'value' => sanitize_text_field( $battery['technology'] ),
 				);
 			}
@@ -306,7 +306,7 @@ class RankMath_Schema_Sync {
 			if ( ! empty( $battery['capacity_ah'] ) ) {
 				$properties[] = array(
 					'@type' => 'PropertyValue',
-					'name'  => __( 'Kapazität', 'voltrana-sites' ),
+					'name'  => __( 'Kapazität', 'ayonto-sites' ),
 					'value' => sanitize_text_field( $battery['capacity_ah'] ) . ' Ah',
 				);
 			}
@@ -314,7 +314,7 @@ class RankMath_Schema_Sync {
 			if ( ! empty( $battery['voltage_v'] ) ) {
 				$properties[] = array(
 					'@type' => 'PropertyValue',
-					'name'  => __( 'Spannung', 'voltrana-sites' ),
+					'name'  => __( 'Spannung', 'ayonto-sites' ),
 					'value' => sanitize_text_field( $battery['voltage_v'] ) . ' V',
 				);
 			}
@@ -322,7 +322,7 @@ class RankMath_Schema_Sync {
 			if ( ! empty( $battery['cca_a'] ) ) {
 				$properties[] = array(
 					'@type' => 'PropertyValue',
-					'name'  => __( 'Kaltstartstrom', 'voltrana-sites' ),
+					'name'  => __( 'Kaltstartstrom', 'ayonto-sites' ),
 					'value' => sanitize_text_field( $battery['cca_a'] ) . ' A',
 				);
 			}
@@ -333,7 +333,7 @@ class RankMath_Schema_Sync {
 			     ! empty( $battery['dimensions_h'] ) ) {
 				$properties[] = array(
 					'@type' => 'PropertyValue',
-					'name'  => __( 'Maße (L×B×H)', 'voltrana-sites' ),
+					'name'  => __( 'Maße (L×B×H)', 'ayonto-sites' ),
 					'value' => sprintf(
 						'%s × %s × %s mm',
 						sanitize_text_field( $battery['dimensions_l'] ),
@@ -346,7 +346,7 @@ class RankMath_Schema_Sync {
 			if ( ! empty( $battery['weight_kg'] ) ) {
 				$properties[] = array(
 					'@type' => 'PropertyValue',
-					'name'  => __( 'Gewicht', 'voltrana-sites' ),
+					'name'  => __( 'Gewicht', 'ayonto-sites' ),
 					'value' => sanitize_text_field( $battery['weight_kg'] ) . ' kg',
 				);
 			}
@@ -374,7 +374,7 @@ class RankMath_Schema_Sync {
 			'@id'             => get_permalink( $post_id ) . '#batterylist',
 			'name'            => sprintf(
 				/* translators: %s: Post title */
-				__( 'Batterien für %s', 'voltrana-sites' ),
+				__( 'Batterien für %s', 'ayonto-sites' ),
 				get_the_title( $post_id )
 			),
 			'itemListElement' => $list_items,
@@ -398,19 +398,19 @@ class RankMath_Schema_Sync {
 		if ( $model && $capacity_ah && $voltage_v ) {
 			return sprintf(
 				/* translators: 1: Model, 2: Capacity, 3: Voltage, 4: Technology, 5: Brand */
-				__( '%1$s Batterie mit %2$s Ah Kapazität und %3$s V Spannung. Technologie: %4$s. Marke: %5$s.', 'voltrana-sites' ),
+				__( '%1$s Batterie mit %2$s Ah Kapazität und %3$s V Spannung. Technologie: %4$s. Marke: %5$s.', 'ayonto-sites' ),
 				$model,
 				$capacity_ah,
 				$voltage_v,
-				$technology ? $technology : __( 'Standard', 'voltrana-sites' ),
+				$technology ? $technology : __( 'Standard', 'ayonto-sites' ),
 				$brand
 			);
 		}
 
 		return sprintf(
 			/* translators: %s: Model */
-			__( '%s Batterie', 'voltrana-sites' ),
-			$model ? $model : __( 'Unbekannt', 'voltrana-sites' )
+			__( '%s Batterie', 'ayonto-sites' ),
+			$model ? $model : __( 'Unbekannt', 'ayonto-sites' )
 		);
 	}
 }

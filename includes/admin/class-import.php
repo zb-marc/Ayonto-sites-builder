@@ -2,14 +2,15 @@
 /**
  * Import administration functionality
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Admin
  * @since      0.1.0
  */
 
-namespace Voltrana\Sites\Admin;
+namespace Ayonto\Sites\Admin;
 
-use Voltrana\Sites\Services\Cache_Manager;
+use Ayonto\Sites\Services\Cache_Manager;
+use Ayonto\Sites\Services\Audit_Logger;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -69,11 +70,11 @@ class Import {
 	 */
 	public function add_import_page() {
 		add_submenu_page(
-			'voltrana-settings',
-			__( 'Datenimport', 'voltrana-sites' ),
-			__( 'Datenimport', 'voltrana-sites' ),
+			'ayonto-root', // Build 061: Korrigiert zu ayonto-root
+			__( 'Datenimport', 'ayonto-sites' ),
+			__( 'Datenimport', 'ayonto-sites' ),
 			'manage_options',
-			'voltrana-import',
+			'ayonto-import',
 			array( $this, 'render_import_page' )  // FIXED: war render_page
 		);
 	}
@@ -85,12 +86,20 @@ class Import {
 	 * @return void
 	 */
 	public function enqueue_scripts( $hook ) {
-		if ( 'voltrana_page_voltrana-import' !== $hook ) {
+		if ( 'ayonto_page_ayonto-import' !== $hook ) {
 			return;
 		}
 
+		// Enqueue Ayonto Admin CSS (unified design system).
+		wp_enqueue_style(
+			'ayonto-admin',
+			plugins_url( 'assets/css/admin.css', dirname( dirname( __FILE__ ) ) ),
+			array(),
+			AYONTO_SITES_VERSION
+		);
+
 		wp_enqueue_script(
-			'voltrana-import',
+			'ayonto-import',
 			plugins_url( 'assets/js/admin.js', dirname( dirname( __FILE__ ) ) ),
 			array( 'jquery' ),
 			'0.1.0',
@@ -98,16 +107,16 @@ class Import {
 		);
 
 		wp_localize_script(
-			'voltrana-import',
-			'voltranaImport',
+			'ayonto-import',
+			'ayontoImport',
 			array(
-				'nonce'    => wp_create_nonce( 'vt_import_nonce' ),
-				'ajaxurl'  => admin_url( 'admin-ajax.php' ),
+				'nonce'    => wp_json_encode( wp_create_nonce( 'vt_import_nonce' ) ),
+				'ajaxurl'  => esc_url( admin_url( 'admin-ajax.php' ) ),
 				'messages' => array(
-					'uploading' => __( 'Hochladen...', 'voltrana-sites' ),
-					'processing' => __( 'Verarbeite...', 'voltrana-sites' ),
-					'success' => __( 'Import erfolgreich!', 'voltrana-sites' ),
-					'error' => __( 'Fehler beim Import', 'voltrana-sites' ),
+					'uploading' => esc_html__( 'Hochladen...', 'ayonto-sites' ),
+					'processing' => __( 'Verarbeite...', 'ayonto-sites' ),
+					'success' => __( 'Import erfolgreich!', 'ayonto-sites' ),
+					'error' => __( 'Fehler beim Import', 'ayonto-sites' ),
 				),
 			)
 		);
@@ -121,30 +130,31 @@ class Import {
 	public function render_import_page() {
 		// Check capabilities.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Sie haben keine Berechtigung, auf diese Seite zuzugreifen.', 'voltrana-sites' ) );
+			wp_die( esc_html__( 'Sie haben keine Berechtigung, auf diese Seite zuzugreifen.', 'ayonto-sites' ) );
 		}
 
 		?>
-		<div class="wrap">
+		<div class="wrap ayonto-page">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+			<p class="ayonto-page-subtitle"><?php esc_html_e( 'Importieren Sie Ihre Lösungsdaten aus CSV- oder XLSX-Dateien.', 'ayonto-sites' ); ?></p>
 
-			<div class="notice notice-info">
+			<div class="ayonto-notice ayonto-notice-info">
 				<p>
-					<strong><?php esc_html_e( 'Import-Funktion vorübergehend deaktiviert', 'voltrana-sites' ); ?></strong>
+					<strong><?php esc_html_e( 'Import-Funktion vorübergehend deaktiviert', 'ayonto-sites' ); ?></strong>
 				</p>
 				<p>
-					<?php esc_html_e( 'Die Import-Funktionalität wird nach Finalisierung der Datenstruktur wieder aktiviert.', 'voltrana-sites' ); ?>
+					<?php esc_html_e( 'Die Import-Funktionalität wird nach Finalisierung der Datenstruktur wieder aktiviert.', 'ayonto-sites' ); ?>
 				</p>
 			</div>
 
-			<div class="card">
-				<h2><?php esc_html_e( 'Manuelle Dateneingabe', 'voltrana-sites' ); ?></h2>
+			<div class="ayonto-card">
+				<h2><?php esc_html_e( 'Manuelle Dateneingabe', 'ayonto-sites' ); ?></h2>
 				<p>
 					<?php
 					printf(
 						/* translators: %s: URL to create new solution */
-						esc_html__( 'Bitte nutzen Sie vorerst die %s zur Dateneingabe.', 'voltrana-sites' ),
-						'<a href="' . esc_url( admin_url( 'post-new.php?post_type=vt_battery' ) ) . '">' . esc_html__( 'manuelle Eingabe', 'voltrana-sites' ) . '</a>'
+						esc_html__( 'Bitte nutzen Sie vorerst die %s zur Dateneingabe.', 'ayonto-sites' ),
+						'<a href="' . esc_url( admin_url( 'post-new.php?post_type=vt_battery' ) ) . '" class="button ayonto-button">' . esc_html__( 'manuelle Eingabe', 'ayonto-sites' ) . '</a>'
 					);
 					?>
 				</p>
@@ -155,17 +165,38 @@ class Import {
 	public function handle_import() {
 		// Verify nonce.
 		if ( ! isset( $_POST['vt_import_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['vt_import_nonce'] ) ), 'vt_import_nonce' ) ) {
-			wp_die( esc_html__( 'Sicherheitsüberprüfung fehlgeschlagen.', 'voltrana-sites' ) );
+			wp_die( esc_html__( 'Sicherheitsüberprüfung fehlgeschlagen.', 'ayonto-sites' ) );
 		}
 
 		// Check capabilities.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Sie haben keine Berechtigung für diese Aktion.', 'voltrana-sites' ) );
+			wp_die( esc_html__( 'Sie haben keine Berechtigung für diese Aktion.', 'ayonto-sites' ) );
 		}
+
+		// Rate limiting check to prevent DoS attacks.
+		$user_id   = get_current_user_id();
+		$rate_key  = 'vt_import_attempts_' . $user_id;
+		$attempts  = get_transient( $rate_key );
+
+		if ( false === $attempts ) {
+			$attempts = 0;
+		}
+
+		// Allow maximum 10 imports per hour.
+		if ( $attempts >= 10 ) {
+			wp_die( 
+				esc_html__( 'Zu viele Import-Versuche. Bitte warten Sie 1 Stunde.', 'ayonto-sites' ),
+				esc_html__( 'Rate Limit erreicht', 'ayonto-sites' ),
+				429
+			);
+		}
+
+		// Increment attempts counter.
+		set_transient( $rate_key, $attempts + 1, HOUR_IN_SECONDS );
 
 		// Check if file was uploaded.
 		if ( ! isset( $_FILES['vt_import_file'] ) || UPLOAD_ERR_OK !== $_FILES['vt_import_file']['error'] ) {
-			wp_die( esc_html__( 'Fehler beim Hochladen der Datei.', 'voltrana-sites' ) );
+			wp_die( esc_html__( 'Fehler beim Hochladen der Datei.', 'ayonto-sites' ) );
 		}
 
 		// Get parameters.
@@ -179,12 +210,21 @@ class Import {
 		// Save to history.
 		if ( ! $dry_run ) {
 			$this->save_import_history( $_FILES['vt_import_file']['name'], $result );
+			
+			// Log import action for security audit (since 0.1.51).
+			Audit_Logger::log( 'batteries_imported', array(
+				'file_name' => sanitize_file_name( $_FILES['vt_import_file']['name'] ),
+				'created'   => $result['created'],
+				'updated'   => $result['updated'],
+				'errors'    => $result['errors'],
+				'rows'      => $result['rows'],
+			) );
 		}
 
 		// Redirect back with result.
 		$redirect_url = add_query_arg(
 			array(
-				'page'    => 'voltrana-import',
+				'page'    => 'ayonto-import',
 				'import'  => $result['success'] ? 'success' : 'error',
 				'created' => $result['created'],
 				'updated' => $result['updated'],
@@ -214,6 +254,29 @@ class Import {
 			'rows'    => 0,
 		);
 
+		// Check file size limits (max 10MB for security).
+		$max_size = apply_filters( 'vt_import_max_file_size', 10 * 1024 * 1024 );
+		
+		if ( $file['size'] > $max_size ) {
+			wp_die( 
+				sprintf(
+					esc_html__( 'Die Datei ist zu groß. Maximum: %s', 'ayonto-sites' ),
+					size_format( $max_size )
+				),
+				esc_html__( 'Datei zu groß', 'ayonto-sites' ),
+				413
+			);
+		}
+
+		// Check if file is suspiciously small (< 100 bytes).
+		if ( $file['size'] < 100 ) {
+			wp_die( 
+				esc_html__( 'Die Datei ist zu klein oder leer.', 'ayonto-sites' ),
+				esc_html__( 'Ungültige Datei', 'ayonto-sites' ),
+				400
+			);
+		}
+
 		// Validate MIME type for security
 		$finfo = finfo_open(FILEINFO_MIME_TYPE);
 		$mime_type = finfo_file($finfo, $file['tmp_name']);
@@ -226,7 +289,7 @@ class Import {
 		);
 
 		if (!isset($allowed_types[$mime_type])) {
-			wp_die( esc_html__( 'Ungültiger Dateityp. Nur CSV und XLSX erlaubt.', 'voltrana-sites' ) );
+			wp_die( esc_html__( 'Ungültiger Dateityp. Nur CSV und XLSX erlaubt.', 'ayonto-sites' ) );
 		}
 
 		// Parse file based on extension.
@@ -234,7 +297,7 @@ class Import {
 		
 		// Additional extension check for defense in depth
 		if ($allowed_types[$mime_type] !== $file_extension) {
-			wp_die( esc_html__( 'Dateiendung stimmt nicht mit Dateityp überein.', 'voltrana-sites' ) );
+			wp_die( esc_html__( 'Dateiendung stimmt nicht mit Dateityp überein.', 'ayonto-sites' ) );
 		}
 		
 		$rows           = array();

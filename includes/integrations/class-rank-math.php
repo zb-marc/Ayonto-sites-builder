@@ -2,12 +2,12 @@
 /**
  * Rank Math SEO integration
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Integrations
  * @since      0.1.0
  */
 
-namespace Voltrana\Sites\Integrations;
+namespace Ayonto\Sites\Integrations;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {

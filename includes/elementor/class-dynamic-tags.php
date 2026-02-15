@@ -2,12 +2,12 @@
 /**
  * Elementor Dynamic Tags
  *
- * @package    Voltrana_Sites
+ * @package    Ayonto_Sites
  * @subpackage Elementor
  * @since      0.1.29
  */
 
-namespace Voltrana\Sites\Elementor;
+namespace Ayonto\Sites\Elementor;
 
 use Elementor\Core\DynamicTags\Tag;
 use Elementor\Modules\DynamicTags\Module as TagsModule;
@@ -61,9 +61,9 @@ class Dynamic_Tags {
 	public function register_dynamic_tags( $dynamic_tags_manager ) {
 		// Register tag group.
 		$dynamic_tags_manager->register_group(
-			'voltrana',
+			'ayonto',
 			array(
-				'title' => __( 'Voltrana', 'voltrana-sites' ),
+				'title' => __( 'Ayonto', 'ayonto-sites' ),
 			)
 		);
 
@@ -94,7 +94,7 @@ class Additional_Content_Tag extends Tag {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Zusätzlicher Inhalt', 'voltrana-sites' );
+		return __( 'Zusätzlicher Inhalt', 'ayonto-sites' );
 	}
 
 	/**
@@ -103,7 +103,7 @@ class Additional_Content_Tag extends Tag {
 	 * @return string|array
 	 */
 	public function get_group() {
-		return 'voltrana';
+		return 'ayonto';
 	}
 
 	/**
